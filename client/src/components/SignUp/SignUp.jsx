@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import "./SginUp.css";
+import "./SignUp.css";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -55,7 +55,7 @@ function SignUp() {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   className="password-input"
-                  placeholder="Password *"
+                  placeholder="Confirm *"
                 />
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
