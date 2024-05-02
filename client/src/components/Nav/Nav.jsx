@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 
 const Nav = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // starts at false because we assume user is not logged in ** to be replaced with real data once we manage sessions **
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const handleSignIn = () => {
     setIsLoggedIn(true);
@@ -18,7 +18,6 @@ const Nav = () => {
       <Link to="/">
         <p>Logo</p>
       </Link>
-      {/* Check if user is logged in to show different options than we show to not logged in user */}
       {!isLoggedIn ? (
         <ul className="nav-menu">
           <Link to="/signin">
