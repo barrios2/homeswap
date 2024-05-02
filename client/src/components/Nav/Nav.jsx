@@ -21,7 +21,7 @@ const Nav = () => {
       {/* Check if user is logged in to show different options than we show to guests */}
       {!isLoggedIn ? (
         <ul className="nav-menu">
-          <Link to="/">
+          <Link to="/signin">
             <button onClick={handleSignIn} className="sign-in-btn">
               Sign in
             </button>
@@ -41,7 +41,7 @@ const Nav = () => {
           <Link to="/profile">
             <li>Profile</li>
           </Link>
-          <Link to="/">
+          <Link to="/logout">
             <button onClick={handleLogOut} className="logout-btn">
               Log out
             </button>
