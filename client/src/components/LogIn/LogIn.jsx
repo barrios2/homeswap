@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import "./SignUp.css";
+import "./LogIn.css";
 import { Link } from "react-router-dom";
 
-function SignUp() {
+function LogIn() {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -12,8 +12,8 @@ function SignUp() {
   };
 
   return (
-    <section className="sign-up" id="sign-up">
-      <div className="sign-up-container">
+    <section className="log-in" id="log-in">
+      <div className="log-in-container">
         <div className="left">
           <div className="login-text">
             <p>
@@ -21,22 +21,13 @@ function SignUp() {
               Just From here !
             </p>
           </div>
-          <div className="col-22">
+          <div className="log-in-form">
             <form action="" method="post">
-              <div className="user">
-                <input
-                  type="text"
-                  name="user"
-                  className="user-name"
-                  placeholder="Username *"
-                />
-              </div>
-
               <div className="password">
                 <input
                   type="email"
-                  name="password"
-                  className="password-input"
+                  name="email"
+                  className="email-input"
                   placeholder="Email *"
                 />
 
@@ -51,22 +42,10 @@ function SignUp() {
                   className="password-toggle"
                   onClick={togglePasswordVisibility}
                 />
-
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  className="password-input"
-                  placeholder="Confirm *"
-                />
-                <FontAwesomeIcon
-                  icon={showPassword ? faEyeSlash : faEye}
-                  className="password-toggle"
-                  onClick={togglePasswordVisibility}
-                />
               </div>
               <div className="submit">
                 <button type="submit" className="submit">
-                  Sign Up
+                  Log In
                 </button>
                 <i className="fa-solid fa-arrow-right"></i>
               </div>
@@ -74,9 +53,9 @@ function SignUp() {
           </div>
           <div>
             <p className="login-qustion">
-              Already have an account ?{" "}
-              <Link to={"/user/login"} className="login-qustion-span">
-                Log In
+              Dont have an account yet?{" "}
+              <Link to={"/user/signup"} className="login-qustion-span">
+                Sign Up
               </Link>{" "}
             </p>
           </div>
@@ -138,4 +117,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default LogIn;
