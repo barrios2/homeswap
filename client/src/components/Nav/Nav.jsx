@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 
 const Nav = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSignIn = () => {
     setIsLoggedIn(true);
