@@ -1,6 +1,6 @@
 import React from "react";
-import SignUp from "./components/SginUp/SginUp";
-// import { Routes, Route } from "react-router-dom";
+import SignUp from "./components/SignUp/SignUp";
+import { Routes, Route } from "react-router-dom";
 // import Nav from "./components/Nav";
 // import Home from "./pages/Home/Home";
 // import CreateUser from "./pages/User/CreateUser";
@@ -9,13 +9,13 @@ import SignUp from "./components/SginUp/SginUp";
 const App = () => {
   return (
     <>
-      <SignUp />
-      {/* <Nav />
+      {/* <Nav /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/user/signup" element={<SignUp />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/user" element={<UserList />} />
-        <Route path="/user/create" element={<CreateUser />} />
-      </Routes> */}
+        <Route path="/user/create" element={<CreateUser />} /> */}
+      </Routes>
     </>
   );
 };
