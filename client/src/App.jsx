@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import SignUp from "./components/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import CreateUser from "./pages/User/CreateUser";
 import UserList from "./pages/User/UserList";
@@ -15,8 +16,7 @@ const App = () => {
           path="/profile"
           element={<p>to be added when profile page is ready</p>}
         />
-        <Route path="/user" element={<UserList />} />
-        <Route path="/user/create" element={<CreateUser />} />
+        <Route path="/user/signup" element={<SignUp />} />
       </Routes>
     </>
   );
