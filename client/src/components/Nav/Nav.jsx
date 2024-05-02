@@ -18,7 +18,7 @@ const Nav = () => {
       <Link to="/">
         <p>Logo</p>
       </Link>
-      {/* Check if user is logged in to show different options than we show to guests */}
+      {/* Check if user is logged in to show different options than we show to not logged in user */}
       {!isLoggedIn ? (
         <ul className="nav-menu">
           <Link to="/signin">
