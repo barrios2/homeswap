@@ -1,0 +1,61 @@
+.content-wrapper {
+  text-align: center;
+}
+
+.vision-block {
+  display: flex;
+  align-items: center;
+}
+
+.text-wrapper {
+  width: 60vw;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.responsible-travel-cropper {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 12px;
+}
+
+.responsible-travel-img {
+  margin: 0 auto;
+  width: auto;
+  height: 100%;
+  display: inline;
+}
+
+.belief-header {
+  font-size: 44px;
+}
+
+.culture-block {
+  display: flex;
+  align-items: center;
+}
+
+.culture-text-wrapper {
+  /* line-height: 1.5; */
+  font-size: 24px;
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.badge-wrapper {
+  margin: 0 32px 0 auto;
+}
+
+.responsible-travel-badge {
+  width: 350px;
+}
+
+@media screen and (max-width: 1100px) {
+  .vision-block {
+    display: flex;
+    flex-direction: column;
+  }
+}
