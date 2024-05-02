@@ -20,12 +20,39 @@ export const validateUser = (userObject) => {
     errorList.push(validatedKeysMessage);
   }
 
+  userObject.username = userObject.username.trim();
+  userObject.email = userObject.email.trim();
+
+  if (userObject.username.includes(" ")) {
+    errorList.push("username cannot contain empty spaces");
+  }
+
   if (userObject.username == null) {
     errorList.push("username is a required field");
   }
 
   if (userObject.email == null) {
     errorList.push("email is a required field");
+  }
+
+  if (userObject.password.length < 8) {
+    errorList.push("password must be at least 8 characters long");
+  }
+
+  if (!/[A-Z]/.test(userObject.password)) {
+    errorList.push("password must contain at least one uppercase letter");
+  }
+
+  if (!/[a-z]/.test(userObject.password)) {
+    errorList.push("password must contain at least one lowercase letter");
+  }
+
+  if (!/\d/.test(userObject.password)) {
+    errorList.push("password must contain at least one number");
+  }
+
+  if (!/[^A-Za-z0-9]/.test(userObject.password)) {
+    errorList.push("password must contain at least one special character");
   }
 
   if (userObject.password !== userObject.confirmPassword) {
