@@ -2,8 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/SignUp/SignUp";
 import Home from "./pages/Home/Home";
-import CreateUser from "./pages/User/CreateUser";
-import UserList from "./pages/User/UserList";
 import AboutUs from "./pages/AboutUs/AboutUs";
 
 const App = () => {
