@@ -20,22 +20,26 @@ export const validateUser = (userObject) => {
     errorList.push(validatedKeysMessage);
   }
 
-  userObject.username = userObject.username.trim();
-  userObject.email = userObject.email.trim();
-
-  if (userObject.username.includes(" ")) {
-    errorList.push("username cannot contain empty spaces");
+  if (userObject.username) {
+    userObject.username = userObject.username.trim();
+  }
+  if (userObject.email) {
+    userObject.email = userObject.email.trim();
   }
 
   if (userObject.username == null) {
     errorList.push("username is a required field");
+  } else if (userObject.username.includes(" ")) {
+    errorList.push("username cannot contain empty spaces");
   }
 
   if (userObject.email == null) {
     errorList.push("email is a required field");
   }
 
-  if (userObject.password.length < 8) {
+  if (!userObject.password) {
+    errorList.push("password is required");
+  } else if (userObject.password.length < 8) {
     errorList.push("password must be at least 8 characters long");
   }
 

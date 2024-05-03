@@ -1,14 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./SignUp.css";
 
+const initialFormState = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState(initialFormState);
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+    "/user/create",
+    onSuccess,
+  );
+
+  useEffect(() => {
+    return () => cancelFetch;
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  function onSuccess() {
+    setFormData(initialFormState);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    performFetch({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+  };
+
+  //IMPORTANT: This error you can handle in your way according to the validation criteria
+  if (error) {
+    return <div>Error signing up!</div>;
+  }
 
   return (
     <section className="sign-up" id="sign-up">
@@ -21,29 +66,38 @@ function SignUp() {
             </p>
           </div>
           <div className="col-22">
-            <form action="" method="post">
+            <form onSubmit={handleSubmit} /*action="" method="post"*/>
               <div className="user">
                 <input
                   type="text"
-                  name="user"
+                  /*name="user"*/
                   className="user-name"
                   placeholder="Username *"
+                  id="username"
+                  value={formData.username}
+                  onChange={handleChange}
                 />
               </div>
 
               <div className="password">
                 <input
                   type="email"
-                  name="password"
+                  /*name="password"*/
                   className="password-input"
                   placeholder="Email *"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
 
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
+                  /* name="password"*/
                   className="password-input"
                   placeholder="Password *"
+                  id="password"
+                  value={formData.password}
+                  onChange={handleChange}
                 />
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
@@ -53,9 +107,12 @@ function SignUp() {
 
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
+                  /*name="password"*/
                   className="password-input"
-                  placeholder="Confirm *"
+                  placeholder="Confirm password *"
+                  id="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                 />
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
@@ -64,13 +121,14 @@ function SignUp() {
                 />
               </div>
               <div className="submit">
-                <button type="submit" className="submit">
+                <button type="submit" className="submit" disabled={isLoading}>
                   Sign Up
                 </button>
                 <i className="fa-solid fa-arrow-right"></i>
               </div>
             </form>
           </div>
+
           <div>
             <p className="login-qustion">
               Already have an account ?{" "}

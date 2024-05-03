@@ -24,6 +24,7 @@ export const signUp = async (req, res) => {
     password,
     confirmPassword,
   });
+
   if (errorList.length > 0) {
     return res
       .status(400)
@@ -31,7 +32,9 @@ export const signUp = async (req, res) => {
   }
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const saltRounds = 10;
+
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
     const newUser = await User.create({
       username,
       email,
@@ -46,39 +49,3 @@ export const signUp = async (req, res) => {
       .json({ success: false, msg: "Unable to create user, try again later" });
   }
 };
-
-/*
-export const createUser = async (req, res) => {
-  try {
-    const { user } = req.body;
-
-    if (typeof user !== "object") {
-      res.status(400).json({
-        success: false,
-        msg: `You need to provide a 'user' object. Received: ${JSON.stringify(
-          user,
-        )}`,
-      });
-
-      return;
-    }
-
-    const errorList = validateUser(user);
-
-    if (errorList.length > 0) {
-      res
-        .status(400)
-        .json({ success: false, msg: validationErrorMessage(errorList) });
-    } else {
-      const newUser = await User.create(user);
-
-      res.status(201).json({ success: true, user: newUser });
-    }
-  } catch (error) {
-    logError(error);
-    res
-      .status(500)
-      .json({ success: false, msg: "Unable to create user, try again later" });
-  }
-};
-*/
