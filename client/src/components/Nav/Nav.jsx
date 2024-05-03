@@ -22,7 +22,7 @@ const Nav = () => {
             <img src={logo} alt="homeswap-logo" className="logo" />
           </Link>
           <ul className="nav-menu">
-            <Link to="/login">
+            <Link to="/user/login">
               <button onClick={handleLogIn} className="log-in-btn">
                 Log in
               </button>
@@ -39,7 +39,6 @@ const Nav = () => {
               <li>Home</li>
             </Link>
             <Link to="/">
-              {" "}
               {/* this route should be /about but since we don't have the homepage yet this will do for now */}
               <li>About Us</li>
             </Link>
