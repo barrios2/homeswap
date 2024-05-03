@@ -1,15 +1,13 @@
 import React from "react";
 import "./AboutUsContent.css";
+import resp from "../../assets/resp.jpeg";
 
 const AboutUsContent = () => {
   return (
     <section className="content-wrapper">
       <div className="vision-block">
         <div className="responsible-travel-cropper">
-          <img
-            src="https://image-tc.galaxy.tf/wijpeg-5qgmgnsly37erbockd5k85o68/responsible-tourist-practical-tips-1_wide.jpg?crop=0%2C0%2C1920%2C1080"
-            className="responsible-travel-img"
-          />
+          <img src={resp} className="responsible-travel-img" />
         </div>
         <div className="text-wrapper">
           <h1 className="belief-header">
