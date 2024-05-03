@@ -40,8 +40,7 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-  
+
     performFetch({
       method: "POST",
       headers: {
@@ -51,11 +50,10 @@ function SignUp() {
     });
   };
 
-
-  if (error) { //needs styling or handling it another way (not sure)
+  if (error) {
+    //needs styling or handling it another way
     return <div>Error:{error.message}</div>;
-}
-
+  }
 
   return (
     <section className="sign-up" id="sign-up">
