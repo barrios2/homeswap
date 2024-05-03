@@ -57,8 +57,7 @@ const useFetch = (route, onReceived) => {
 
       if (!res.ok) {
         setError(
-          `Fetch for ${url} returned an invalid status (${
-            res.status
+          `Fetch for ${url} returned an invalid status (${res.status
           }). Received: ${JSON.stringify(res)}`,
         );
       }
@@ -70,9 +69,9 @@ const useFetch = (route, onReceived) => {
       } else {
         setError(
           jsonResult.msg ||
-            `The result from our API did not have an error message. Received: ${JSON.stringify(
-              jsonResult,
-            )}`,
+          `The result from our API did not have an error message. Received: ${JSON.stringify(
+            jsonResult,
+          )}`,
         );
       }
 

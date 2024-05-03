@@ -40,7 +40,8 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
+  
     performFetch({
       method: "POST",
       headers: {
@@ -50,10 +51,11 @@ function SignUp() {
     });
   };
 
-  //IMPORTANT: This error you can handle in your way according to the validation criteria
-  if (error) {
-    return <div>Error signing up!</div>;
-  }
+
+  if (error) { //needs styling or handling it another way (not sure)
+    return <div>Error:{error.message}</div>;
+}
+
 
   return (
     <section className="sign-up" id="sign-up">
