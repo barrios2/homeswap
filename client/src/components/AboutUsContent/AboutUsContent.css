@@ -1,0 +1,95 @@
+.content-wrapper {
+  text-align: center;
+}
+
+.vision-block {
+  display: flex;
+  align-items: center;
+}
+
+.text-wrapper {
+  width: 60vw;
+  font-size: 18px;
+  margin-left: 36px;
+}
+
+.responsible-travel-cropper {
+  width: 450px;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 12px 24px;
+}
+
+.responsible-travel-img {
+  margin: 0 auto;
+  width: auto;
+  height: 100%;
+  display: inline;
+}
+
+.belief-header {
+  font-size: 44px;
+  margin-bottom: 24px;
+}
+
+.culture-block {
+  display: flex;
+  align-items: center;
+}
+
+.culture-text-wrapper {
+  font-size: 24px;
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.badge-wrapper {
+  margin: 0 32px 0 auto;
+}
+
+.responsible-travel-badge {
+  width: 350px;
+}
+
+@media screen and (max-width: 1100px) {
+  .belief-header {
+    font-size: 32px;
+  }
+
+  .text-wrapper {
+    font-size: 16px;
+  }
+
+  .culture-text-wrapper {
+    font-size: 16px;
+  }
+
+  .vision-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .culture-block {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .responsible-travel-cropper {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 12px 24px;
+  }
+
+  .badge-wrapper {
+    margin: auto;
+  }
+
+  .responsible-travel-badge {
+    width: 250px;
+  }
+}
