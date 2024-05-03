@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import "./Nav.css";
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSignIn = () => {
+  const handleLogIn = () => {
     setIsLoggedIn(true);
   };
 
@@ -15,37 +16,43 @@ const Nav = () => {
 
   return (
     <nav className="nav-bar-container">
-      <Link to="/">
-        <p>Logo</p>
-      </Link>
       {!isLoggedIn ? (
-        <ul className="nav-menu">
-          <Link to="/signin">
-            <button onClick={handleSignIn} className="sign-in-btn">
-              Sign in
-            </button>
-          </Link>
-          <Link to="/signup">
-            <button className="sign-up-btn">Sign up</button>
-          </Link>
-        </ul>
-      ) : (
-        <ul className="nav-menu">
+        <div className="menu-wrapper">
           <Link to="/">
-            <li>Home</li>
+            <img src={logo} alt="homeswap-logo" className="logo" />
           </Link>
-          <Link to="/about">
-            <li>About</li>
-          </Link>
-          <Link to="/profile">
-            <li>Profile</li>
-          </Link>
-          <Link to="/logout">
-            <button onClick={handleLogOut} className="logout-btn">
-              Log out
-            </button>
-          </Link>
-        </ul>
+          <ul className="nav-menu">
+            <Link to="/login">
+              <button onClick={handleLogIn} className="log-in-btn">
+                Log in
+              </button>
+            </Link>
+            <Link to="/user/signup">
+              <button className="sign-up-btn">Sign up</button>
+            </Link>
+          </ul>
+        </div>
+      ) : (
+        <div className="menu-wrapper">
+          <ul className="nav-menu">
+            <Link to="/">
+              <li>Home</li>
+            </Link>
+            <Link to="/">
+              {" "}
+              {/* this route should be /about but since we don't have the homepage yet this will do for now */}
+              <li>About Us</li>
+            </Link>
+            <Link to="/profile">
+              <li>Profile</li>
+            </Link>
+            <Link to="/logout">
+              <button onClick={handleLogOut} className="logout-btn">
+                Log out
+              </button>
+            </Link>
+          </ul>
+        </div>
       )}
     </nav>
   );
