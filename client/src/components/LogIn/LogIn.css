@@ -1,14 +1,3 @@
-* {
-  padding: 0%;
-  margin: 0%;
-}
-
-body {
-  scroll-behavior: smooth;
-  font-family: "Ogg", "Inter";
-  background-color: #010625;
-}
-
 .log-in {
   width: 100%;
   height: 80vh;
@@ -134,12 +123,16 @@ body {
   cursor: pointer;
 }
 
-.password-toggle {
+.login-qustion {
+  text-align: center;
+}
+
+/* .password-toggle {
   color: black;
   position: relative;
   top: -33px;
   left: 190px;
-}
+} */
 
 @media (max-width: 767px) {
   .log-in-container {
