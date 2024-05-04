@@ -19,7 +19,6 @@ body {
   grid-template-columns: 50% 50%;
   padding: 20px;
   margin: 20px;
-  background-color: #010625;
 }
 
 .left {
@@ -156,4 +155,25 @@ body {
     top: -5px;
     padding-top: 10px;
   }
+}
+
+.error {
+  color: #ff9090;
+  font-size: 14px;
+  margin-top: 14px !important;
+}
+
+input {
+  color: #010625;
+  font-family: "Inter";
+}
+::placeholder {
+  font-family: "Inter";
+  color: #010625;
+}
+.error-user {
+  position: absolute;
+  top: 280px;
+  color: #ff9090;
+  font-size: 14px;
 }

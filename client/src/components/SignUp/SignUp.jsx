@@ -15,6 +15,7 @@ const initialFormState = {
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
+  const [errors, setErrors] = useState({});
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user/create",
     onSuccess,
@@ -33,6 +34,10 @@ function SignUp() {
       ...prevState,
       [e.target.id]: e.target.value,
     }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [e.target.id]: "",
+    }));
   };
 
   function onSuccess() {
@@ -41,6 +46,12 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //set errors
+    const validationErrors = validateForm(formData);
+    if (Object.values(validationErrors).some((error) => error !== "")) {
+      setErrors(validationErrors);
+      return;
+    }
 
     performFetch({
       method: "POST",
@@ -56,6 +67,41 @@ function SignUp() {
     return <div>Error:{error.message}</div>;
   }
 
+  const validateForm = (formData) => {
+    let errors = {};
+    if (!formData.username) {
+      errors.username = "Username is a required field";
+    } else if (formData.username.includes(" ")) {
+      errors.username = "Username cannot contain empty spaces";
+    }
+
+    if (!formData.email) {
+      errors.email = "Email is a required field";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      errors.password = "Password must be at least 8 characters long";
+    } else if (!/[A-Z]/.test(formData.password)) {
+      errors.password = "Password must contain at least one uppercase letter";
+    } else if (!/[a-z]/.test(formData.password)) {
+      errors.password = "Password must contain at least one lowercase letter";
+    } else if (!/\d/.test(formData.password)) {
+      errors.password = "Password must contain at least one number";
+    } else if (!/[^A-Za-z0-9]/.test(formData.password)) {
+      errors.password = "Password must contain at least one special character";
+    }
+
+    if (!formData.confirmPassword) {
+      errors.confirmPassword = "Confirm Password is required";
+    } else if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+    }
+    return errors;
+  };
+
   return (
     <section className="sign-up" id="sign-up">
       <div className="sign-up-container">
@@ -67,7 +113,10 @@ function SignUp() {
             </p>
           </div>
           <div className="col-22">
-            <form onSubmit={handleSubmit} /*action="" method="post"*/>
+            <form
+              noValidate
+              onSubmit={handleSubmit} /*action="" method="post"*/
+            >
               <div className="user">
                 <input
                   type="text"
@@ -78,6 +127,9 @@ function SignUp() {
                   value={formData.username}
                   onChange={handleChange}
                 />
+                {errors.username && (
+                  <span className="error-user">{errors.username}</span>
+                )}
               </div>
 
               <div className="password">
@@ -90,6 +142,7 @@ function SignUp() {
                   value={formData.email}
                   onChange={handleChange}
                 />
+                {errors.email && <span className="error">{errors.email}</span>}
 
                 <input
                   type={showPassword ? "text" : "password"}
@@ -100,6 +153,9 @@ function SignUp() {
                   value={formData.password}
                   onChange={handleChange}
                 />
+                {errors.password && (
+                  <span className="error">{errors.password}</span>
+                )}
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
                   className="password-toggle"
@@ -115,6 +171,9 @@ function SignUp() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
+                {errors.confirmPassword && (
+                  <span className="error">{errors.confirmPassword}</span>
+                )}
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
                   className="password-toggle"
