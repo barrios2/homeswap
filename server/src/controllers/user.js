@@ -1,6 +1,7 @@
 import User, { validateUser } from "../models/User.js";
 import { logError } from "../util/logging.js";
 import validationErrorMessage from "../util/validationErrorMessage.js";
+import bcrypt from "bcrypt";
 
 export const getUsers = async (req, res) => {
   try {
@@ -14,32 +15,33 @@ export const getUsers = async (req, res) => {
   }
 };
 
-export const createUser = async (req, res) => {
+export const signUp = async (req, res) => {
+  const { username, email, password, confirmPassword } = req.body;
+
+  const errorList = validateUser({
+    username,
+    email,
+    password,
+    confirmPassword,
+  });
+
+  if (errorList.length > 0) {
+    return res
+      .status(400)
+      .json({ success: false, msg: validationErrorMessage(errorList) });
+  }
+
   try {
-    const { user } = req.body;
+    const saltRounds = 10;
 
-    if (typeof user !== "object") {
-      res.status(400).json({
-        success: false,
-        msg: `You need to provide a 'user' object. Received: ${JSON.stringify(
-          user,
-        )}`,
-      });
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const newUser = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
 
-      return;
-    }
-
-    const errorList = validateUser(user);
-
-    if (errorList.length > 0) {
-      res
-        .status(400)
-        .json({ success: false, msg: validationErrorMessage(errorList) });
-    } else {
-      const newUser = await User.create(user);
-
-      res.status(201).json({ success: true, user: newUser });
-    }
+    res.status(201).json({ success: true, user: newUser });
   } catch (error) {
     logError(error);
     res

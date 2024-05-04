@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 
 import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import TEST_ID from "./CreateUser.testid";
 
 const CreateUser = () => {
-  const [name, setName] = useState("");
+ const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   const onSuccess = () => {
@@ -68,6 +68,8 @@ const CreateUser = () => {
       {statusComponent}
     </div>
   );
+  
 };
 
 export default CreateUser;
+*/
