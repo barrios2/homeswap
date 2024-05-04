@@ -64,7 +64,8 @@
     margin-left: 0;
   }
 
-  .belief-header, p {
+  .belief-header,
+  p {
     margin: 16px 0;
   }
 
