@@ -121,6 +121,10 @@ body {
   transition: 0.2s;
 }
 
+.log-in .left .submit button:disabled {
+  background-color: grey;
+}
+
 .login-qustion {
   color: white;
   font-size: 20px;
