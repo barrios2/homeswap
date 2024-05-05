@@ -66,4 +66,17 @@ export const validateUser = (userObject) => {
   return errorList;
 };
 
+export const validateLogin = (userObject) => {
+  const errorList = [];
+
+  if (!userObject.email) {
+    errorList.push("Email is required");
+  }
+  if (!userObject.password) {
+    errorList.push("Password is required");
+  }
+
+  return errorList;
+};
+
 export default User;

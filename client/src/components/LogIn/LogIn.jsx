@@ -1,14 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./LogIn.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+const initialFormState = {
+  email: "",
+  password: "",
+};
 
 function LogIn() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState(initialFormState);
+  const navigate = useNavigate();
+  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+    "/user/login",
+    onSuccess,
+  );
+
+  useEffect(() => {
+    return () => cancelFetch;
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  function onSuccess() {
+    setFormData(initialFormState);
+    navigate("/home");
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    performFetch({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
   };
 
   return (
@@ -22,20 +62,26 @@ function LogIn() {
             </p>
           </div>
           <div className="log-in-form">
-            <form action="" method="post">
+            <form onSubmit={handleSubmit} /*action="" method="post"*/>
               <div className="password">
                 <input
                   type="email"
-                  name="email"
+                  /* name="email"*/
                   className="email-input"
                   placeholder="Email *"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
 
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
+                  /*name="password"*/
                   className="password-input"
                   placeholder="Password *"
+                  id="password"
+                  value={formData.password}
+                  onChange={handleChange}
                 />
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
@@ -43,8 +89,9 @@ function LogIn() {
                   onClick={togglePasswordVisibility}
                 />
               </div>
+              <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
               <div className="submit">
-                <button type="submit" className="submit">
+                <button type="submit" className="submit" disabled={isLoading}>
                   Log In
                 </button>
                 {/* <i className="fa-solid fa-arrow-right"></i> */}

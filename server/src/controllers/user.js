@@ -1,8 +1,9 @@
-import User, { validateUser } from "../models/User.js";
+import User, { validateLogin, validateUser } from "../models/User.js";
 import { logError } from "../util/logging.js";
 import validationErrorMessage from "../util/validationErrorMessage.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
+/*
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -14,6 +15,7 @@ export const getUsers = async (req, res) => {
       .json({ success: false, msg: "Unable to get users, try again later" });
   }
 };
+*/
 
 export const signUp = async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
@@ -47,5 +49,52 @@ export const signUp = async (req, res) => {
     res
       .status(500)
       .json({ success: false, msg: "Unable to create user, try again later" });
+  }
+};
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  const errorList = validateLogin({
+    email,
+    password,
+  });
+
+  if (errorList.length > 0) {
+    return res
+      .status(400)
+      .json({ success: false, msg: validationErrorMessage(errorList) });
+  }
+
+  try {
+    const validUser = await User.findOne({ email });
+
+    if (!validUser) {
+      return res
+        .status(401)
+        .json({ success: false, msg: "Incorrect email or password" });
+    }
+
+    const validPassword = await bcrypt.compare(password, validUser.password);
+
+    if (!validPassword) {
+      return res
+        .status(401)
+        .json({ success: false, msg: "Incorrect email or password" });
+    }
+
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET_KEY);
+    // const { password: _, ...rest } = validUser._doc;
+    delete validUser._doc.password;
+
+    res
+      .cookie("access_token", token, { httpOnly: true })
+      .status(200)
+      .json({ success: true, ...validUser._doc /*...rest*/ });
+  } catch (error) {
+    logError(error);
+    res
+      .status(500)
+      .json({ success: false, msg: "Unable to sign in, try again later" });
   }
 };
