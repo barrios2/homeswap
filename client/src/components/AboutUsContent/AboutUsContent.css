@@ -1,5 +1,6 @@
 .content-wrapper {
   text-align: center;
+  margin: 0 20px;
 }
 
 .vision-block {
@@ -11,6 +12,7 @@
   width: 60vw;
   font-size: 18px;
   margin-left: 36px;
+  color: #fff;
 }
 
 .responsible-travel-cropper {
@@ -43,6 +45,7 @@
   font-size: 24px;
   width: 60vw;
   margin: 0 auto;
+  color: #fff;
 }
 
 .badge-wrapper {
@@ -60,6 +63,12 @@
 
   .text-wrapper {
     font-size: 16px;
+    margin-left: 0;
+  }
+
+  .belief-header,
+  p {
+    margin: 16px 0;
   }
 
   .culture-text-wrapper {
@@ -92,4 +101,11 @@
   .responsible-travel-badge {
     width: 250px;
   }
+}
+
+hr {
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  color: #1366ba;
 }

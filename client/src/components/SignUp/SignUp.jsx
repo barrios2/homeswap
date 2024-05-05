@@ -62,8 +62,8 @@ function SignUp() {
         <div className="left">
           <div className="login-text">
             <p>
-              Discover All The <span className="login-text-span">World</span>{" "}
-              Just From here !
+              Discover The <span className="login-text-span">World</span> Just
+              From here!
             </p>
           </div>
           <div className="col-22">
@@ -125,7 +125,7 @@ function SignUp() {
                 <button type="submit" className="submit" disabled={isLoading}>
                   Sign Up
                 </button>
-                <i className="fa-solid fa-arrow-right"></i>
+                {/* <i className="fa-solid fa-arrow-right"></i> */}
               </div>
             </form>
           </div>
