@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./LogIn.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const initialFormState = {
   email: "",
@@ -13,6 +13,7 @@ const initialFormState = {
 function LogIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
+  const navigate = useNavigate();
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user/login",
     onSuccess,
@@ -35,6 +36,7 @@ function LogIn() {
 
   function onSuccess() {
     setFormData(initialFormState);
+    navigate("/home");
   }
 
   const handleSubmit = async (e) => {

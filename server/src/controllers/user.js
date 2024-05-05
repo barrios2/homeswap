@@ -52,7 +52,7 @@ export const signUp = async (req, res) => {
   }
 };
 
-export const signIn = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   const errorList = validateLogin({
