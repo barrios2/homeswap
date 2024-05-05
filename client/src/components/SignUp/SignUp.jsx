@@ -16,7 +16,7 @@ function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
-  const { isLoading, error, performFetch, cancelFetch } = useFetch(
+  const { isLoading, performFetch, cancelFetch } = useFetch(
     "/user/create",
     onSuccess,
   );
@@ -61,18 +61,14 @@ function SignUp() {
       body: JSON.stringify(formData),
     });
   };
-
-  if (error) {
-    //needs styling or handling it another way
-    return <div>Error:{error.message}</div>;
-  }
-
   const validateForm = (formData) => {
     let errors = {};
     if (!formData.username) {
       errors.username = "Username is a required field";
     } else if (formData.username.includes(" ")) {
       errors.username = "Username cannot contain empty spaces";
+    } else if (!/^[a-zA-Z0-9_ ]{3,20}$/.test(formData.username)) {
+      errors.username = "Username cannot contain special characters";
     }
 
     if (!formData.email) {
