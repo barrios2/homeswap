@@ -76,7 +76,7 @@ body {
 
 .sign-up .login-text .login-text-span {
   color: #ae593a;
-  font-weight: bo;
+  font-weight: bold;
 }
 
 .sign-up .left p {
@@ -139,10 +139,13 @@ body {
 }
 
 .password-toggle {
-  color: black;
   position: relative;
   top: -33px;
   left: 190px;
+}
+
+.password-toggle > path {
+  color: #000;
 }
 
 @media (max-width: 767px) {
