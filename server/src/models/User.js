@@ -31,6 +31,8 @@ export const validateUser = (userObject) => {
     errorList.push("username is a required field");
   } else if (userObject.username.includes(" ")) {
     errorList.push("username cannot contain empty spaces");
+  } else if (!/^[a-zA-Z0-9_ ]{3,20}$/.test(userObject.username)) {
+    errorList.push("Username cannot contain special characters");
   }
 
   if (userObject.email == null) {
