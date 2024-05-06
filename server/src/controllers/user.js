@@ -84,13 +84,12 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET_KEY);
-    // const { password: _, ...rest } = validUser._doc;
-    delete validUser._doc.password;
 
-    res
-      .cookie("access_token", token, { httpOnly: true })
-      .status(200)
-      .json({ success: true, ...validUser._doc /*...rest*/ });
+    res.cookie("access_token", token, { httpOnly: true }).status(200).json({
+      success: true,
+      username: validUser._doc.username,
+      email: validUser._doc.email,
+    });
   } catch (error) {
     logError(error);
     res

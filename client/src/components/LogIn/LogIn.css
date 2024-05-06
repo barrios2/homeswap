@@ -184,4 +184,8 @@
     color: white;
     margin-left: 15px;
   }
+  
+.log-in .left .submit button:hover {
+  background-color: #854326;
+  transform: scale(1.1);
 }
