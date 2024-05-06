@@ -73,6 +73,7 @@ function LogIn() {
                   value={formData.email}
                   onChange={handleChange}
                 />
+                <br />
 
                 <input
                   type={showPassword ? "text" : "password"}

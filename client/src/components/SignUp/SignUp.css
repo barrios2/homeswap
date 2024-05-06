@@ -88,7 +88,6 @@ body {
   background-color: #fcf7e8;
   width: 400px;
   padding: 15px;
-  margin-top: 20px;
   border-radius: 10px;
 }
 
@@ -142,7 +141,7 @@ body {
 
 .password-toggle {
   position: relative;
-  top: -33px;
+  top: -35px;
   left: 190px;
 }
 
@@ -162,6 +161,7 @@ body {
     padding-top: 10px;
   }
 }
+
 .sign-up .left .submit button:hover {
   background-color: #854326;
   transform: scale(1.1);
@@ -183,7 +183,6 @@ body {
     background-color: #fcf7e8;
     width: 300px;
     padding: 15px;
-    margin-top: 20px;
     border-radius: 10px;
   }
 
@@ -202,7 +201,6 @@ body {
 .error {
   color: #ff9090;
   font-size: 14px;
-  margin-top: 14px !important;
 }
 
 input {
@@ -216,8 +214,6 @@ input {
 }
 
 .error-user {
-  position: absolute;
-  top: 280px;
   color: #ff9090;
   font-size: 14px;
 }
