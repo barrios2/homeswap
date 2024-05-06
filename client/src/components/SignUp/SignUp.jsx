@@ -113,7 +113,7 @@ function SignUp() {
               noValidate
               onSubmit={handleSubmit} /*action="" method="post"*/
             >
-              <div className="user">
+              <div className="password">
                 <input
                   type="text"
                   /*name="user"*/
@@ -126,9 +126,7 @@ function SignUp() {
                 {errors.username && (
                   <span className="error-user">{errors.username}</span>
                 )}
-              </div>
-
-              <div className="password">
+                <br />
                 <input
                   type="email"
                   /*name="password"*/
@@ -139,6 +137,7 @@ function SignUp() {
                   onChange={handleChange}
                 />
                 {errors.email && <span className="error">{errors.email}</span>}
+                <br />
 
                 <input
                   type={showPassword ? "text" : "password"}
@@ -160,7 +159,7 @@ function SignUp() {
 
                 <input
                   type={showPassword ? "text" : "password"}
-                  /*name="password"*/
+                  // name="password"
                   className="password-input"
                   placeholder="Confirm password *"
                   id="confirmPassword"

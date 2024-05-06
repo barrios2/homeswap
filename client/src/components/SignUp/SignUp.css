@@ -88,7 +88,6 @@ body {
   background-color: #fcf7e8;
   width: 400px;
   padding: 15px;
-  margin-top: 20px;
   border-radius: 10px;
 }
 
@@ -142,7 +141,7 @@ body {
 
 .password-toggle {
   position: relative;
-  top: -33px;
+  top: -35px;
   left: 190px;
 }
 
@@ -162,28 +161,59 @@ body {
     padding-top: 10px;
   }
 }
+
 .sign-up .left .submit button:hover {
   background-color: #854326;
   transform: scale(1.1);
 }
 
+@media (max-width: 400px) {
+  .image-grid img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .left {
+    width: 10px;
+  }
+
+  .user-name,
+  .password-input {
+    outline: none;
+    background-color: #fcf7e8;
+    width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .sign-up-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .sign-up .login-text {
+    position: relative;
+    top: -5px;
+    padding-top: 10px;
+  }
+}
+
 .error {
   color: #ff9090;
   font-size: 14px;
-  margin-top: 14px !important;
 }
 
 input {
   color: #010625;
   font-family: "Inter";
 }
+
 ::placeholder {
   font-family: "Inter";
   color: #010625;
 }
+
 .error-user {
-  position: absolute;
-  top: 280px;
   color: #ff9090;
   font-size: 14px;
 }

@@ -37,7 +37,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="footer-menu area">
+          <div className="footer-menu area2">
             <div className="footer-menu-h area-h2">Areas</div>
             <div className="footer-menu-area area2 ">
               <p className="footer-menu-area-items">Germany</p>
