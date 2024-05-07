@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Nav.css";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 const Nav = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useLogin();
 
   const handleLogIn = () => {
     setIsLoggedIn(true);
@@ -15,44 +16,63 @@ const Nav = () => {
   };
 
   return (
-    <nav className="nav-bar-container">
-      {!isLoggedIn ? (
-        <div className="menu-wrapper">
-          <Link to="/">
-            <img src={logo} alt="homeswap-logo" className="logo" />
-          </Link>
-          <ul className="nav-menu">
-            <Link to="/user/login">
-              <button onClick={handleLogIn} className="log-in-btn">
-                Log in
-              </button>
-            </Link>
-            <Link to="/user/signup">
-              <button className="sign-up-btn">Sign up</button>
-            </Link>
-          </ul>
-        </div>
-      ) : (
-        <div className="menu-wrapper">
-          <ul className="nav-menu">
-            <Link to="/">
-              <li>Home</li>
-            </Link>
-            <Link to="/">
-              {/* this route should be /about but since we don't have the homepage yet this will do for now */}
-              <li>About Us</li>
-            </Link>
-            <Link to="/profile">
-              <li>Profile</li>
-            </Link>
-            <Link to="/logout">
-              <button onClick={handleLogOut} className="logout-btn">
-                Log out
-              </button>
-            </Link>
-          </ul>
-        </div>
-      )}
+    <nav className="navbar">
+      <div className="container">
+        <Link to="/" className="navbar-logo">
+          <img src={logo} alt="homeswap-logo" className="logo" />
+        </Link>
+        <input type="checkbox" id="navbar-toggle" className="navbar-toggle" />
+        <label htmlFor="navbar-toggle" className="navbar-toggle-label">
+          &#9776;
+        </label>
+        <ul className="navbar-menu">
+          {!isLoggedIn ? (
+            <>
+              <li className="navbar-item">
+                <Link
+                  to="/user/login"
+                  className="navbar-link log-in-btn "
+                  onClick={handleLogIn}
+                >
+                  Log in
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/user/signup" className="navbar-link sign-up-btn">
+                  Sign up
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="navbar-item">
+                <Link to="/" className="navbar-link">
+                  Home
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/about" className="navbar-link">
+                  About Us
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/profile" className="navbar-link">
+                  Profile
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  to="/user/login"
+                  className="navbar-link logout-btn"
+                  onClick={handleLogOut}
+                >
+                  Log out
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </div>
     </nav>
   );
 };
