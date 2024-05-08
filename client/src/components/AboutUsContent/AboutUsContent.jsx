@@ -15,7 +15,7 @@ const AboutUsContent = () => {
             <h1 className="belief-header">
               We believe in a more responsible way to go on holidays
             </h1>
-            <p>
+            <p className="belief-text">
               Travel should not happen at the expense of the local community, it
               should be about connecting with people, & sharing is the most
               responsible way to use resources.
