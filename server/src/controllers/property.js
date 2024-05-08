@@ -25,7 +25,7 @@ export const uploadProperty = async (req, res) => {
   }
 };
 
-export const searchProperties = async (req, res) => {
+export const getProperties = async (req, res) => {
   try {
     //for pagination:
     const limit = parseInt(req.query.limit, 10) || 6;
