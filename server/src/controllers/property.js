@@ -47,6 +47,17 @@ export const getProperties = async (req, res) => {
     const total = await Property.countDocuments(filter);
     const totalPages = Math.ceil(total / limit);
 
+    if (properties.length === 0) {
+      return res.status(404).json({
+        success: true,
+        msg: "No properties found",
+        data: [],
+        total,
+        page: 0,
+        totalPages,
+      });
+    }
+
     res.status(200).json({
       success: true,
       data: properties,
