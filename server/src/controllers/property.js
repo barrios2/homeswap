@@ -44,16 +44,16 @@ export const searchProperties = async (req, res) => {
     if (amenities) filter.amenities = { $in: amenities };
 
     const properties = await Property.find(filter).limit(limit).skip(offset);
-
     const total = await Property.countDocuments(filter);
+    const totalPages = Math.ceil(total / limit);
 
     res.status(200).json({
       success: true,
       data: properties,
       total,
       page,
-      lastPage: Math.ceil(total / limit),
-      filterApplied: filter,
+      totalPages,
+      // filterApplied: filter,
     });
   } catch (error) {
     logError(error);
