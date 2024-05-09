@@ -14,7 +14,20 @@ export const uploadProperty = async (req, res) => {
   }
 
   try {
-    const newProperty = await Property.create(req.body);
+    const userId = req.userData.id;
+
+    if (!userId) {
+      return res
+        .status(401)
+        .json({ success: false, msg: "Unauthorized user!" });
+    }
+
+    const propertyWithUserID = {
+      ...propertyData,
+      userRef: userId,
+    };
+
+    const newProperty = await Property.create(propertyWithUserID);
     res.status(201).json({ success: true, newProperty });
   } catch (error) {
     logError(error);
@@ -36,11 +49,12 @@ export const getProperties = async (req, res) => {
       req.query;
     let filter = {};
 
-    if (country)
-      filter["address.country"] = { $regex: new RegExp(`^${country}$`, "i") };
-    if (city) filter["address.city"] = { $regex: new RegExp(`^${city}$`, "i") };
-    if (type) filter.type = { $regex: new RegExp(`^${type}$`, "i") };
-    if (bedrooms) filter.bedrooms = { $gte: parseInt(bedrooms, 10) };
+    const createRegex = (value) => new RegExp(`^${value.trim()}$`, "i");
+
+    if (country) filter["address.country"] = createRegex(country);
+    if (city) filter["address.city"] = createRegex(city);
+    if (type) filter.type = createRegex(type);
+    if (bedrooms) filter.bedrooms = bedrooms;
     if (amenities) filter.amenities = { $in: amenities };
 
     const properties = await Property.find(filter).limit(limit).skip(offset);

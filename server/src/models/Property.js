@@ -69,7 +69,11 @@ const propertySchema = new mongoose.Schema({
 
   photos: { type: Array, required: true },
 
-  userRef: { type: String, required: true },
+  userRef: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 const Property = mongoose.model("Property", propertySchema);
@@ -86,7 +90,6 @@ export const validatePropertyFields = (propertyObject) => {
     "amenities",
     "house_rules",
     "photos",
-    "userRef",
   ];
 
   const validatedKeysMessage = validateAllowedFields(
@@ -105,7 +108,6 @@ export const validatePropertyFields = (propertyObject) => {
     { key: "type" },
     { key: "bedrooms" },
     { key: "bathrooms" },
-    { key: "userRef" },
   ];
 
   requiredFields.forEach((field) => {
