@@ -1,7 +1,6 @@
 import React from "react";
 import "./AboutUsContent.css";
 import resp from "../../assets/resp.jpeg";
-import Footer from "../Footer/Footer";
 
 const AboutUsContent = () => {
   return (
@@ -41,8 +40,6 @@ const AboutUsContent = () => {
           </div>
         </div>
       </section>
-      <hr />
-      <Footer />
     </>
   );
 };
