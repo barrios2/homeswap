@@ -11,11 +11,11 @@ const PropertyList = () => {
     indexOfFirstProperty,
     indexOfLastProperty,
   );
+
   const pages = Math.ceil(properties?.length / propertiesPerPage);
 
   // set current page to be whichever number is clicked on
   const handlePagination = (e) => {
-    e.preventDefault();
     setCurrentPage(Number(e.target.textContent));
   };
 
@@ -35,7 +35,7 @@ const PropertyList = () => {
     return pageNumberList;
   };
 
-  const pageList = totalPagesToArray(); // get the array results that the totalPagesToArray returns so it can be mapped through
+  const pageList = totalPagesToArray(); // get array results that totalPagesToArray returns so it can be mapped through
 
   // create a btn for each number from the pageList array
   const pagination = pageList?.map((n) => (
@@ -56,6 +56,7 @@ const PropertyList = () => {
 
   return (
     <section className="property-list-section">
+      <h2 className="avail-home-header">Available Homes</h2>
       <div className="property-card-container">{renderPropertyCards()}</div>
       <div className="pagination-container">
         {currentPage * propertiesPerPage < properties.length &&
