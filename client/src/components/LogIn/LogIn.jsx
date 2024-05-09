@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 const initialFormState = {
   email: "",
@@ -11,6 +12,7 @@ const initialFormState = {
 };
 
 function LogIn() {
+  const { setIsLoggedIn } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ function LogIn() {
 
   function onSuccess() {
     setFormData(initialFormState);
+    setIsLoggedIn(true);
     navigate("/home");
   }
 
