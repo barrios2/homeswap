@@ -44,7 +44,7 @@ const propertySchema = new mongoose.Schema({
         "Near shopping centers",
         "Near restaurants",
         "Near tourist attractions",
-        "Near  sports facilities",
+        "Near sports facilities",
       ],
     },
   ],
