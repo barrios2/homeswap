@@ -3,7 +3,6 @@ import "./SearchBar.css";
 import searchIcon from "./assets/icon-search.svg";
 import useFetch from "../../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 
 function SearchBar() {
   const [totalHouses, setTotalHouses] = useState(null);
@@ -12,52 +11,37 @@ function SearchBar() {
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
   const [selectedNumOfBedrooms, setSelectedNumOfBedrooms] = useState("");
   const [amenities, setAmenities] = useState([]);
-  const [selectedAmenities, setSelectedAmenities] = useState("");
   const [error, setError] = useState(null);
+  const [selectedAmenities, setSelectedAmenities] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
-  //backend fetch total houses
-  const { performFetch: fetchTotalHouses } = useFetch(
-    "/property/get?",
-    (data) => {
-      setTotalHouses(data.total);
-    },
-  );
-  //backend fetch types
-  const { performFetch: fetchPropertyTypes } = useFetch(
-    "/property/get?type",
-    (data) => {
-      setPropertyTypes(data.types);
-    },
-  );
-  //backend fetch number of bedrooms
-  const { performFetch: fetchAvailableBedrooms } = useFetch(
-    "/property/bedrooms",
-    (data) => {
-      setNumberOfBedrooms(data.bedrooms);
-    },
-  );
-
-  const { performFetch: fetchAmenities } = useFetch(
-    "/property/amenities",
-    (data) => {
-      setAmenities(data.amenities);
-    },
-  );
-
+  const { isLoading, performFetch } = useFetch("/property/get");
+  //fetch property data
   useEffect(() => {
-    fetchTotalHouses();
-    fetchPropertyTypes();
-    fetchAvailableBedrooms();
-    fetchAmenities();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await performFetch("/property/get");
+        if (response.ok) {
+          const data = await response.json();
+          setPropertyTypes(data.map((property) => property.type));
+          setNumberOfBedrooms(data.map((property) => property.bedrooms));
+          setAmenities(data.map((property) => property.amenities));
+          setTotalHouses(data.length);
+        } else {
+          throw new Error("Failed to fetch data");
+        }
+      } catch (error) {
+        setError("Failed to fetch data. Please try again later.");
+      }
+    };
 
-  //handle fetch for when the DB is available
+    fetchData();
+  }, [performFetch]);
 
   const handleSearch = async () => {
+    // Construct search parameters
     const searchParams = new URLSearchParams();
-    // split search input into city and country
     const [city, country] = searchInput.split(" ");
     if (country) {
       searchParams.append("country", country.trim());
@@ -65,7 +49,6 @@ function SearchBar() {
     if (city) {
       searchParams.append("city", city.trim());
     }
-
     if (selectedPropertyType) {
       searchParams.append("type", selectedPropertyType);
     }
@@ -75,23 +58,21 @@ function SearchBar() {
     if (selectedAmenities) {
       searchParams.append("amenities", selectedAmenities);
     }
-
     try {
-      const response = await fetch(`/property/search?${searchParams}`);
+      const response = await performFetch(`/property/get?${searchParams}`);
       if (response.ok) {
         const searchData = await response.json();
         navigate("/search-results", { state: { searchResults: searchData } });
-        setError(null); // resetting to null if search is successful
+        setError(null);
       } else {
         throw new Error("Failed to search properties");
       }
     } catch (error) {
       setError(
-        "There are currently no properties available. Please try again later.",
+        "There are currently no properties available that match your criteria. Please try again later.",
       );
     }
   };
-
   return (
     <div>
       <div className="wrapper">
@@ -129,7 +110,6 @@ function SearchBar() {
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Enter city and country..."
             />
-
             <select
               value={selectedPropertyType}
               onChange={(e) => setSelectedPropertyType(e.target.value)}
@@ -142,7 +122,6 @@ function SearchBar() {
                 </option>
               ))}
             </select>
-
             <select
               value={selectedNumOfBedrooms}
               onChange={(e) => setSelectedNumOfBedrooms(e.target.value)}
@@ -169,11 +148,11 @@ function SearchBar() {
             </select>
           </div>
         </div>
-        {error && <div className="error-message">{error}</div>}
+        {isLoading && <div>Loading...</div>}
+        <div className="error-message">{error}</div>
       </div>
       <div className="divider"></div>
     </div>
   );
 }
-
 export default SearchBar;

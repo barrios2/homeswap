@@ -2,7 +2,7 @@
 
 :root {
   --bg-color: #b7d9e4;
-  --primary-color: #000;
+  --primary-color: #010625;
   --input-bg: #fff;
   --light-gray: #ccc;
   --light-darkish-blue: #1366ba;
@@ -65,11 +65,13 @@
   text-transform: uppercase;
   color: var(--light-gray);
   font-size: 15px;
+  cursor: pointer;
 }
 
 .availability {
   color: var(--light-darkish-blue);
   font-weight: 500;
+  cursor: pointer;
 }
 
 img {
@@ -96,33 +98,37 @@ img {
   border: none;
   font-family: "Inter";
   outline: none;
+  cursor: pointer;
 }
 
 .area {
   margin-left: 50px;
   padding: 5px 0;
   width: 150px;
-  border-radius: 5px;
   text-align: center;
   outline: none;
   border: none;
-  /* border: var(--bg-color) solid 1px; */
+  cursor: pointer;
 }
 
 ::placeholder {
   text-align: center;
+  font-family: "Inter";
 }
 
 .type {
   margin-left: 120px;
+  cursor: pointer;
 }
 
 .num-of-bedrooms {
   margin-left: 100px;
+  cursor: pointer;
 }
 
 .amenities {
   margin-left: 120px;
+  cursor: pointer;
 }
 
 .vertical-line {
