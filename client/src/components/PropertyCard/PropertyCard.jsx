@@ -10,6 +10,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const PropertyCard = ({ property }) => {
+  //checking if there is no property (not important)
+  if (!property) {
+    return <div>No data</div>;
+  }
+
   return (
     <div className="property-card">
       <Link to={`/property/${property?._id}`}>
