@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
+import useFetch from "../../hooks/useFetch";
 
 const PropertyList = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [properties, setProperties] = useState([]); //1.
   const propertiesPerPage = 6;
+  //Fetching the data from the backend /////
+  const { isLoading, error, performFetch } = useFetch(
+    "/property/get",
+    onDataReceived,
+  );
 
+  useEffect(() => {
+    performFetch();
+  }, []);
+
+  function onDataReceived(data) {
+    setProperties(data.data);
+  }
+  // till here //////
   const indexOfLastProperty = currentPage * propertiesPerPage;
   const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
   const currentProperties = properties.slice(
@@ -54,6 +69,14 @@ const PropertyList = () => {
     ));
   };
 
+  //You can handle "isLoading" and "error" in better way ////
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <section className="property-list-section">
       <h2 className="avail-home-header">Available Homes</h2>
@@ -87,7 +110,7 @@ const PropertyList = () => {
 };
 
 export default PropertyList;
-
+/*
 // FAKE DATA - to be deleted once the db is done
 const properties = [
   {
@@ -425,3 +448,4 @@ const properties = [
     },
   },
 ];
+*/
