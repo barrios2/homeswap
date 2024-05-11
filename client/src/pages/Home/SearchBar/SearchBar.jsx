@@ -98,6 +98,7 @@ function SearchBar() {
               <img
                 src={searchIcon}
                 alt="search-button"
+                className="search-img"
                 onClick={handleSearch}
               />
             </div>
