@@ -39,7 +39,7 @@ const PropertyCard = ({ property }) => {
           {property?.address?.city}, {property?.address?.country}
         </p>
       </div>
-      <Link to={`/property/${property?._id}`}>
+      <Link to={"/property/view"}>
         <button className="property-card-btn btn-default">
           More information
         </button>
