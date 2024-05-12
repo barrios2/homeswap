@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 import validateAllowedFields from "../util/validateAllowedFields.js";
 
 const userSchema = new mongoose.Schema({
