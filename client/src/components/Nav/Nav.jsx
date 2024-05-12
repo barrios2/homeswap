@@ -26,7 +26,7 @@ const Nav = () => {
           &#9776;
         </label>
         <ul className="navbar-menu">
-          {!isLoggedIn ? (
+          {isLoggedIn === false ? (
             <>
               <li className="navbar-item">
                 <Link
@@ -46,12 +46,12 @@ const Nav = () => {
           ) : (
             <>
               <li className="navbar-item">
-                <Link to="/" className="navbar-link">
+                <Link to="/home" className="navbar-link">
                   Home
                 </Link>
               </li>
               <li className="navbar-item">
-                <Link to="/about" className="navbar-link">
+                <Link to="/" className="navbar-link">
                   About Us
                 </Link>
               </li>
