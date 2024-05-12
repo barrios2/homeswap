@@ -5,8 +5,8 @@ import SignUp from "./components/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import LogInProvider from "./context/LogInProvider/LogInProvider";
-// import ViewPropertyDetailsPage from "./pages/ViewProperty/ViewProperty";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
+import UploadPropertyPage3 from "./pages/UploadProperty3/UploadProperty3";
 
 const App = () => {
   return (
@@ -14,7 +14,10 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/property/view/:id" element={<ViewProperty />} />
-        {/* <Route path="/property/view/:id" element={< ViewPropertyDetailsPage />} /> */}
+        <Route
+          path="/property/uploadproperty3"
+          element={<UploadPropertyPage3 />}
+        />
         <Route path="/" element={<AboutUs />} />
         <Route path="/user/signup" element={<SignUp />} />
         <Route path="/user/login" element={<LogIn />} />
