@@ -83,7 +83,7 @@ a {
   position: absolute;
   top: 76%;
   left: 32%;
-  transform: translateY(-50%);
+  transform: translateY(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
@@ -104,7 +104,7 @@ a {
 }
 
 .arrow-button1 {
-  left: 180px;
+  left: 225px;
 }
 
 .propety-details {
