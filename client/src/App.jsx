@@ -7,7 +7,7 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import LogInProvider from "./context/LogInProvider/LogInProvider";
 import ProtectedProfile from "./components/ProtectedRoute/ProtectedProfile";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
-import UploadProperty from "./components/UploadProperty/UploadProperty1";
+import UploadPropertyPage from "./pages/UploadProperty3/UploadProperty";
 
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/" element={<AboutUs />} />
         <Route path="/home" element={<Home />} />
         <Route path="/property/view/:id" element={<ViewProperty />} />
+        <Route path="/property/upload" element={<UploadPropertyPage />} />
         <Route path="/user/signup" element={<SignUp />} />
         <Route path="/user/login" element={<LogIn />} />
         <Route element={<ProtectedProfile />}>
@@ -28,7 +29,6 @@ const App = () => {
             }
           />
         </Route>
-        <Route path="/upload" element={<UploadProperty />} />
       </Routes>
     </LogInProvider>
   );
