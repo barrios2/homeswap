@@ -82,18 +82,21 @@ function ViewProperty() {
         </ul>
       </nav>
       <div className="container-viewproperty">
-        <div className="propety-image">
+        <div className="view-propety-image">
           <img
             src={viewPropertyDetails.photos[currentPhotoIndex]}
             alt={`House ${currentPhotoIndex + 1}`}
-            className="propety-pic"
+            className="view-propety-pic"
           />
-          <button onClick={goToPreviousPhoto} className="arrow-button1">
-            &#8249;
-          </button>
-          <button onClick={goToNextPhoto} className="arrow-button2">
-            &#8250;
-          </button>
+          <div className="view-property-arrow-btn">
+            <button onClick={goToPreviousPhoto} className="arrow-button1">
+              &#8249;
+            </button>
+            <button onClick={goToNextPhoto} className="arrow-button2">
+              &#8250;
+            </button>
+          </div>
+
           <div className="dots">
             {viewPropertyDetails.photos.map((photo, index) => (
               <a
@@ -107,8 +110,8 @@ function ViewProperty() {
           </div>
         </div>
 
-        <div className="propety-details">
-          <header>
+        <div className="view-propety-details">
+          <div className="view-property-header">
             <h1 className="title">{viewPropertyDetails.title}</h1>
             <span className="amenitiesCat">{viewPropertyDetails.type}</span>
             <div className="address">
@@ -128,7 +131,7 @@ function ViewProperty() {
                 <a href="#!" key={index} className={index < viewPropertyDetails.reviews[0].rating ? "active" : ""}>★</a>
               ))}
             </div> */}
-          </header>
+          </div>
 
           <article>
             <h5>Description</h5>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import UploadProperty1 from "../../components/UploadProperty/UploadProperty1/UploadProperty1";
 import UploadProperty2 from "../../components/UploadProperty/UploadProperty2/UploadProperty2";
 import UploadProperty3 from "../../components/UploadProperty/UploadProperty3/UploadProperty3";
+// import UploadProperty4 from "../../components/UploadProperty/UploadProperty4/UploadProperty4";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import UploadPropertyNav from "../../components/UploadProperty/UploadPropertyNav/UploadPropertyNav";
 

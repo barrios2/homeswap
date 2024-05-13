@@ -1,3 +1,20 @@
+.choose-your-home-title {
+  color: var(--light-gray);
+  font-size: 28px;
+  margin: 20% 50% 5% 60%;
+  white-space: nowrap;
+}
+
+.upload-card2-main-container {
+  width: 580px;
+}
+
+.house-and-amenities-container {
+  display: flex;
+  margin: 2px 50%;
+  gap: 40px;
+}
+
 .upload-card2-container {
   display: flex;
   flex-direction: column;
@@ -10,8 +27,8 @@
 
 .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
-  gap: 80px 60px;
+  grid-template-columns: repeat(2, 80px);
+  gap: 80px 185px;
   list-style: none;
 }
 
@@ -28,27 +45,23 @@
   background-color: var(--white);
 }
 
-.upload-property2-details {
-  position: relative;
-  top: 100px;
-}
-
 .amenity-text {
   position: absolute;
   top: calc(100% + 10px);
   font-size: 15px;
+  color: #fff;
 }
 
-.arrow-down2 {
-  margin-top: 50px;
-}
-
-.upload-property2-container {
+.upload-property4-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
-  padding: 20px;
   margin-top: 50px;
+}
+
+.upload-propety4-details {
+  position: relative;
+  top: 100px;
 }
 
 .propety-image {
@@ -72,16 +85,20 @@
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
 }
 
-.upload-property2-title {
+.upload-title {
+  text-transform: uppercase;
   color: #fff;
   margin: 0;
   font-size: 20px;
-  text-align: center;
 }
 
 header {
-  margin-bottom: 50px;
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .upload-footer {
@@ -90,7 +107,7 @@ header {
   align-items: center;
 }
 
-.Continue-upload-property2 {
+.upload-footer > button {
   display: flex;
   border: 0;
   padding: 15px 25px;
@@ -100,31 +117,30 @@ header {
   position: relative;
   top: 86px;
   left: 189px;
+  background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
+  transition: 200ms;
+}
+
+.upload-footer > button:hover {
+  background: linear-gradient(to bottom, #ff4164 0%, #ff886b 100%);
+}
+
+.upload-footer > button > span {
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 10px;
   color: white;
-  background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
-  transition: 200ms;
-  margin-bottom: 60px;
 }
 
-.amenities-input {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 30px;
+.rules-input {
   border: 1px solid #fff;
   border-radius: 23px;
-  width: 550px;
+  width: 570px;
   height: fit-content;
-  margin: auto;
-  margin-top: 25px;
 }
 
-.amenities-input1 {
+.bathrooms-input1 {
   display: flex;
   gap: 70px;
   align-items: center;
@@ -165,6 +181,26 @@ header {
   cursor: pointer;
 }
 
+.textarea-property4 {
+  width: 460px;
+  height: 160px;
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+.textarae-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 570px;
+  height: fit-content;
+  border: 1px #fff solid;
+  border-radius: 23px;
+  margin-top: 30px;
+}
+
 .amenity-item input[type="checkbox"] {
   display: none;
 }
@@ -174,5 +210,5 @@ header {
 }
 
 .amenity-item.selected {
-  background-color: #fcf7e8;
+  background-color: #007bff;
 }
