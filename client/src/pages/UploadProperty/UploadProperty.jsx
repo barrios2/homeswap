@@ -3,7 +3,7 @@ import UploadProperty3 from "../../components/UploadProperty/UploadProperty3/Upl
 import UploadProperty1 from "../../components/UploadProperty/UploadProperty1/UploadProperty1";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
-function UploadPropertyPage() {
+function UploadProperty() {
   const { firstScreenIsComplete } = useLogin();
 
   useEffect(() => {}, [firstScreenIsComplete]);
@@ -13,4 +13,4 @@ function UploadPropertyPage() {
   );
 }
 
-export default UploadPropertyPage;
+export default UploadProperty;
