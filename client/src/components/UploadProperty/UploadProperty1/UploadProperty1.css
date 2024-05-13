@@ -6,6 +6,7 @@
   font-family: "Inter";
   color: #fff;
   width: 100%;
+  margin-top: 50px;
 }
 
 .title-header {
@@ -14,7 +15,8 @@
 
 .right-screen-img {
   width: 500px;
-  border-radius: 50%;
+  height: 350px;
+  object-fit: cover;
 }
 
 .img-container {
@@ -47,14 +49,16 @@
 .input-submit {
   width: 100%;
   background-color: #ae593a;
+  font-size: 18px;
   color: white;
-  padding: 12px;
   margin: 8px 0;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
   align-self: flex-end;
   transition: 0.2s ease-in-out;
+  padding: 15px 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
 }
 
 .input-submit:hover {

@@ -5,7 +5,6 @@ import {
   faHouse,
   faPersonShelter,
 } from "@fortawesome/free-solid-svg-icons";
-import screen1 from "../../../assets/upload-property-screen1.png";
 import "./UploadProperty1.css";
 import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
@@ -242,7 +241,11 @@ const UploadProperty1 = () => {
       </div>
       <div className="right-screen-container">
         <div className="img-container">
-          <img src={screen1} alt="" className="right-screen-img" />
+          <img
+            src="https://img.freepik.com/vrije-vector/ontspannen-freelancer-man-zittend-op-bed-met-laptop-vooraanzicht-platte-vectorillustratie_1150-40336.jpg?size=626&ext=jpg&ga=GA1.2.1450317072.1715328804&semt=ais"
+            alt=""
+            className="right-screen-img"
+          />
         </div>
         {/* If validateForm function returns false, the button will be enabled */}
         <button

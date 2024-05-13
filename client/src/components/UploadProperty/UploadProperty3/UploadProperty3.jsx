@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./UploadProperty3.css";
 
 function UploadProperty3() {
@@ -33,23 +33,14 @@ function UploadProperty3() {
   const fileInputRef = useRef(null);
 
   const handleAddPhotoClick = () => {
-    fileInputRef.current.click(); // Programmatically trigger click event on the file input
+    fileInputRef.current.click();
   };
 
   return (
     <>
-      <nav className="nav-item-upload-property3">
-        <Link to={"/home"} className="link-to-home">
-          Back Home
-        </Link>
-        <ul>
-          <li>My Request</li>
-          <li>Profile</li>
-        </ul>
-      </nav>
       <div className="upload-property3-container">
         <div className="upload-property3-details">
-          <header>
+          <header className="upload-property3-header">
             <h1 className="upload-property3-title">
               How many bedrooms and bathrooms are in your home?
             </h1>
@@ -96,9 +87,6 @@ function UploadProperty3() {
                   <h2>Photoes</h2>
                 </div>
                 <div className="add-photoes">
-                  {/* <button>+</button>
-                  <button>+</button>
-                  <input type="file" className="uploadimg" id="img" name="img" accept="image/*" /> */}
                   <button onClick={handleAddPhotoClick}>+</button>
                   <input
                     type="file"

@@ -1,7 +1,48 @@
-.upload-property3-container {
+.upload-card2-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--light-gray);
+  color: var(--light-gray);
+  padding: 50px 30px;
+  border-radius: 20px;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 80px 60px;
+  list-style: none;
+}
+
+.amenity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #1366ba;
+  border-radius: 15px;
+  padding: 15px 0;
+  position: relative;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: var(--white);
+}
+
+.amenity-text {
+  position: absolute;
+  top: calc(100% + 10px);
+  font-size: 15px;
+}
+
+.arrow-down2 {
+  margin-top: 50px;
+}
+
+.upload-property2-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
+  padding: 20px;
   margin-top: 50px;
 }
 
@@ -26,33 +67,26 @@
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
 }
 
-.upload-property3-title {
+.upload-property2-title {
   text-transform: uppercase;
   color: #fff;
   margin: 0;
   font-size: 20px;
   text-align: center;
-  margin-bottom: 10px;
-  margin-bottom: 10px;
 }
 
-.upload-property3-header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
+header {
+  margin-bottom: 50px;
+  position: relative;
 }
 
-.upload-property3-footer {
+.upload-footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.upload-property3-footer > button {
+.Continue-upload-property2 {
   display: flex;
   border: 0;
   padding: 15px 25px;
@@ -62,33 +96,31 @@
   position: relative;
   top: 86px;
   left: 189px;
-  background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
-  transition: 200ms;
-  margin-bottom: 60px;
-}
-
-.upload-property3-footer > button > span {
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 10px;
   color: white;
+  background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
+  transition: 200ms;
+  margin-bottom: 60px;
 }
 
-.bathrooms-input {
+.amenities-input {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  width: 500px;
-  height: 200px;
-  border: 1px #fff solid;
+  margin-top: 30px;
+  border: 1px solid #fff;
   border-radius: 23px;
-  margin-top: 20px;
+  width: 550px;
+  height: fit-content;
+  margin: auto;
+  margin-top: 25px;
 }
 
-.bathrooms-input1 {
+.amenities-input1 {
   display: flex;
   gap: 70px;
   align-items: center;
@@ -120,7 +152,7 @@
 
 .add-photoes button {
   width: 50px;
-  height: 60px;
+  height: 100px;
   border-radius: 15px;
   font-size: 30px;
   background-color: #010625;
@@ -129,15 +161,14 @@
   cursor: pointer;
 }
 
-.uploadimg {
+.amenity-item input[type="checkbox"] {
   display: none;
 }
 
-.uploadimg[type="file"] {
-  position: absolute;
-  font-size: 100px;
-  right: 0;
-  top: 0;
-  opacity: 0;
+.amenity-item .amenity-text {
   cursor: pointer;
+}
+
+.amenity-item.selected {
+  background-color: #007bff;
 }
