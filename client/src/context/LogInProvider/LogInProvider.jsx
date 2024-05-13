@@ -28,6 +28,7 @@ const LogInProvider = ({ children }) => {
     postcode: "",
     homeType: "",
   });
+  const [firstScreenIsComplete, setFirstScreenIsComplete] = useState(false);
 
   return (
     <LogInContext.Provider
@@ -38,6 +39,8 @@ const LogInProvider = ({ children }) => {
         setFormData,
         formErrors,
         setFormErrors,
+        firstScreenIsComplete,
+        setFirstScreenIsComplete,
       }}
     >
       {children}
