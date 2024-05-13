@@ -8,9 +8,41 @@ const LogInContext = createContext({
 
 const LogInProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // pre define form data fields
+  const [formData, setFormData] = useState({
+    title: "",
+    country: "",
+    city: "",
+    street: "",
+    houseNumber: "",
+    postcode: "",
+    homeType: "",
+  });
+  // pre define form fields for which we will need errors
+  const [formErrors, setFormErrors] = useState({
+    title: "",
+    country: "",
+    city: "",
+    street: "",
+    houseNumber: "",
+    postcode: "",
+    homeType: "",
+  });
+  const [firstScreenIsComplete, setFirstScreenIsComplete] = useState(false);
 
   return (
-    <LogInContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <LogInContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        formData,
+        setFormData,
+        formErrors,
+        setFormErrors,
+        firstScreenIsComplete,
+        setFirstScreenIsComplete,
+      }}
+    >
       {children}
     </LogInContext.Provider>
   );
