@@ -1,0 +1,31 @@
+.nav-item-upload-property-nav {
+  color: #fff;
+  position: fixed;
+  z-index: 111111;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 850px;
+  background-color: #010625;
+  padding: 15px;
+  white-space: nowrap;
+  margin-top: -50px;
+}
+
+.nav-item-upload-property-nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 55px;
+  gap: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.link-to-home-nav a {
+  display: flex;
+  width: fit-content;
+  margin-left: 27px;
+  color: #fff;
+  white-space: nowrap;
+}

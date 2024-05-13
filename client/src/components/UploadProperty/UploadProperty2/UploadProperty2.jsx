@@ -13,6 +13,7 @@ import { FaUmbrellaBeach } from "react-icons/fa6";
 import { FaBasketShopping } from "react-icons/fa6";
 import { CgGym } from "react-icons/cg";
 import "./UploadProperty2.css";
+import UploadPropertyNav from "../UploadPropertyNav/UploadPropertyNav";
 
 function UploadProperty2() {
   const [selectedAmenities, setSelectedAmenities] = useState([]);
@@ -72,15 +73,7 @@ function UploadProperty2() {
 
   return (
     <>
-      <nav className="nav-item-upload-property2">
-        <Link to={"/home"} className="link-to-home">
-          Back Home
-        </Link>
-        <ul>
-          <li>My Request</li>
-          <li>Profile</li>
-        </ul>
-      </nav>
+      <UploadPropertyNav />
       <div className="upload-property2-container">
         <div className="upload-property2-details">
           <header>
@@ -115,15 +108,12 @@ function UploadProperty2() {
 
         <div className="propety-image">
           <img
-            src="https://img.freepik.com/vrije-vector/ontspannen-freelancer-man-zittend-op-bed-met-laptop-vooraanzicht-platte-vectorillustratie_1150-40336.jpg?size=626&ext=jpg&ga=GA1.2.1450317072.1715328804&semt=ais"
+            src="https://cdn.dribbble.com/users/2110955/screenshots/4948218/media/f8832cd2e44e56f9b6d260286fa61e8a.png?resize=800x600&vertical=center"
             alt=""
             className="propety-pic"
           />
           <div className="upload-footer">
-            <Link
-              to={"/property/uploadproperty3"}
-              className="Continue-upload-property2"
-            >
+            <Link to={"/property/upload"} className="Continue-upload-property2">
               Continue
             </Link>
           </div>
