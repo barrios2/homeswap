@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { SlScreenDesktop } from "react-icons/sl";
 import { GrWifi } from "react-icons/gr";
 import { FaParking } from "react-icons/fa";
@@ -14,9 +13,11 @@ import { FaBasketShopping } from "react-icons/fa6";
 import { CgGym } from "react-icons/cg";
 import "./UploadProperty2.css";
 import UploadPropertyNav from "../UploadPropertyNav/UploadPropertyNav";
+import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
 function UploadProperty2() {
   const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const { setSecondScreenIsComplete } = useLogin();
 
   const iconSize = 30;
   const uploadAmenitiesData = [
@@ -71,6 +72,14 @@ function UploadProperty2() {
     setSelectedAmenities(updatedAmenities);
   };
 
+  const handleSubmit = () => {
+    if (selectedAmenities.length >= 1) {
+      setSecondScreenIsComplete(true);
+    } else {
+      setSecondScreenIsComplete(false);
+    }
+  };
+
   return (
     <>
       <UploadPropertyNav />
@@ -113,9 +122,13 @@ function UploadProperty2() {
             className="propety-pic"
           />
           <div className="upload-footer">
-            <Link to={"/property/upload"} className="Continue-upload-property2">
+            <button
+              type="submit"
+              className="input-submit"
+              onClick={handleSubmit}
+            >
               Continue
-            </Link>
+            </button>
           </div>
         </div>
       </div>

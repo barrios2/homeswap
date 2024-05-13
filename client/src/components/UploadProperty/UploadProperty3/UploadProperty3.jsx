@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-// import { Link } from "react-router-dom";
 import "./UploadProperty3.css";
+import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
 function UploadProperty3() {
   let [productCount, setProductCount] = useState(0);
   let [productCountBath, setProductCountBath] = useState(0);
+  const { setThirdScreenIsComplete } = useLogin();
 
   function displayFormattedProductsCount() {
     return productCount > 0 ? productCount : 0;
@@ -34,6 +35,14 @@ function UploadProperty3() {
 
   const handleAddPhotoClick = () => {
     fileInputRef.current.click();
+  };
+
+  const handleSubmit = () => {
+    if (productCount && productCountBath !== 0) {
+      setThirdScreenIsComplete(true);
+    } else {
+      setThirdScreenIsComplete(false);
+    }
   };
 
   return (
@@ -127,7 +136,7 @@ function UploadProperty3() {
             className="propety-pic"
           />
           <div className="upload-property3-footer">
-            <button type="button">
+            <button type="submit" onClick={handleSubmit}>
               <span>Continue</span>
             </button>
           </div>
