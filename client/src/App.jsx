@@ -7,6 +7,7 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import LogInProvider from "./context/LogInProvider/LogInProvider";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadPropertyPage3 from "./pages/UploadProperty3/UploadProperty3";
+import UploadPropertyPage2 from "./pages/UploadProperty2/UploadProperty2";
 
 const App = () => {
   return (
@@ -17,6 +18,10 @@ const App = () => {
         <Route
           path="/property/uploadproperty3"
           element={<UploadPropertyPage3 />}
+        />
+        <Route
+          path="/property/uploadproperty2"
+          element={<UploadPropertyPage2 />}
         />
         <Route path="/" element={<AboutUs />} />
         <Route path="/user/signup" element={<SignUp />} />
