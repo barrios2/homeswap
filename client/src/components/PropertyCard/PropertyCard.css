@@ -67,6 +67,9 @@
 .accommodations {
   display: flex;
   flex-direction: row;
+}
+
+.margin-right {
   margin-right: 10px;
 }
 
