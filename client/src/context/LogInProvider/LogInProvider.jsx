@@ -28,7 +28,10 @@ const LogInProvider = ({ children }) => {
     postcode: "",
     homeType: "",
   });
+
   const [firstScreenIsComplete, setFirstScreenIsComplete] = useState(false);
+  const [secondScreenIsComplete, setSecondScreenIsComplete] = useState(false);
+  const [thirdScreenIsComplete, setThirdScreenIsComplete] = useState(false);
 
   return (
     <LogInContext.Provider
@@ -41,6 +44,10 @@ const LogInProvider = ({ children }) => {
         setFormErrors,
         firstScreenIsComplete,
         setFirstScreenIsComplete,
+        secondScreenIsComplete,
+        setSecondScreenIsComplete,
+        thirdScreenIsComplete,
+        setThirdScreenIsComplete,
       }}
     >
       {children}

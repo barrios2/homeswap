@@ -27,7 +27,6 @@
 }
 
 .upload-property3-title {
-  text-transform: uppercase;
   color: #fff;
   margin: 0;
   font-size: 20px;
@@ -69,7 +68,6 @@
 
 .upload-property3-footer > button > span {
   font-size: 18px;
-  text-transform: uppercase;
   font-weight: 700;
   margin-left: 10px;
   color: white;

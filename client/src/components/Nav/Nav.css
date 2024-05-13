@@ -63,7 +63,6 @@
 }
 
 .log-in-btn {
-  background: #ae593a;
   font-size: 20px;
   padding: 10px 49px;
   border-radius: 10px;
@@ -71,6 +70,13 @@
   border: none;
   margin: 20px;
   color: #fff;
+  transition: border 0.2s ease-in-out;
+}
+
+.log-in-btn:hover,
+.logout-btn:hover {
+  border: #fff 2px solid;
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {

@@ -21,7 +21,7 @@ const PropertyCard = ({ property }) => {
         <img src={property?.photos[0]} alt={property?.title} />
       </Link>
       <div className="accommodation-container">
-        <div className="accommodations">
+        <div className="accommodations margin-right">
           <FontAwesomeIcon icon={faBed} className="icon" />
           <p>{property?.bedrooms}</p>
         </div>

@@ -68,7 +68,6 @@
 }
 
 .upload-property2-title {
-  text-transform: uppercase;
   color: #fff;
   margin: 0;
   font-size: 20px;
@@ -170,5 +169,5 @@ header {
 }
 
 .amenity-item.selected {
-  background-color: #007bff;
+  background-color: #fcf7e8;
 }
