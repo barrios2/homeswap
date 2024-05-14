@@ -56,12 +56,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .upload-propety4-details {
   position: relative;
-  top: 100px;
+  top: 35px;
 }
 
 .propety-image {
