@@ -28,15 +28,11 @@
   background-color: var(--white);
 }
 
-.upload-property2-details {
-  position: relative;
-  top: 100px;
-}
-
 .amenity-text {
   position: absolute;
   top: calc(100% + 10px);
   font-size: 15px;
+  color: #fff;
 }
 
 .arrow-down2 {
@@ -48,7 +44,7 @@
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
   padding: 20px;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .propety-image {
@@ -122,13 +118,6 @@ header {
   height: fit-content;
   margin: auto;
   margin-top: 25px;
-}
-
-.amenities-input1 {
-  display: flex;
-  gap: 70px;
-  align-items: center;
-  color: #fff;
 }
 
 .input-btn {

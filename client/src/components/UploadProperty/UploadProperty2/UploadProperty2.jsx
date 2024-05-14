@@ -121,13 +121,9 @@ function UploadProperty2() {
             alt=""
             className="propety-pic"
           />
-          <div className="upload-footer">
-            <button
-              type="submit"
-              className="input-submit"
-              onClick={handleSubmit}
-            >
-              Continue
+          <div className="upload-property3-footer">
+            <button type="submit" onClick={handleSubmit}>
+              <span>Continue</span>
             </button>
           </div>
         </div>
