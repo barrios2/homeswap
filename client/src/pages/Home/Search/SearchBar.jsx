@@ -29,7 +29,6 @@ const Search = () => {
       })
       .catch((error) => {
         logError("Error fetching amenities:", error);
-        toast.error("Failed to fetch amenities.");
       });
   }, []);
 
