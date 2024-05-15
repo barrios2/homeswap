@@ -23,7 +23,7 @@ const Search = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/property/amenities")
+      .get("http://localhost:3000/api/property/amenities  ")
       .then((response) => {
         setAmenities(response.data);
       })
