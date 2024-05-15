@@ -8,6 +8,9 @@ import LogInProvider from "./context/LogInProvider/LogInProvider";
 import ProtectedProfile from "./components/ProtectedRoute/ProtectedProfile";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadProperty from "./pages/UploadProperty/UploadProperty";
+import SearchResults from "./pages/Home/Search/SearchResults";
+import { ToastContainer } from "react-toastify";
+
 const App = () => {
   return (
     <LogInProvider>
@@ -28,7 +31,19 @@ const App = () => {
             }
           />
         </Route>
+        <Route path="/search-results" element={<SearchResults />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </LogInProvider>
   );
 };
