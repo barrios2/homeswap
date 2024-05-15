@@ -17,7 +17,7 @@ const PropertyCard = ({ property }) => {
 
   return (
     <div className="property-card">
-      <Link to={`/property/${property?._id}`}>
+      <Link to={`/property/view/${property?._id}`}>
         <img src={property?.photos[0]} alt={property?.title} />
       </Link>
       <div className="accommodation-container">
@@ -40,9 +40,7 @@ const PropertyCard = ({ property }) => {
         </p>
       </div>
       <Link to={`/property/view/${property?._id}`}>
-        <button className="property-card-btn btn-default">
-          More information
-        </button>
+        <button className="property-card-btn">More information</button>
       </Link>
     </div>
   );
