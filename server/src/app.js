@@ -23,6 +23,6 @@ app.use(cookieParser());
  */
 app.use("/api/user", userRouter);
 app.use("/api/property", propertyRouter);
-app.use("api/swap", swapRouter);
+app.use("/api/swap", swapRouter);
 
 export default app;

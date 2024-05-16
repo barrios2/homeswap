@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { validateAllowedFields } from "../utils/validateFields.js";
+import validateAllowedFields from "../util/validateAllowedFields.js";
 
 //userX id : 6645decec035637a74f53b75
 //userX propertyId: 6645e0d479079bdc9aba4c96
@@ -12,7 +12,6 @@ const swapSchema = new mongoose.Schema({
     ref: "Property",
     required: true,
   },
-
   receiver_propertyId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Property",
@@ -23,19 +22,17 @@ const swapSchema = new mongoose.Schema({
     start: { type: Date, required: true },
     end: { type: Date, required: true },
   },
-
   status: {
     type: String,
     enum: ["pending", "accepted", "rejected"],
     default: "pending",
   },
-
   message: {
     type: String,
   },
 });
 
-const Swap = mongoose.model("swaps", swapSchema);
+const Swap = mongoose.model("Swap", swapSchema);
 
 export const validateSwapFields = (swapObject) => {
   const errorList = [];
@@ -53,12 +50,12 @@ export const validateSwapFields = (swapObject) => {
     errorList.push(validatedKeysMessage);
   }
 
-  if (!swapObject.sender_propertyId) {
-    errorList.push("sender_propertyId is a required");
-  }
-  if (!swapObject.receiver_propertyId) {
-    errorList.push("receiver_propertyId is a required");
-  }
+  // if (!swapObject.sender_propertyId) {
+  //   errorList.push("sender_propertyId is a required");
+  // }
+  // if (!swapObject.receiver_propertyId) {
+  //   errorList.push("receiver_propertyId is a required");
+  // }
 
   if (!swapObject.swap_date) {
     errorList.push("swap_date is a required");
@@ -73,17 +70,14 @@ export const validateSwapFields = (swapObject) => {
       const startDate = new Date(swapObject.swap_date.start);
       const endDate = new Date(swapObject.swap_date.end);
       if (startDate < currentDate || endDate < currentDate) {
-        errorList.push("Invalid swap date/ Cannot be in the past");
+        errorList.push("swap date cannot be in the past");
       }
     }
   }
 
-  if (!swapObject.status) {
-    errorList.push("status is a required");
-  }
-  if (!swapObject.message) {
-    errorList.push("message is a required");
-  }
+  // if (!swapObject.status) {
+  //   errorList.push("status is a required");
+  // }
 
   return errorList;
 };
