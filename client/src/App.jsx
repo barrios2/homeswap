@@ -8,7 +8,6 @@ import LogInProvider from "./context/LogInProvider/LogInProvider";
 import ProtectedProfile from "./components/ProtectedRoute/ProtectedProfile";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadProperty from "./pages/UploadProperty/UploadProperty";
-import SearchResults from "./pages/Home/Search/SearchResults";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
@@ -31,7 +30,6 @@ const App = () => {
           />
           <Route path="/home" element={<Home />} />
         </Route>
-        <Route path="/search-results" element={<SearchResults />} />
       </Routes>
       <ToastContainer
         position="top-right"
