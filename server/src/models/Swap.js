@@ -43,7 +43,7 @@ export const validateSwapFields = (swapObject) => {
     "status",
     "message",
   ];
-  // const keys = Object.keys(swapObject);
+
   const validatedKeysMessage = validateAllowedFields(swapObject, allowedKeys);
 
   if (validatedKeysMessage.length > 0) {
