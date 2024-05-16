@@ -50,12 +50,12 @@ export const validateSwapFields = (swapObject) => {
     errorList.push(validatedKeysMessage);
   }
 
-  // if (!swapObject.sender_propertyId) {
-  //   errorList.push("sender_propertyId is a required");
-  // }
-  // if (!swapObject.receiver_propertyId) {
-  //   errorList.push("receiver_propertyId is a required");
-  // }
+  if (!swapObject.sender_propertyId) {
+    errorList.push("sender_propertyId is a required");
+  }
+  if (!swapObject.receiver_propertyId) {
+    errorList.push("receiver_propertyId is a required");
+  }
 
   if (!swapObject.swap_date) {
     errorList.push("swap_date is a required");
@@ -81,5 +81,10 @@ export const validateSwapFields = (swapObject) => {
 
   return errorList;
 };
+
+export function isValidObjectId(id) {
+  //Only valid objectId
+  return mongoose.Types.ObjectId.isValid(id);
+}
 
 export default Swap;
