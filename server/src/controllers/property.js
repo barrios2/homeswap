@@ -108,3 +108,12 @@ export const viewProperty = async (req, res) => {
     });
   }
 };
+
+export const amenitiesRoute = async (req, res) => {
+  try {
+    const amenities = await Property.distinct("amenities");
+    res.status(200).json(amenities);
+  } catch (error) {
+    res.status(500).json({ msg: "Error retrieving property", error });
+  }
+};
