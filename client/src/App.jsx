@@ -8,8 +8,8 @@ import LogInProvider from "./context/LogInProvider/LogInProvider";
 import ProtectedProfile from "./components/ProtectedRoute/ProtectedProfile";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadProperty from "./pages/UploadProperty/UploadProperty";
-import { ToastContainer } from "react-toastify";
 import ProfileComponent from "./components/Profile/ProfileComponent";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
