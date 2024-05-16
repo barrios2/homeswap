@@ -44,16 +44,37 @@ const PropertyList = () => {
 
   const pageList = totalPagesToArray(); // get array results that totalPagesToArray returns so it can be mapped through
 
-  // create a btn for each number from the pageList array
-  const pagination = pageList?.map((n) => (
-    <button
-      key={n}
-      onClick={handlePagination}
-      className={`pagination-btn btn-default ${currentPage == n ? "active" : ""}`}
-    >
-      {n}
-    </button>
-  ));
+  // create a btn for each number from the pageList array and show ellipsis after 2nd page followed by the last page number (e.g. |1| |2| |...| |5| |Next| )
+  // or if in the last page |Prev| |1| |...| |4| |5| -- shows first page, ellipsis and 2 pages
+  const pagination = pageList?.map((n) => {
+    if (
+      n === 1 ||
+      n === totalPages ||
+      (n >= currentPage - 1 && n <= currentPage + 1)
+    ) {
+      return (
+        <button
+          key={n}
+          onClick={handlePagination}
+          className={`pagination-btn btn-default ${currentPage === n ? "active" : ""}`}
+        >
+          {n}
+        </button>
+      );
+    } else if (n === 2) {
+      return (
+        <span key="start-ellipsis" className="pagination-btn btn-default">
+          ...
+        </span>
+      );
+    } else if (n === totalPages - 1) {
+      return (
+        <span key="end-ellipsis" className="pagination-btn btn-default">
+          ...
+        </span>
+      );
+    }
+  });
 
   const renderPropertyCards = () => {
     return properties?.map((property) => (
@@ -72,19 +93,16 @@ const PropertyList = () => {
         <>
           <div className="property-card-container">{renderPropertyCards()}</div>
           <div className="pagination-container">
-            {currentPage == 1 && (
-              <button onClick={handleNext} className="see-more-btn btn-default">
-                See More
-              </button>
-            )}
-            {currentPage > 1 && (
+            {totalPages > 1 && (
               <div>
-                <button
-                  onClick={handlePrev}
-                  className="pagination-btn btn-default"
-                >
-                  Prev
-                </button>
+                {currentPage > 1 && (
+                  <button
+                    onClick={handlePrev}
+                    className="pagination-btn btn-default"
+                  >
+                    Prev
+                  </button>
+                )}
                 {pagination}
                 {currentPage !== totalPages && (
                   <button

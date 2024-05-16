@@ -77,10 +77,14 @@
   margin: 10px 0;
   background-color: transparent;
   font-weight: 600;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  transition: border-bottom 0.2s ease-in-out;
 }
 
-.property-card-btn::after,
-.see-more-btn::after {
+.property-card-btn::after {
   position: absolute;
   width: 0;
   height: 2px;
@@ -89,12 +93,9 @@
   content: "";
   transition: width 0.2s ease-in-out;
 }
+
 .property-card-btn:hover:after {
   width: 110px;
-}
-
-.see-more-btn:hover::after {
-  width: 105px;
 }
 
 .icon {
@@ -118,14 +119,6 @@
 
 .pagination-container {
   align-self: center;
-}
-
-.see-more-btn {
-  background: none;
-  padding: 10px;
-  margin: 24px 0;
-  font-size: 24px;
-  outline: inherit;
 }
 
 .pagination-btn {

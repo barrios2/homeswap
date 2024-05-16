@@ -17,13 +17,13 @@ const App = () => {
     <LogInProvider>
       <Routes>
         <Route path="/" element={<AboutUs />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/property/view/:id" element={<ViewProperty />} />
         <Route path="/property/upload" element={<UploadProperty />} />
         <Route path="/user/signup" element={<SignUp />} />
         <Route path="/user/login" element={<LogIn />} />
         <Route element={<ProtectedProfile />}>
           <Route path="/profile" element={<ProfileComponent />} />
+          <Route path="/home" element={<Home />} />
         </Route>
         <Route path="/search-results" element={<SearchResults />} />
       </Routes>
