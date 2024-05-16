@@ -1,35 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
-
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { logError } from "../../../../../server/src/util/logging";
 import "./SearchBar.css";
+import useFetch from "../../../hooks/useFetch";
+import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
 const Search = () => {
-  const navigate = useNavigate();
+  const {
+    setProperties,
+    setCurrentPage,
+    setTotalPages,
+    searchParams,
+    setSearchParams,
+    params,
+  } = useLogin();
   const [amenities, setAmenities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchParams, setSearchParams] = useState({
-    country: "",
-    city: "",
-    type: "",
-    bedrooms: "",
-    amenities: [],
-  });
+  const { error, performFetch } = useFetch(
+    "/property/amenities",
+    onDataReceived,
+  );
+
+  const {
+    isLoading,
+    error: dataError,
+    performFetch: performPropertiesFetch,
+  } = useFetch(`/property/get?${params}`, onPropertiesReceived);
+
+  function onDataReceived(data) {
+    setAmenities(data.data);
+  }
+
+  function onPropertiesReceived(data) {
+    // overwrites the properties from first render + currentPage and totalPages so that pagination can be shown accordingly
+    setProperties(data.data);
+    setCurrentPage(data.page);
+    setTotalPages(data.totalPages);
+  }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/property/amenities  ")
-      .then((response) => {
-        setAmenities(response.data);
-      })
-      .catch((error) => {
-        logError("Error fetching amenities:", error);
-      });
+    performFetch();
+    if (error) {
+      logError("Error fetching amenities:", error);
+    }
   }, []);
 
   const handleInputChange = (e) => {
@@ -37,24 +52,14 @@ const Search = () => {
   };
 
   const handleSearch = () => {
-    setIsLoading(true);
-    // Send searchParams to backend
     setTimeout(() => {
-      axios
-        .get("http://localhost:3000/api/property/get", { params: searchParams })
-        .then(() => {
-          // Navigating to the search-results page with search params
-          navigate("/search-results", { state: { searchParams } });
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          logError("Error searching properties:", error);
-          setIsLoading(false);
-          toast.error(
-            "Currently there are no properties that matches your search criteria.",
-          );
-        });
-    }, 2000);
+      performPropertiesFetch();
+      if (dataError) {
+        toast.error(
+          "Currently there are no properties that matches your search criteria.",
+        );
+      }
+    }, 1000);
   };
 
   const style = {
@@ -157,8 +162,6 @@ const Search = () => {
             />
           )}
         </div>
-
-        <div className="search-bar-divider"></div>
       </div>
     </div>
   );
