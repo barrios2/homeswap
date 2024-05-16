@@ -9,6 +9,7 @@ import ProtectedProfile from "./components/ProtectedRoute/ProtectedProfile";
 import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadProperty from "./pages/UploadProperty/UploadProperty";
 import { ToastContainer } from "react-toastify";
+import ProfileComponent from "./components/Profile/ProfileComponent";
 
 const App = () => {
   return (
@@ -20,14 +21,7 @@ const App = () => {
         <Route path="/user/signup" element={<SignUp />} />
         <Route path="/user/login" element={<LogIn />} />
         <Route element={<ProtectedProfile />}>
-          <Route
-            path="/profile"
-            element={
-              <p style={{ color: "yellow" }}>
-                to be added when profile page is ready
-              </p>
-            }
-          />
+          <Route path="/profile" element={<ProfileComponent />} />
           <Route path="/home" element={<Home />} />
         </Route>
       </Routes>
