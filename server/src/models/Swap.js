@@ -82,41 +82,4 @@ export const validateSwapFields = (swapObject) => {
   return errorList;
 };
 
-//validation here
-// export const validateSwap = (swapObject) => {
-//   const errorList = [];
-//   const allowedKeys = ["sender_propertyId", "receiver_propertyId", "swap_date", "status", "message"];
-
-//   const validatedKeysMessage = validateAllowedFields(swapObject, allowedKeys);
-
-//   if (validatedKeysMessage.length > 0) {
-//     errorList.push(validatedKeysMessage);
-//   }
-
-//   if (!swapObject.sender_propertyId) {
-//     errorList.push("sender_propertyId is a required field");
-//   }
-
-//   if (!swapObject.receiver_propertyId) {
-//     errorList.push("receiver_propertyId is a required field");
-//   }
-
-//   if (!swapObject.swap_date) {
-//     errorList.push("swap_date is a required field");
-//   } else {
-//     if (!swapObject.swap_date.start) {
-//       errorList.push("swap_date.start is a required field");
-//     }
-//     if (!swapObject.swap_date.end) {
-//       errorList.push("swap_date.end is a required field");
-//     }
-//   }
-
-//   if (!swapObject.status) {
-//     errorList.push("status is a required field");
-//   }
-
-//   return errorList;
-// };
-
 export default Swap;
