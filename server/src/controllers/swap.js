@@ -26,14 +26,14 @@ export const createSwapRequest = async (req, res) => {
       .json({ success: false, msg: "Invalid receiver_propertyId" });
   }
 
-  // check if the swapped propertiesId exist
+  // check if the swapped propertiesId exist in Property Collection
   const senderPropertyExists = await Property.exists({
     _id: swapRequestData.sender_propertyId,
   });
   if (!senderPropertyExists) {
     return res
       .status(400)
-      .json({ success: false, msg: "Invalid sender_propertyId" });
+      .json({ success: false, msg: "This sender_propertyId does not exist" });
   }
 
   const receiverPropertyExists = await Property.exists({
@@ -42,7 +42,7 @@ export const createSwapRequest = async (req, res) => {
   if (!receiverPropertyExists) {
     return res
       .status(400)
-      .json({ success: false, msg: "Invalid receiver_propertyId" });
+      .json({ success: false, msg: "This receiver_propertyId does not exist" });
   }
 
   //check if the request exists
