@@ -32,6 +32,18 @@ const LogInProvider = ({ children }) => {
   const [firstScreenIsComplete, setFirstScreenIsComplete] = useState(false);
   const [secondScreenIsComplete, setSecondScreenIsComplete] = useState(false);
   const [thirdScreenIsComplete, setThirdScreenIsComplete] = useState(false);
+  const [properties, setProperties] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+  const [searchParams, setSearchParams] = useState({
+    country: "",
+    city: "",
+    type: "",
+    bedrooms: "",
+    amenities: [],
+  });
+  const parameters = new URLSearchParams(searchParams);
+  const params = parameters.toString();
 
   return (
     <LogInContext.Provider
@@ -48,6 +60,15 @@ const LogInProvider = ({ children }) => {
         setSecondScreenIsComplete,
         thirdScreenIsComplete,
         setThirdScreenIsComplete,
+        properties,
+        setProperties,
+        currentPage,
+        setCurrentPage,
+        totalPages,
+        setTotalPages,
+        searchParams,
+        setSearchParams,
+        params,
       }}
     >
       {children}

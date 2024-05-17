@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import useFetch from "../../hooks/useFetch";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 const PropertyList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
-  const [properties, setProperties] = useState([]);
+  const {
+    properties,
+    setProperties,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    setTotalPages,
+    params,
+  } = useLogin();
+  // fetches all properties on first render with empty parameters, when parameters are updated (in Search component) it starts fetching WITH params included
   const { isLoading, error, performFetch } = useFetch(
-    `/property/get?page=${currentPage}`,
+    `/property/get?page=${currentPage}&${params}`,
     onDataReceived,
   );
 
