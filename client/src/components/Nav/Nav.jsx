@@ -5,7 +5,7 @@ import "./Nav.css";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 const Nav = () => {
-  const { isLoggedIn, setIsLoggedIn } = useLogin();
+  const { isLoggedIn, setIsLoggedIn, setUserId, setToken } = useLogin();
 
   const handleLogIn = () => {
     setIsLoggedIn(true);
@@ -13,6 +13,8 @@ const Nav = () => {
 
   const handleLogOut = () => {
     setIsLoggedIn(false);
+    setUserId(null);
+    setToken(null);
   };
 
   return (

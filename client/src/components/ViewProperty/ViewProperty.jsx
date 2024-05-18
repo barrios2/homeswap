@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import CreateSwapRequest from "../CreateSwapRequest/CreateSwapRequest";
 
 import "./ViewProperty.css";
 
@@ -177,10 +178,9 @@ function ViewProperty() {
                 <span className="close" onClick={() => setShowPopup(false)}>
                   &times;
                 </span>
-                <p>
-                  Thank you for your interest! Your application has been
-                  submitted successfully.
-                </p>
+                <CreateSwapRequest
+                  receiver_propertyID={viewPropertyDetails._id}
+                />
               </div>
             </div>
           )}
