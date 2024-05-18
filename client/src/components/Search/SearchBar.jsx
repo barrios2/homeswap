@@ -3,10 +3,10 @@ import { CiSearch } from "react-icons/ci";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { logError } from "../../../../../server/src/util/logging";
+import { logError } from "../../../../server/src/util/logging";
 import "./SearchBar.css";
-import useFetch from "../../../hooks/useFetch";
-import { useLogin } from "../../../context/LogInProvider/LogInProvider";
+import useFetch from "../../hooks/useFetch";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 const Search = () => {
   const {
@@ -17,6 +17,8 @@ const Search = () => {
     setSearchParams,
     params,
   } = useLogin();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loader, setLoader] = useState(false);
   const [amenities, setAmenities] = useState([]);
   const { error, performFetch } = useFetch(
     "/property/amenities",
@@ -38,6 +40,7 @@ const Search = () => {
     setProperties(data.data);
     setCurrentPage(data.page);
     setTotalPages(data.totalPages);
+    setLoader(false);
   }
 
   useEffect(() => {
@@ -51,7 +54,27 @@ const Search = () => {
     setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
   };
 
+  //search form fields validation
+  const validateSearchCriteria = () => {
+    if (
+      !searchParams.country &&
+      !searchParams.city &&
+      !searchParams.type &&
+      !searchParams.bedrooms &&
+      searchParams.amenities.length === 0
+    ) {
+      return false;
+    }
+    return true;
+  };
+
   const handleSearch = () => {
+    setErrorMessage(null);
+    if (!validateSearchCriteria()) {
+      setErrorMessage("Please enter at least one search criteria.");
+      return;
+    }
+    setLoader(true);
     setTimeout(() => {
       performPropertiesFetch();
       if (dataError) {
@@ -64,7 +87,7 @@ const Search = () => {
 
   const style = {
     position: "fixed",
-    top: "54%",
+    top: "60%",
     left: "50%",
     transform: "translate(-50%, -50%)",
   };
@@ -80,15 +103,15 @@ const Search = () => {
             </div>
             <div className="vertical-line"></div>
             <div className="property-container-search">
-              <span>property</span>
+              <span className="span-property">property</span>
             </div>
             <div className="vertical-line"></div>
             <div className="bedrooms-container-search">
-              <span>bedrooms</span>
+              <span className="span-bedrooms">bedrooms</span>
             </div>
             <div className="vertical-line"></div>
             <div className="amenities-container-search">
-              <span>amenities</span>
+              <span className="span-amenities">amenities</span>
             </div>
             <div className="search-icon-container">
               <CiSearch
@@ -149,8 +172,13 @@ const Search = () => {
             ))}
           </select>
         </div>
+        {errorMessage && (
+          <div className="validation-error-search">
+            <span>{errorMessage}</span>
+          </div>
+        )}
         <div className="loader-container" style={style}>
-          {isLoading && (
+          {loader && (
             <ThreeDots
               visible={true}
               height="80"
