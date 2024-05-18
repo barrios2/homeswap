@@ -51,20 +51,20 @@ export const validateSwapFields = (swapObject) => {
   }
 
   if (!swapObject.sender_propertyId) {
-    errorList.push("sender_propertyId is a required");
+    errorList.push("sender_propertyId is required");
   }
   if (!swapObject.receiver_propertyId) {
-    errorList.push("receiver_propertyId is a required");
+    errorList.push("receiver_propertyId is required");
   }
 
   if (!swapObject.swap_date) {
-    errorList.push("swap_date is a required");
+    errorList.push("swap_date is required");
   } else {
     if (!swapObject.swap_date.start) {
-      errorList.push("swap_date.start is a required");
+      errorList.push("swap_date.start is required");
     }
     if (!swapObject.swap_date.end) {
-      errorList.push("swap_date.end is a required");
+      errorList.push("swap_date.end is required");
     } else {
       const currentDate = Date.now();
       const startDate = new Date(swapObject.swap_date.start);
@@ -73,6 +73,21 @@ export const validateSwapFields = (swapObject) => {
         errorList.push("swap date cannot be in the past");
       }
     }
+
+    if (swapObject.swap_date.start > swapObject.swap_date.end) {
+      errorList.push("End date must be after start date");
+    }
+  }
+
+  if (swapObject.sender_propertyId === swapObject.receiver_propertyId) {
+    errorList.push("Please select different properties");
+  }
+
+  if (
+    swapObject.swap_date &&
+    swapObject.swap_date.start === swapObject.swap_date.end
+  ) {
+    errorList.push("Please select different dates");
   }
 
   // if (!swapObject.status) {

@@ -1,7 +1,14 @@
 import jwt from "jsonwebtoken";
 
 export const verifyUser = (req, res, next) => {
-  const token = req.cookies.access_token;
+  // const token = req.cookies.access_token;
+  const authHeader = req.headers.authorization; //.split(" ")[1];
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ success: false, msg: "Unauthorized user!" });
+  }
+
+  const token = authHeader.split(" ")[1];
 
   if (!token) {
     return res.status(401).json({ success: false, msg: "Unauthorized user!" });
