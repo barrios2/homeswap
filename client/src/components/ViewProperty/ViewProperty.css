@@ -36,6 +36,7 @@
   left: 50%;
   transform: translate(-50%, -11%);
   padding: 20px;
+  margin-top: 80px;
 }
 
 h5 {
@@ -196,14 +197,14 @@ article p {
   transform: rotate(135deg);
 }
 
-.amenitiess {
+.amenitiess-item {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   display: block;
 }
 
-.amenitiess li + li {
+.amenitiess-item li + li {
   margin-left: 15px;
 }
 

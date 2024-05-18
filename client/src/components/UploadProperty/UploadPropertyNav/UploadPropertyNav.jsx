@@ -1,24 +1,95 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./UploadPropertyNav.css";
+import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
-function UploadPropertyNav() {
+const UploadPropertyNav = ({ goToPreviousPage, validateForm }) => {
+  const { isLoggedIn, setIsLoggedIn } = useLogin();
+
+  const handleLogIn = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogOut = () => {
+    setIsLoggedIn(false);
+  };
+
+  const handlePreviousButtonClick = () => {
+    if (validateForm()) {
+      goToPreviousPage();
+    }
+  };
+
   return (
-    <>
-      <nav className="nav-item-upload-property-nav">
-        <div>
-          <Link to={"/home"} className="link-to-home-nav">
-            Back Home
-          </Link>
-        </div>
-        <ul className="property-nav-ul">
-          <li> </li>
-          <li>My Request</li>
-          <li>Profile</li>
+    <nav className="navbar">
+      <div className="container">
+        <button
+          className="navbar-logo"
+          onClick={handlePreviousButtonClick}
+          style={{ background: "none", border: "none" }}
+        >
+          <i className="fa-solid fa-arrow-left"></i>
+        </button>
+        <input type="checkbox" id="navbar-toggle" className="navbar-toggle" />
+        <label htmlFor="navbar-toggle" className="navbar-toggle-label">
+          &#9776;
+        </label>
+        <ul className="navbar-menu">
+          {!isLoggedIn ? (
+            <>
+              <li className="navbar-item">
+                <Link
+                  to="/user/login"
+                  className="navbar-link log-in-btn "
+                  onClick={handleLogIn}
+                >
+                  Log in
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/user/signup" className="navbar-link sign-up-btn">
+                  Sign up
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="navbar-item">
+                <Link to="/home" className="navbar-link">
+                  Home
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/" className="navbar-link">
+                  About Us
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/profile" className="navbar-link">
+                  Profile
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  to="/user/login"
+                  className="navbar-link logout-btn"
+                  onClick={handleLogOut}
+                >
+                  Log out
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
-}
+};
+
+UploadPropertyNav.propTypes = {
+  goToPreviousPage: PropTypes.func.isRequired,
+  validateForm: PropTypes.func.isRequired,
+};
 
 export default UploadPropertyNav;

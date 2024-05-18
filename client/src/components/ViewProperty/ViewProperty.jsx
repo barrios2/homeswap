@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import CreateSwapRequest from "../CreateSwapRequest/CreateSwapRequest";
 
 import "./ViewProperty.css";
+import Nav from "../Nav/Nav";
 
 const initialObject = {
   address: {
@@ -56,7 +57,7 @@ function ViewProperty() {
   };
 
   const handleApplyClick = () => {
-    setShowPopup(true); // Show the pop-up when "Apply" button is clicked
+    setShowPopup(true);
   };
 
   if (isLoading) {
@@ -73,15 +74,7 @@ function ViewProperty() {
 
   return (
     <>
-      <nav className="nav-item-viewproperty">
-        <Link to={"/home"} className="link-to-home">
-          Back Home
-        </Link>
-        <ul>
-          <li>My Request</li>
-          <li>Profile</li>
-        </ul>
-      </nav>
+      <Nav />
       <div className="container-viewproperty">
         <div className="view-propety-image">
           <img
@@ -140,7 +133,7 @@ function ViewProperty() {
           </article>
           <div className="controls">
             <div></div>
-            <div className="amenities">
+            <div className="amenities-item">
               <h5>Amenities</h5>
               <ul className="amenities-dropdown">
                 {viewPropertyDetails.amenities.map((amenity, index) => (

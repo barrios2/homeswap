@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBuilding,
@@ -6,83 +7,25 @@ import {
   faPersonShelter,
 } from "@fortawesome/free-solid-svg-icons";
 import "./UploadProperty1.css";
-import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
-const UploadProperty1 = () => {
-  const {
-    formData,
-    setFormData,
-    formErrors,
-    setFormErrors,
-    setFirstScreenIsComplete,
-  } = useLogin();
-  const [selectedHomeType, setSelectedHomeType] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
+const UploadProperty1 = ({
+  goToNextPage,
+  formdata,
+  setformdata,
+  validateForm,
+  errors,
+}) => {
+  const handleHomeTypeSelect = (type) => {
+    setformdata((prevState) => ({
       ...prevState,
-      [name]: value,
-    }));
-
-    // Clear the error message when the user starts typing
-    setFormErrors((prevState) => ({
-      ...prevState,
-      [name]: "",
+      type: type,
     }));
   };
 
-  const handleHomeTypeSelect = (homeType) => {
-    setSelectedHomeType(homeType);
-    setFormData((prevState) => ({
-      ...prevState,
-      homeType: homeType,
-    }));
-
-    // Clear the error message when the user selects a home type
-    setFormErrors((prevState) => ({
-      ...prevState,
-      homeType: "",
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-
-    // Call the validateForm function to validate the form
-    const isValid = validateForm();
-    if (isValid) {
-      setFirstScreenIsComplete(true);
-    } else {
-      setFirstScreenIsComplete(false);
+  const handleNextButtonClick = () => {
+    if (validateForm()) {
+      goToNextPage();
     }
-  };
-
-  const validateForm = () => {
-    let isValid = true; // Assuming there are no errors, isValid starts at true
-    const errors = { ...formErrors }; // Copy over previous errors if any
-
-    // Predefined errors
-    const fieldErrors = {
-      title: "Title is required",
-      country: "Country is required",
-      city: "City is required",
-      street: "Street is required",
-      houseNumber: "House Number is required",
-      postcode: "Postcode is required",
-      homeType: "Home type is required",
-    };
-
-    // To check each field if there is data present
-    for (const [fieldName, errorMessage] of Object.entries(fieldErrors)) {
-      if (!formData[fieldName]) {
-        errors[fieldName] = errorMessage; // Set corresponding error in its field name
-        isValid = false; // Invalidate form
-      }
-    }
-
-    setFormErrors(errors);
-    return isValid;
   };
 
   return (
@@ -90,65 +33,78 @@ const UploadProperty1 = () => {
       <div className="form-left-container">
         <div className="margin-bottom">
           <h3 className="title-header">Please provide a title for your home</h3>
+          {errors.title && (
+            <span className="error-property1">{errors.title}</span>
+          )}
           <input
             type="text"
             name="title"
-            value={formData.title}
-            onChange={handleChange}
+            value={formdata.title}
+            onChange={(event) =>
+              setformdata({ ...formdata, title: event.target.value })
+            }
             required
             className="input-text"
           />
-          {formErrors.title && (
-            <div className="error-red">
-              <span>{formErrors.title}</span>
-            </div>
-          )}
         </div>
         <div className="margin-bottom">
           <h3 className="margin-bottom">Select your home type</h3>
+          {errors.homeType && (
+            <span className="error-property1">{errors.Type}</span>
+          )}
           <div className="white-border fields-container home-type-icons">
             <button
-              className="icon-btn"
+              className={`icon-btn ${formdata.type === "house" ? "activeHome" : ""}`}
               onClick={() => handleHomeTypeSelect("house")}
             >
               {" "}
               <FontAwesomeIcon
                 icon={faHouse}
-                className={`icon-size-change margin-bottom ${selectedHomeType === "house" ? "activeHome" : ""}`}
+                className="icon-size-change margin-bottom"
               />{" "}
               House
             </button>
             <button
-              className="icon-btn"
+              className={`icon-btn ${formdata.type === "apartment" ? "activeHome" : ""}`}
               onClick={() => handleHomeTypeSelect("apartment")}
             >
               {" "}
               <FontAwesomeIcon
                 icon={faBuilding}
-                className={`icon-size-change margin-bottom ${selectedHomeType === "apartment" ? "activeHome" : ""}`}
+                className="icon-size-change margin-bottom"
               />{" "}
               Apartment
             </button>
             <button
-              className="icon-btn"
+              className={`icon-btn ${formdata.type === "studio" ? "activeHome" : ""}`}
               onClick={() => handleHomeTypeSelect("studio")}
             >
               {" "}
               <FontAwesomeIcon
                 icon={faPersonShelter}
-                className={`icon-size-change margin-bottom ${selectedHomeType === "studio" ? "activeHome" : ""}`}
+                className="icon-size-change margin-bottom"
               />{" "}
               Studio
             </button>
           </div>
-          {formErrors.homeType && (
-            <div className="error-red">
-              <span>{formErrors.homeType}</span>
-            </div>
-          )}
         </div>
         <div>
           <h3 className="margin-bottom">What is your home address?</h3>
+          {errors.country && (
+            <span className="error-property1">{errors.country}</span>
+          )}
+          {errors.city && (
+            <span className="error-property1">{errors.city}</span>
+          )}
+          {errors.house_number && (
+            <span className="error-property1">{errors.house_number}</span>
+          )}
+          {errors.postcode && (
+            <span className="error-property1">{errors.postcode}</span>
+          )}
+          {errors.street && (
+            <span className="error-property1">{errors.street}</span>
+          )}
           <form className="form-element white-border">
             <div className="fields-container">
               <label>
@@ -156,16 +112,19 @@ const UploadProperty1 = () => {
                 <input
                   type="text"
                   name="country"
-                  value={formData.country}
-                  onChange={handleChange}
+                  value={formdata.address.country}
+                  onChange={(event) =>
+                    setformdata({
+                      ...formdata,
+                      address: {
+                        ...formdata.address,
+                        country: event.target.value,
+                      },
+                    })
+                  }
                   required
                   className="input-text"
                 />
-                {formErrors.country && (
-                  <div className="error-red">
-                    <span>{formErrors.country}</span>
-                  </div>
-                )}
               </label>
               <br />
               <label>
@@ -173,16 +132,19 @@ const UploadProperty1 = () => {
                 <input
                   type="text"
                   name="city"
-                  value={formData.city}
-                  onChange={handleChange}
+                  value={formdata.address.city}
+                  onChange={(event) =>
+                    setformdata({
+                      ...formdata,
+                      address: {
+                        ...formdata.address,
+                        city: event.target.value,
+                      },
+                    })
+                  }
                   required
                   className="input-text"
                 />
-                {formErrors.city && (
-                  <div className="error-red">
-                    <span>{formErrors.city}</span>
-                  </div>
-                )}
               </label>
               <br />
               <label>
@@ -190,16 +152,19 @@ const UploadProperty1 = () => {
                 <input
                   type="text"
                   name="street"
-                  value={formData.street}
-                  onChange={handleChange}
+                  value={formdata.address.street}
+                  onChange={(event) =>
+                    setformdata({
+                      ...formdata,
+                      address: {
+                        ...formdata.address,
+                        street: event.target.value,
+                      },
+                    })
+                  }
                   required
                   className="input-text"
                 />
-                {formErrors.street && (
-                  <div className="error-red">
-                    <span>{formErrors.street}</span>
-                  </div>
-                )}
               </label>
               <br />
               <label>
@@ -207,16 +172,19 @@ const UploadProperty1 = () => {
                 <input
                   type="text"
                   name="houseNumber"
-                  value={formData.houseNumber}
-                  onChange={handleChange}
+                  value={formdata.address.house_number}
+                  onChange={(event) =>
+                    setformdata({
+                      ...formdata,
+                      address: {
+                        ...formdata.address,
+                        house_number: event.target.value,
+                      },
+                    })
+                  }
                   required
                   className="input-text"
                 />
-                {formErrors.houseNumber && (
-                  <div className="error-red">
-                    <span>{formErrors.houseNumber}</span>
-                  </div>
-                )}
               </label>
               <br />
               <label>
@@ -224,16 +192,19 @@ const UploadProperty1 = () => {
                 <input
                   type="text"
                   name="postcode"
-                  value={formData.postcode}
-                  onChange={handleChange}
+                  value={formdata.address.postcode}
+                  onChange={(event) =>
+                    setformdata({
+                      ...formdata,
+                      address: {
+                        ...formdata.address,
+                        postcode: event.target.value,
+                      },
+                    })
+                  }
                   required
                   className="input-text"
                 />
-                {formErrors.postcode && (
-                  <div className="error-red">
-                    <span>{formErrors.postcode}</span>
-                  </div>
-                )}
               </label>
             </div>
           </form>
@@ -247,18 +218,25 @@ const UploadProperty1 = () => {
             className="right-screen-img"
           />
         </div>
-        {/* If validateForm function returns false, the button will be enabled */}
+
         <button
-          type="submit"
+          type="button"
           className="input-submit"
-          disabled={Object.values(formErrors).some((error) => error)}
-          onClick={handleSubmit}
+          onClick={handleNextButtonClick}
         >
           Continue
         </button>
       </div>
     </div>
   );
+};
+
+UploadProperty1.propTypes = {
+  goToNextPage: PropTypes.func.isRequired,
+  formdata: PropTypes.object.isRequired,
+  setformdata: PropTypes.func.isRequired,
+  validateForm: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default UploadProperty1;

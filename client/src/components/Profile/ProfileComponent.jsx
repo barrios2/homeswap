@@ -2,6 +2,7 @@ import React from "react";
 import profileNavigateBackIcon from "../../assets/icon-navigate-back.svg";
 import addIcon from "../../assets/icon-add.svg";
 import "./ProfileComponent.css";
+import { Link } from "react-router-dom";
 
 function ProfileComponent() {
   return (
@@ -23,7 +24,9 @@ function ProfileComponent() {
         </div>
       </div>
       <button className="add-to-profile">
-        <img src={addIcon} alt="add button" />
+        <Link to={"/property/upload"}>
+          <img src={addIcon} alt="add button" />
+        </Link>
       </button>
     </div>
   );

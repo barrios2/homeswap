@@ -6,7 +6,6 @@
   font-family: "Inter";
   color: #fff;
   width: 100%;
-  margin-top: 80px;
 }
 
 .title-header {
@@ -30,7 +29,7 @@
   flex-wrap: wrap;
 }
 
-.activeHome {
+.icon-btn.activeHome .icon-size-change {
   color: #ae593a;
 }
 
@@ -44,6 +43,7 @@
   border-radius: 10px;
   outline: none;
   box-sizing: border-box;
+  color: #000;
 }
 
 .input-submit {
@@ -103,9 +103,8 @@
   width: 40%;
 }
 
-.error-red {
-  color: red;
-  padding: 8px 0;
+.error-property1 {
+  color: #ff9090;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
@@ -145,9 +144,7 @@
 
   .home-type-icons {
     display: flex;
-    /* justify-content: space-around; */
     align-items: center;
-    /* flex-direction: column; */
   }
 
   .form-left-container,
