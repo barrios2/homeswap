@@ -8,10 +8,10 @@
   border-radius: 20px;
 }
 
-.amenities-grid {
+.amenities-grid-property2 {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
-  gap: 80px 60px;
+  grid-template-columns: repeat(3, 137px);
+  gap: 80px 70px;
   list-style: none;
 }
 
@@ -32,6 +32,18 @@
   position: absolute;
   top: calc(100% + 10px);
   font-size: 15px;
+  color: #fff;
+}
+
+input {
+  border: none;
+  background: none;
+  color: #fff;
+  width: 15px;
+}
+
+input:focus {
+  outline: none;
 }
 
 .arrow-down2 {
@@ -43,10 +55,9 @@
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
   padding: 20px;
-  margin-top: 50px;
 }
 
-.propety-image {
+.propety-image-property2 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,13 +67,13 @@
   margin: auto;
 }
 
-.propety-pic {
+.propety-pic-property2 {
   width: 500px;
   height: 350px;
-  top: -22px;
   object-fit: contain;
   position: relative;
   left: 0;
+  top: -270px;
   margin: 40px 0;
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
 }
@@ -72,11 +83,6 @@
   margin: 0;
   font-size: 20px;
   text-align: center;
-}
-
-header {
-  margin-bottom: 50px;
-  position: relative;
 }
 
 .upload-footer {
@@ -111,19 +117,11 @@ header {
   justify-content: space-around;
   align-items: center;
   margin-top: 30px;
-  border: 1px solid #fff;
   border-radius: 23px;
   width: 550px;
   height: fit-content;
   margin: auto;
-  margin-top: 25px;
-}
-
-.amenities-input1 {
-  display: flex;
-  gap: 70px;
-  align-items: center;
-  color: #fff;
+  margin-top: 20px;
 }
 
 .input-btn {
@@ -144,20 +142,8 @@ header {
   cursor: pointer;
 }
 
-.add-photoes {
-  display: contents;
-  gap: 22px;
-}
-
-.add-photoes button {
-  width: 50px;
-  height: 100px;
-  border-radius: 15px;
-  font-size: 30px;
-  background-color: #010625;
-  border: 1px #fff solid;
-  color: #fff;
-  cursor: pointer;
+.error-amenities {
+  text-align: center;
 }
 
 .amenity-item input[type="checkbox"] {
@@ -170,4 +156,57 @@ header {
 
 .amenity-item.selected {
   background-color: #fcf7e8;
+}
+
+@media (max-width: 400px) {
+  .upload-property2-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .amenities-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 23px;
+    height: fit-content;
+    width: 325px;
+  }
+
+  .propety-image-property2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    padding: 0;
+    width: 100%;
+    margin: auto;
+  }
+
+  .propety-pic-property2 {
+    display: none;
+    width: 500px;
+    height: 350px;
+    object-fit: contain;
+    position: relative;
+    left: 0;
+  }
+
+  .error-amenities {
+    text-align: center;
+    position: relative;
+    left: 7px;
+  }
+
+  .amenities-grid-property2 {
+    display: grid;
+    grid-template-columns: repeat(2, 80px);
+    gap: 48px 89px;
+    list-style: none;
+  }
 }

@@ -36,6 +36,7 @@
   left: 50%;
   transform: translate(-50%, -11%);
   padding: 20px;
+  margin-top: 80px;
 }
 
 h5 {
@@ -57,7 +58,7 @@ a {
   cursor: pointer;
 }
 
-.propety-image {
+.view-propety-image {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,10 +68,10 @@ a {
   margin: auto;
 }
 
-.propety-pic {
-  width: 500px;
-  height: 350px;
-  top: -22px;
+.view-propety-pic {
+  max-width: 600px;
+  max-height: 600px;
+  top: 90px;
   object-fit: contain;
   position: relative;
   left: 0;
@@ -78,23 +79,19 @@ a {
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
 }
 
+.view-property-arrow-btn {
+  position: relative;
+  top: 122px;
+}
+
 .arrow-button1,
 .arrow-button2 {
-  position: absolute;
-  top: 76%;
-  left: 32%;
-  transform: translateY(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
   border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   font-size: 20px;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   opacity: 0.5;
 }
 
@@ -104,10 +101,10 @@ a {
 }
 
 .arrow-button1 {
-  left: 225px;
+  margin-right: 50px;
 }
 
-.propety-details {
+.view-propety-details {
   padding: 40px;
   position: relative;
   top: 164px;
@@ -139,7 +136,7 @@ a {
   margin-left: 6px;
 }
 
-header {
+.view-property-header {
   margin-bottom: 50px;
   position: relative;
 }
@@ -200,14 +197,14 @@ article p {
   transform: rotate(135deg);
 }
 
-.amenitiess {
+.amenitiess-item {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   display: block;
 }
 
-.amenitiess li + li {
+.amenitiess-item li + li {
   margin-left: 15px;
 }
 
@@ -231,11 +228,12 @@ article p {
 
 .dots {
   display: flex;
-  margin-top: 40px;
+  position: relative;
+  top: 37px;
 }
 
 .dots > a {
-  background-color: #fff;
+  background-color: #444444;
   width: 10px;
   height: 10px;
   margin: 0 4px;
@@ -244,7 +242,7 @@ article p {
 
 .dots > a:hover,
 .dots > a.active {
-  background-color: #444444;
+  background-color: #fff;
 }
 
 .dots i {
@@ -294,7 +292,7 @@ article p {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-90%, -50%);
+  transform: translate(-105%, -50%);
 }
 
 .popup-content span {
@@ -323,18 +321,18 @@ article p {
   opacity: 1;
 }
 
-.propety-details .rate {
+.view-propety-details .rate {
   position: absolute;
   top: 20px;
   right: 30px;
   margin-top: 0;
 }
 
-.propety-details .controls > div {
+.view-propety-details .controls > div {
   width: 60px;
 }
 
-.propety-details .controls > div + div {
+.view-propety-details .controls > div + div {
   border-left: 2px solid rgba(187, 187, 187, 0.5);
   padding-left: 25px;
   padding-right: 25px;
@@ -345,7 +343,7 @@ article p {
   height: fit-content;
 }
 
-.propety-details .controls {
+.view-propety-details .controls {
   display: flex;
   flex-direction: column;
   gap: 37px;
@@ -391,7 +389,7 @@ article p {
     white-space: nowrap;
   }
 
-  .propety-details .rate {
+  .view-propety-details .rate {
     position: absolute;
     top: -18px;
     left: 1px;
