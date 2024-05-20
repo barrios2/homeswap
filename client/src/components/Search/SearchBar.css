@@ -7,6 +7,7 @@
   --light-gray: #ccc;
   --light-darkish-blue: #1366ba;
   --darkish-grey: #333333;
+  --error-red: #ff0000;
 }
 
 .search-container-main {
@@ -181,4 +182,119 @@
 .amenities-container-search {
   display: flex;
   align-items: center;
+}
+
+.validation-error-search {
+  color: var(--error-red);
+  font-family: "Inter";
+  position: absolute;
+  top: 60%;
+  left: 40%;
+}
+
+/* mobile design */
+@media (max-width: 768px) {
+  .search-component-wrapper {
+    width: 70%;
+    height: 480px;
+    background-image: none;
+    background-color: var(--bg-color);
+    margin: 30px auto;
+  }
+  .search-container {
+    margin-top: -40px;
+    height: 350px;
+    border-radius: 20px;
+  }
+  .criteria {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .search-component-wrapper,
+  .search-container {
+    position: relative;
+  }
+
+  .area {
+    position: absolute;
+    top: -275px;
+    left: 60px;
+    padding: 5px;
+  }
+  .area-2 {
+    position: absolute;
+    top: -245px;
+    left: 100px;
+    padding: 5px;
+  }
+
+  .type {
+    position: absolute;
+    top: -185px;
+    left: 50px;
+    width: 200px;
+    padding: 5px;
+  }
+  .num-of-bedrooms {
+    position: absolute;
+    top: -120px;
+    left: 50px;
+    width: 200px;
+    padding: 5px;
+  }
+
+  .amenities {
+    position: absolute;
+    top: -55px;
+    left: 45px;
+  }
+
+  .vertical-line {
+    background-color: transparent;
+    height: 1px;
+    width: 100px;
+  }
+
+  .search-icon-container {
+    position: absolute;
+    top: 310px;
+    left: 75px;
+  }
+  .span-property {
+    position: absolute;
+    top: 110px;
+    left: 100px;
+  }
+  .span-bedrooms {
+    position: absolute;
+    top: 170px;
+    left: 100px;
+  }
+  .span-amenities {
+    position: absolute;
+    top: 230px;
+    left: 100px;
+  }
+  .search-title {
+    margin-top: -30px;
+  }
+  .search-bar-divider {
+    margin: 180px auto 20px auto;
+    width: 100%;
+  }
+  .loader-container {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .validation-error-search {
+    color: var(--error-red);
+    font-family: "Inter";
+    position: absolute;
+    top: 93%;
+    left: 16%;
+    font-size: 14px;
+  }
 }
