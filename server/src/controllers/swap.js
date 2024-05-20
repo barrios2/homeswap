@@ -69,3 +69,39 @@ export const createSwapRequest = async (req, res) => {
     });
   }
 };
+
+export const getSwapRequest = async (req, res) => {
+  if (req.params.id !== req.userData.id) {
+    return res.status(401).json({
+      success: false,
+      msg: "You cannot view requests list of other users!",
+    });
+  } else {
+    try {
+      const userProperties = await Property.find({ userRef: req.userData.id });
+
+      const propertyIds = userProperties.map((prop) => prop._id); //extract propertyIds
+
+      const swapRequests = await Swap.find({
+        receiver_propertyId: {
+          $in: propertyIds,
+        },
+      }).populate({
+        path: "sender_propertyId",
+        select: "title type address bedrooms bathrooms photos",
+      });
+
+      if (swapRequests.length === 0) {
+        return res.status(200).json({
+          success: true,
+          msg: "You have no requests",
+        });
+      }
+
+      res.status(200).json({ success: true, data: swapRequests });
+    } catch (error) {
+      logError(error);
+      res.status(500).json({ msg: "Error retrieving swap requests", error });
+    }
+  }
+};
