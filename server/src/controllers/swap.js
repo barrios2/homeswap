@@ -105,3 +105,43 @@ export const getSwapRequest = async (req, res) => {
     }
   }
 };
+
+export const confirmSwapRequest = async (req, res) => {
+  try {
+    const swapRequest = await Swap.findById(req.params.requestId).populate({
+      path: "receiver_propertyId",
+      select: "userRef",
+    });
+
+    if (!swapRequest) {
+      return res
+        .status(404)
+        .json({ success: false, msg: "Swap request not found" });
+    }
+
+    if (
+      swapRequest.receiver_propertyId.userRef.toString() !== req.userData.id
+    ) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "You are not authorized!" });
+    }
+
+    if (swapRequest.status !== "pending") {
+      return res.status(400).json({
+        success: false,
+        msg: "Swap request has already been processed",
+      });
+    }
+
+    const updatedSwap = await Swap.findByIdAndUpdate(
+      req.params.requestId,
+      { status: "accepted" },
+      { new: true },
+    );
+    res.status(200).json({ success: true, data: updatedSwap });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({ msg: "Error confirming swap request", error });
+  }
+};
