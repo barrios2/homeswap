@@ -76,10 +76,12 @@ function UploadProperty3({
                   <button
                     onClick={decrementProductCountBed}
                     disabled={productCountBed === 0}
+                    type="button"
                   >
                     -
                   </button>
                   <input
+                    className="input-property3"
                     type="text"
                     name="bedrooms"
                     value={formdata.bedrooms}
@@ -90,7 +92,9 @@ function UploadProperty3({
                       })
                     }
                   />
-                  <button onClick={incrementProductCountBed}>+</button>
+                  <button onClick={incrementProductCountBed} type="button">
+                    +
+                  </button>
                 </div>
               </div>
               <div className="bathrooms-input1-property3">
@@ -101,10 +105,12 @@ function UploadProperty3({
                   <button
                     onClick={decrementProductCountBath}
                     disabled={productCountBath === 0}
+                    type="button"
                   >
                     -
                   </button>
                   <input
+                    className="input-property3"
                     type="text"
                     name="bathrooms"
                     value={formdata.bathrooms}
@@ -115,7 +121,9 @@ function UploadProperty3({
                       })
                     }
                   />
-                  <button onClick={incrementProductCountBath}>+</button>
+                  <button onClick={incrementProductCountBath} type="button">
+                    +
+                  </button>
                 </div>
               </div>
             </div>
@@ -153,13 +161,17 @@ function UploadProperty3({
                   {formdata.photos.map((photo, index) => (
                     <div key={index} className="uploaded-photo-property3">
                       <img
-                        src={URL.createObjectURL(photo)}
+                        /*src={URL.createObjectURL(photo)}*/
+                        src={photo}
                         alt={`Uploaded ${index}`}
                         style={{ width: 100, height: 100, borderRadius: 23 }}
                         value={formdata.photos}
                         name="photos"
                       />
-                      <button onClick={() => handleDeletePhoto(index)}>
+                      <button
+                        onClick={() => handleDeletePhoto(index)}
+                        type="button"
+                      >
                         <i className="fa-solid fa-trash"></i>
                       </button>
                     </div>

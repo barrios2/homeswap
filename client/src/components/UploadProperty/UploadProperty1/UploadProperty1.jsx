@@ -56,6 +56,7 @@ const UploadProperty1 = ({
             <button
               className={`icon-btn ${formdata.type === "house" ? "activeHome" : ""}`}
               onClick={() => handleHomeTypeSelect("house")}
+              type="button"
             >
               {" "}
               <FontAwesomeIcon
@@ -67,6 +68,7 @@ const UploadProperty1 = ({
             <button
               className={`icon-btn ${formdata.type === "apartment" ? "activeHome" : ""}`}
               onClick={() => handleHomeTypeSelect("apartment")}
+              type="button"
             >
               {" "}
               <FontAwesomeIcon
@@ -78,6 +80,7 @@ const UploadProperty1 = ({
             <button
               className={`icon-btn ${formdata.type === "studio" ? "activeHome" : ""}`}
               onClick={() => handleHomeTypeSelect("studio")}
+              type="button"
             >
               {" "}
               <FontAwesomeIcon

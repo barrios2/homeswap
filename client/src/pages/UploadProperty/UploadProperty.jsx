@@ -6,10 +6,12 @@ import UploadProperty2 from "../../components/UploadProperty/UploadProperty2/Upl
 import UploadProperty3 from "../../components/UploadProperty/UploadProperty3/UploadProperty3";
 import UploadProperty4 from "../../components/UploadProperty/UploadProperty4/UploadProperty4";
 import UploadPropertyNav from "../../components/UploadProperty/UploadPropertyNav/UploadPropertyNav";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 function Form() {
   const [page, setPage] = useState(1);
   const [showPhotoInput, setShowPhotoInput] = useState(false);
+  const { token } = useLogin();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     bathrooms: 0,
@@ -128,14 +130,40 @@ function Form() {
     }
   };
 
-  const handlePhotoUpload = (event) => {
+  // const handlePhotoUpload = (event) => {
+  //   const files = event.target.files;
+  //   const uploadedPhotos = Array.from(files);
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     photos: [...prevFormData.photos, ...uploadedPhotos],
+  //   }));
+  //   setShowPhotoInput(true);
+  // };
+
+  // const handleDeletePhoto = (index) => {
+  //   const updatedPhotos = [...formData.photos];
+  //   updatedPhotos.splice(index, 1);
+  //   setFormData((prevFormData) => ({ ...prevFormData, photos: updatedPhotos }));
+  // };
+
+  const handlePhotoUpload = async (event) => {
     const files = event.target.files;
     const uploadedPhotos = Array.from(files);
+    const base64Photos = await Promise.all(uploadedPhotos.map(fileToBase64));
     setFormData((prevFormData) => ({
       ...prevFormData,
-      photos: [...prevFormData.photos, ...uploadedPhotos],
+      photos: [...prevFormData.photos, ...base64Photos],
     }));
     setShowPhotoInput(true);
+  };
+
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   const handleDeletePhoto = (index) => {
@@ -198,12 +226,28 @@ function Form() {
     }
   };
 
+  // const submitFormData = () => {
+  //   const { isValid, errors } = validateForm();
+  //   if (isValid) {
+  //     performFetch({
+  //       method: "POST",
+  //       body: JSON.stringify(formData),
+  //     });
+  //   } else {
+  //     setErrors(errors);
+  //   }
+  // };
+
   const submitFormData = () => {
     const { isValid, errors } = validateForm();
     if (isValid) {
       performFetch({
         method: "POST",
         body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
     } else {
       setErrors(errors);
@@ -236,7 +280,7 @@ function Form() {
   // };
 
   return (
-    <div className="form">
+    <div>
       <UploadPropertyNav
         goToPreviousPage={goToPreviousPage}
         validateForm={validateForm}
