@@ -123,7 +123,7 @@ export const confirmSwapRequest = async (req, res) => {
       swapRequest.receiver_propertyId.userRef.toString() !== req.userData.id
     ) {
       return res
-        .status(400)
+        .status(401)
         .json({ success: false, msg: "You are not authorized!" });
     }
 
