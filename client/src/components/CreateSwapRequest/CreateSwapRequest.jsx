@@ -130,12 +130,13 @@ function CreateSwapRequest({ receiver_propertyID }) {
   return (
     <div className="swap-request-container">
       <h4>Swap Request Form</h4>
-      {successMsg && <p>{successMsg}</p>}
-      {error && <p>{error}</p>}
-      {isLoading && <p>Loading properties...</p>}
-      {userPropertiesError ? (
+      {isLoading ? (
+        <p>Loading properties...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : userPropertiesError ? (
         <p>Error fetching Properties: {userPropertiesError}</p>
-      ) : (
+      ) : !successMsg ? (
         <form onSubmit={handleSubmit} className="swap-request-form">
           {senderProperties.length > 1 && (
             <select
@@ -143,6 +144,7 @@ function CreateSwapRequest({ receiver_propertyID }) {
               value={formData.senderPropertyID}
               onChange={handleChange}
               required
+              className="select-property-dropdown"
             >
               <option value="" disabled>
                 Select a property:{" "}
@@ -190,6 +192,8 @@ function CreateSwapRequest({ receiver_propertyID }) {
             Submit
           </button>
         </form>
+      ) : (
+        <p>{successMsg}</p>
       )}
     </div>
   );

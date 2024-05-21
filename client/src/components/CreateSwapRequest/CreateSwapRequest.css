@@ -14,26 +14,30 @@
   margin: 10px;
 }
 
+.select-property-dropdown {
+  padding: 6px;
+}
+
 .dates-container {
   display: flex;
 }
 
 .swap-req-date-container input[type="date"] {
   border-radius: 5px;
-  background: url("https://i.pinimg.com/474x/63/8f/a5/638fa5b9c768c59f90043de58af2725d.jpg");
+  background-color: #fff;
   margin: 10px;
   width: 120px;
   padding: 5px;
 }
 
 .text-area-swap-form {
-  padding: 12px 20px;
+  padding: 12px;
   justify-self: center;
   font-family: "inter";
 }
 
 .submit-swap-request {
-  padding: 15px 25px;
+  padding: 12px 20px;
   width: 100px;
   background-color: #ae593a;
   border-radius: 8px;
