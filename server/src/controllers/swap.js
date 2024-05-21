@@ -162,12 +162,12 @@ async function confirmRejectChecks(req, res) {
         .json({ success: false, msg: "You are not authorized!" });
     }
 
-    // if (swapRequest.status !== "pending") {
-    //   return res.status(400).json({
-    //     success: false,
-    //     msg: "Swap request has already been processed",
-    //   });
-    // }
+    if (swapRequest.status !== "pending") {
+      return res.status(400).json({
+        success: false,
+        msg: "Swap request has already been processed",
+      });
+    }
 
     return swapRequest;
   } catch (error) {
