@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import PropTypes from "prop-types";
+import "./CreateSwapRequest.css";
 
 function CreateSwapRequest({ receiver_propertyID }) {
   const { userId, token } = useLogin();
-
   const [senderProperties, setSenderProperties] = useState([]);
   const [formData, setFormData] = useState({
     senderPropertyID: "",
@@ -87,17 +87,17 @@ function CreateSwapRequest({ receiver_propertyID }) {
 
     //Validations:
     if (formData.startDate < today || formData.endDate < today) {
-      alert("Please select dates in the future");
+      alert("Start date cannot be a date in the past");
       return;
     }
 
     if (formData.startDate > formData.endDate) {
-      alert("Please select end date after start date");
+      alert("End date must be after start date");
       return;
     }
 
     if (formData.senderPropertyID === receiver_propertyID) {
-      alert("Please select different properties");
+      alert("You cannot apply for this property");
       return;
     }
 
@@ -128,20 +128,16 @@ function CreateSwapRequest({ receiver_propertyID }) {
   };
 
   return (
-    <div style={{ backgroundColor: "gray" }}>
+    <div className="swap-request-container">
       <h4>Swap Request Form</h4>
-      {successMsg && <p style={{ color: "blue" }}>{successMsg}</p>}
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
+      {successMsg && <p>{successMsg}</p>}
+      {error && <p>{error}</p>}
       {isLoading && <p>Loading properties...</p>}
-      {userPropertiesError && (
+      {userPropertiesError ? (
         <p>Error fetching Properties: {userPropertiesError}</p>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        {
-          senderProperties.length > 1 && (
+      ) : (
+        <form onSubmit={handleSubmit} className="swap-request-form">
+          {senderProperties.length > 1 && (
             <select
               id="senderPropertyID"
               value={formData.senderPropertyID}
@@ -157,35 +153,44 @@ function CreateSwapRequest({ receiver_propertyID }) {
                 </option>
               ))}
             </select>
-          )
-          //: <input type='hidden' name ="senderPropertyID" value={senderProperties[0]?.id || ''} />
-        }
-
-        <label htmlFor="startDate">Start Date:</label>
-        <input
-          type="date"
-          id="startDate"
-          value={formData.startDate}
-          onChange={handleChange}
-          required
-        />
-
-        <label htmlFor="endDate">End Date:</label>
-        <input
-          type="date"
-          id="endDate"
-          value={formData.endDate}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          id="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Message (Optional)"
-        ></textarea>
-        <button type="submit">Submit</button>
-      </form>
+          )}
+          <div className="dates-container">
+            <div className="swap-req-date-container">
+              <label htmlFor="startDate">Start Date</label>
+              <input
+                type="date"
+                id="startDate"
+                value={formData.startDate}
+                onChange={handleChange}
+                required
+                className="date-input-swap-request"
+              />
+            </div>
+            <div className="swap-req-date-container">
+              <label htmlFor="endDate">End Date</label>
+              <input
+                type="date"
+                id="endDate"
+                value={formData.endDate}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <textarea
+            id="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Message (Optional)"
+            className="text-area-swap-form"
+            cols="30"
+            rows="5"
+          />
+          <button type="submit" className="btn-default submit-swap-request">
+            Submit
+          </button>
+        </form>
+      )}
     </div>
   );
 }

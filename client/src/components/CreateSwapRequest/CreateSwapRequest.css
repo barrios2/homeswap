@@ -1,0 +1,45 @@
+.swap-request-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.swap-request-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.swap-request-container h4 {
+  margin: 10px;
+}
+
+.dates-container {
+  display: flex;
+}
+
+.swap-req-date-container input[type="date"] {
+  border-radius: 5px;
+  background: url("https://i.pinimg.com/474x/63/8f/a5/638fa5b9c768c59f90043de58af2725d.jpg");
+  margin: 10px;
+  width: 120px;
+  padding: 5px;
+}
+
+.text-area-swap-form {
+  padding: 12px 20px;
+  justify-self: center;
+  font-family: "inter";
+}
+
+.submit-swap-request {
+  padding: 15px 25px;
+  width: 100px;
+  background-color: #ae593a;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 10px 0;
+  align-self: center;
+}
