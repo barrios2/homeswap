@@ -10,7 +10,7 @@ export const signUp = async (req, res) => {
 
   const errorList = validateUser({
     username,
-    email,
+    email: email.toLowerCase(),
     password,
     confirmPassword,
   });
@@ -27,7 +27,7 @@ export const signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const newUser = await User.create({
       username,
-      email,
+      email: email.toLowerCase(),
       password: hashedPassword,
     });
 
@@ -44,7 +44,7 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   const errorList = validateLogin({
-    email,
+    email: email.toLowerCase(),
     password,
   });
 
@@ -55,7 +55,7 @@ export const login = async (req, res) => {
   }
 
   try {
-    const validUser = await User.findOne({ email });
+    const validUser = await User.findOne({ email: email.toLowerCase() });
 
     if (!validUser) {
       return res
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
 
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET_KEY);
 
-    res.cookie("access_token", token).status(200).json({
+    res.status(200).json({
       success: true,
       id: validUser._id,
       username: validUser._doc.username,

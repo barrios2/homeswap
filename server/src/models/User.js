@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
 import validateAllowedFields from "../util/validateAllowedFields.js";
+import { logError } from "../util/logging.js";
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   password: { type: String, required: true },
 });
 
@@ -23,7 +28,7 @@ export const validateUser = (userObject) => {
     userObject.username = userObject.username.trim();
   }
   if (userObject.email) {
-    userObject.email = userObject.email.trim();
+    userObject.email = userObject.email.trim().toLowerCase();
   }
 
   if (userObject.username == null) {
@@ -72,12 +77,27 @@ export const validateLogin = (userObject) => {
 
   if (!userObject.email) {
     errorList.push("Email is required");
+  } else {
+    userObject.email = userObject.email.trim().toLowerCase();
   }
+
   if (!userObject.password) {
     errorList.push("Password is required");
   }
 
   return errorList;
+};
+
+export const convertEmailsToLowercase = async () => {
+  try {
+    const users = await User.find();
+
+    for (const user of users) {
+      await User.updateOne({ _id: user._id }, { $set: { email: user.email } });
+    }
+  } catch (error) {
+    logError(error);
+  }
 };
 
 export default User;
