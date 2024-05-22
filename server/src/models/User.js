@@ -89,7 +89,6 @@ export const validateLogin = (userObject) => {
 };
 
 export const convertEmailsToLowercase = async () => {
-  console.log("convert function is working ...");
   try {
     const users = await User.find();
 
