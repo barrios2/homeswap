@@ -16,31 +16,12 @@ function CreateSwapRequest({ receiver_propertyID, senderProperties }) {
 
   const [successMsg, setSuccessMsg] = useState("");
 
-  // //fetch sender/userProperties
-  // const {
-  //   isLoading,
-  //   error: userPropertiesError,
-  //   performFetch: performSenderPropertiesFetch,
-  // } = useFetch(`/user/properties/${userId}`, onSenderProperties);
-
   //fetch to create a swap request
   const {
     isLoading,
     error,
     performFetch: performSwapFetch,
   } = useFetch("/swap/create", onSwapSuccess);
-
-  // useEffect(() => {
-  //   performSenderPropertiesFetch({
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  // }, []);
-
-  // function onSenderProperties(data) {
-  //   setSenderProperties(data.data);
-  // }
 
   function onSwapSuccess() {
     setSuccessMsg("The request was sent successfully");
