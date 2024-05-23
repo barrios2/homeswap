@@ -107,6 +107,41 @@ export const getSwapRequest = async (req, res) => {
 };
 
 export const confirmSwapRequest = async (req, res) => {
+  const swapChecks = await confirmRejectChecks(req, res);
+  if (!swapChecks) return;
+
+  try {
+    const updatedSwap = await Swap.findByIdAndUpdate(
+      req.params.requestId,
+      { status: "accepted" },
+      { new: true },
+    );
+    res.status(200).json({ success: true, data: updatedSwap });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({ msg: "Error confirming swap request", error });
+  }
+};
+
+export const rejectSwapRequest = async (req, res) => {
+  const swapChecks = await confirmRejectChecks(req, res);
+  if (!swapChecks) return; //if checks fail
+
+  try {
+    const updatedSwap = await Swap.findByIdAndUpdate(
+      req.params.requestId,
+      { status: "rejected" },
+      { new: true },
+    );
+
+    res.status(200).json({ success: true, data: updatedSwap });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({ msg: "Error rejecting swap request", error });
+  }
+};
+
+async function confirmRejectChecks(req, res) {
   try {
     const swapRequest = await Swap.findById(req.params.requestId).populate({
       path: "receiver_propertyId",
@@ -134,14 +169,9 @@ export const confirmSwapRequest = async (req, res) => {
       });
     }
 
-    const updatedSwap = await Swap.findByIdAndUpdate(
-      req.params.requestId,
-      { status: "accepted" },
-      { new: true },
-    );
-    res.status(200).json({ success: true, data: updatedSwap });
+    return swapRequest;
   } catch (error) {
     logError(error);
-    res.status(500).json({ msg: "Error confirming swap request", error });
+    res.status(500).json({ msg: "Error processing swap request", error });
   }
-};
+}
