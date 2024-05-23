@@ -26,6 +26,23 @@ export const createSwapRequest = async (req, res) => {
       .json({ success: false, msg: "Invalid receiver_propertyId" });
   }
 
+  //the user is not the owner of a property
+  const senderProp = await Property.findById(swapRequestData.sender_propertyId);
+  const receiverProp = await Property.findById(
+    swapRequestData.receiver_propertyId,
+  );
+  if (senderProp.userRef.toString() !== req.userData.id) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "You are not the owner of this property" });
+  }
+  //user cannot apply for their own property
+  if (senderProp.userRef.toString() === receiverProp.userRef.toString()) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "You cannot apply for your own property" });
+  }
+
   // check if the swapped propertiesId exist in Property Collection
   const senderPropertyExists = await Property.exists({
     _id: swapRequestData.sender_propertyId,

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import CreateSwapRequest from "../CreateSwapRequest/CreateSwapRequest";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 import "./ViewProperty.css";
 import Nav from "../Nav/Nav";
@@ -28,7 +29,9 @@ function ViewProperty() {
   let [viewPropertyDetails, setViewPropertyDetails] = useState(initialObject);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const [senderProperties, setSenderProperties] = useState([]);
   const { id } = useParams();
+  const { userId, token } = useLogin();
   const { isLoading, error, performFetch } = useFetch(
     `/property/view/${id}`,
     (data) => {
@@ -36,9 +39,24 @@ function ViewProperty() {
     },
   );
 
+  // fetch sender/userProperties
+  const { performFetch: performSenderPropertiesFetch } = useFetch(
+    `/user/properties/${userId}`,
+    (data) => {
+      setSenderProperties(data.data);
+    },
+  );
+
   useEffect(() => {
-    performFetch();
-  }, []);
+    if (userId && token) {
+      performFetch();
+      performSenderPropertiesFetch({
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+  }, [userId, token]);
 
   const goToPreviousPhoto = () => {
     setCurrentPhotoIndex(
@@ -57,6 +75,17 @@ function ViewProperty() {
   };
 
   const handleApplyClick = () => {
+    if (senderProperties.length === 0) {
+      alert("Please add a property first");
+      return;
+    }
+
+    //if viewed property belongs to the sender
+    if (senderProperties.some((p) => p._id === viewPropertyDetails._id)) {
+      alert("You cannot apply for your own property!");
+      return;
+    }
+
     setShowPopup(true);
   };
 
@@ -176,6 +205,7 @@ function ViewProperty() {
                 </span>
                 <CreateSwapRequest
                   receiver_propertyID={viewPropertyDetails._id}
+                  senderProperties={senderProperties}
                 />
               </div>
             </div>

@@ -1,13 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import PropTypes from "prop-types";
 import "./CreateSwapRequest.css";
 
-function CreateSwapRequest({ receiver_propertyID }) {
-  const { userId, token } = useLogin();
-  const [senderProperties, setSenderProperties] = useState([]);
+function CreateSwapRequest({ receiver_propertyID, senderProperties }) {
+  const { token } = useLogin();
   const [formData, setFormData] = useState({
     senderPropertyID: "",
     startDate: "",
@@ -17,30 +16,31 @@ function CreateSwapRequest({ receiver_propertyID }) {
 
   const [successMsg, setSuccessMsg] = useState("");
 
-  //fetch sender/userProperties
-  const {
-    isLoading,
-    error: userPropertiesError,
-    performFetch: performSenderPropertiesFetch,
-  } = useFetch(`/user/properties/${userId}`, onSenderProperties);
+  // //fetch sender/userProperties
+  // const {
+  //   isLoading,
+  //   error: userPropertiesError,
+  //   performFetch: performSenderPropertiesFetch,
+  // } = useFetch(`/user/properties/${userId}`, onSenderProperties);
 
   //fetch to create a swap request
-  const { error, performFetch: performSwapFetch } = useFetch(
-    "/swap/create",
-    onSwapSuccess,
-  );
+  const {
+    isLoading,
+    error,
+    performFetch: performSwapFetch,
+  } = useFetch("/swap/create", onSwapSuccess);
 
-  useEffect(() => {
-    performSenderPropertiesFetch({
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }, []);
+  // useEffect(() => {
+  //   performSenderPropertiesFetch({
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // }, []);
 
-  function onSenderProperties(data) {
-    setSenderProperties(data.data);
-  }
+  // function onSenderProperties(data) {
+  //   setSenderProperties(data.data);
+  // }
 
   function onSwapSuccess() {
     setSuccessMsg("The request was sent successfully");
@@ -134,8 +134,6 @@ function CreateSwapRequest({ receiver_propertyID }) {
         <p>Loading properties...</p>
       ) : error ? (
         <p>{error}</p>
-      ) : userPropertiesError ? (
-        <p>Error fetching Properties: {userPropertiesError}</p>
       ) : !successMsg ? (
         <form onSubmit={handleSubmit} className="swap-request-form">
           {senderProperties.length > 1 && (
@@ -201,6 +199,7 @@ function CreateSwapRequest({ receiver_propertyID }) {
 
 CreateSwapRequest.propTypes = {
   receiver_propertyID: PropTypes.string.isRequired,
+  senderProperties: PropTypes.array.isRequired,
 };
 
 export default CreateSwapRequest;
