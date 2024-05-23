@@ -59,7 +59,7 @@ function ProfileComponent() {
               <div className="tab-btns-container">
                 <button
                   onClick={handleClick}
-                  className={`${myProperties ? "active-tab-profile" : ""} profile-tabs-btn`}
+                  className={`${myProperties ? "active-tab-profile" : ""} btn-default profile-tabs-btn`}
                 >
                   My properties
                 </button>

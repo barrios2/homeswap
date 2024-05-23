@@ -17,12 +17,18 @@ const MyPropertyCard = ({ property }) => {
       </div>
       <div className="property-card-info">
         <div>
-          <p>Type of property: {property?.type}</p>
-          <p>Bedrooms: {property?.bedrooms}</p>
-          <p>{`Location: ${property?.address.street} ${property?.address.city} ${property?.address.country}`}</p>
+          <p>
+            <b>Type of property: </b>
+            {property?.type}
+          </p>
+          <p>
+            <b>Bedrooms:</b> {property?.bedrooms}
+          </p>
+          <p>{`${property?.address.street} ${property?.address.city} ${property?.address.country}`}</p>
         </div>
         <div className="property-description-container">
           <h4>Home description:</h4>
+          <br />
           <p>{property?.description}</p>
         </div>
       </div>
