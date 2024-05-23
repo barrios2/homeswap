@@ -6,15 +6,13 @@ const ProfilePropertyList = () => {
   const { userProperties } = useLogin();
 
   const renderPropertyCards = () => {
-    return userProperties?.map(property => (
-      <MyPropertyCard key={property._id} property={property}/>
+    return userProperties?.map((property) => (
+      <MyPropertyCard key={property._id} property={property} />
     ));
   };
 
   return (
-    <div className="my-property-list-container">
-      {renderPropertyCards()}
-    </div>
+    <div className="my-property-list-container">{renderPropertyCards()}</div>
   );
 };
 
