@@ -22,9 +22,14 @@ function ProfileComponent() {
   const myRequests = activeTab === "My requests";
 
   useEffect(() => {
-    // including bearer token from session bc otherwise there will be an unauthorized response from the endpoint
-    performFetch({ headers: { Authorization: `Bearer ${token}` } });
-  }, []);
+    // hardcoded because for now we don't have that data available
+    if (activeTab === "My requests") {
+      setUserProperties([]);
+    } else {
+      // including bearer token from session bc otherwise there will be an unauthorized response from the endpoint
+      performFetch({ headers: { Authorization: `Bearer ${token}` } });
+    }
+  }, [activeTab]);
 
   // change activeTab state to the text content of button clicked so that active className can be applied (default is "My properties')
   const handleClick = (e) => {

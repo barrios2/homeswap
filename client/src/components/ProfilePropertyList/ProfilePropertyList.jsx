@@ -6,9 +6,13 @@ const ProfilePropertyList = () => {
   const { userProperties } = useLogin();
 
   const renderPropertyCards = () => {
-    return userProperties?.map((property) => (
-      <MyPropertyCard key={property._id} property={property} />
-    ));
+    return userProperties.length < 1 ? (
+      <div>No properties found</div>
+    ) : (
+      userProperties?.map((property) => (
+        <MyPropertyCard key={property._id} property={property} />
+      ))
+    );
   };
 
   return (
