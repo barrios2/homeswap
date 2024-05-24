@@ -51,6 +51,8 @@ const LogInProvider = ({ children }) => {
   });
   const parameters = new URLSearchParams(searchParams);
   const params = parameters.toString();
+  const [userProperties, setUserProperties] = useState([]);
+  const [username, setUsername] = useState(null);
 
   return (
     <LogInContext.Provider
@@ -80,6 +82,10 @@ const LogInProvider = ({ children }) => {
         searchParams,
         setSearchParams,
         params,
+        userProperties,
+        setUserProperties,
+        username,
+        setUsername,
       }}
     >
       {children}
