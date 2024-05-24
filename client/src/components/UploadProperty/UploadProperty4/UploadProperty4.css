@@ -208,6 +208,36 @@
   background-color: #007bff;
 }
 
+.popup-content-submition {
+  width: 700px;
+  height: 218px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: #010625;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close-submition {
+  color: #fff;
+  position: relative;
+  left: 670px;
+  font-size: 30px;
+  top: -5px;
+  cursor: pointer;
+}
+
+.content-submition {
+  font-size: 20px;
+  color: #fff;
+  position: relative;
+  top: 30px;
+  text-align: center;
+}
+
 @media (max-width: 400px) {
   .rules-input {
     border: 1px solid #fff;

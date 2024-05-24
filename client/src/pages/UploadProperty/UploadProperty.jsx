@@ -13,6 +13,7 @@ function Form() {
   const [showPhotoInput, setShowPhotoInput] = useState(false);
   const { token } = useLogin();
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     bathrooms: 0,
     bedrooms: 0,
@@ -219,6 +220,8 @@ function Form() {
           validateForm={validateForm}
           errors={errors}
           goToPreviousPage={goToPreviousPage}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
         />
       );
     } else {
@@ -249,6 +252,8 @@ function Form() {
           Authorization: `Bearer ${token}`,
         },
       });
+      setShowPopup(true);
+      // navigate("/profile");
     } else {
       setErrors(errors);
     }
