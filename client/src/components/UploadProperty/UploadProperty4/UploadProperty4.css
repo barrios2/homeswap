@@ -339,6 +339,36 @@
   .propety-pic-property4 {
     display: none;
   }
+
+  .popup-content-submition {
+    width: 348px;
+    height: 180px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: #010625;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .close-submition {
+    color: #fff;
+    position: relative;
+    left: 325px;
+    font-size: 30px;
+    top: -5px;
+    cursor: pointer;
+  }
+
+  .content-submition {
+    font-size: 11px;
+    color: #fff;
+    position: relative;
+    top: 30px;
+    text-align: center;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
