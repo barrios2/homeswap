@@ -58,7 +58,6 @@
   border-radius: 10px;
   cursor: pointer;
   border: none;
-  margin: 20px;
   color: #fff;
 }
 
@@ -68,7 +67,6 @@
   border-radius: 10px;
   cursor: pointer;
   border: none;
-  margin: 20px;
   color: #fff;
   transition: border 0.2s ease-in-out;
 }
@@ -101,14 +99,14 @@
     display: none;
   }
 
-  .navbar-toggle-label {
+  .navbar-toggle-label2 {
     position: relative;
     left: 94%;
     left: 26px;
     font-size: 20px;
   }
 
-  #navbar-toggle:checked + .navbar-toggle-label + .navbar-menu {
+  #navbar-toggle:checked + .navbar-toggle-label2 + .navbar-menu {
     display: flex;
   }
 }
@@ -135,23 +133,26 @@
     display: none;
   }
 
-  .navbar-toggle-label {
+  .navbar-toggle-label2 {
     position: relative;
     left: 90%;
-    top: -63px;
+    top: -73px;
     font-size: 20px;
     color: #fff;
     font-size: 35px;
   }
 
-  #navbar-toggle:checked + .navbar-toggle-label + .navbar-menu {
+  #navbar-toggle:checked + .navbar-toggle-label2 + .navbar-menu {
     display: flex;
     gap: 10px;
+    margin: auto;
+    position: relative;
+    left: 26px;
   }
 }
 
 @media (min-width: 769px) {
-  .navbar-toggle-label,
+  .navbar-toggle-label2,
   .navbar-radio-label {
     display: none;
   }
