@@ -7,6 +7,7 @@ import { logError } from "../../../../server/src/util/logging";
 import "./SearchBar.css";
 import useFetch from "../../hooks/useFetch";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
+import HomeBackground from "../HomeBackground/HomeBackground";
 
 const Search = () => {
   const {
@@ -20,6 +21,8 @@ const Search = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loader, setLoader] = useState(false);
   const [amenities, setAmenities] = useState([]);
+  const [type, setTypes] = useState([]);
+  const [bedrooms, setBedrooms] = useState([]);
   const { error, performFetch } = useFetch(
     "/property/amenities",
     onDataReceived,
@@ -43,10 +46,45 @@ const Search = () => {
     setLoader(false);
   }
 
+  const {
+    isLoading: isTypesLoading,
+    error: typesError,
+    performFetch: fetchPropertyTypes,
+  } = useFetch("/property/get?/type", onTypesDataReceived);
+
+  const {
+    isLoading: isBedroomsLoading,
+    error: bedroomsError,
+    performFetch: fetchBedroomsOptions,
+  } = useFetch("/property/get?/bedrooms", onBedroomsDataReceived);
+
+  //Used Set to remove duplicate values from  both type and  number of bedrooms array
+  function onTypesDataReceived(data) {
+    if (data && data.data) {
+      const uniqueTypes = [...new Set(data.data.map((item) => item.type))];
+      setTypes(uniqueTypes);
+    }
+  }
+
+  function onBedroomsDataReceived(data) {
+    if (data && data.data) {
+      const uniqueBedrooms = [
+        ...new Set(data.data.map((item) => item.bedrooms)),
+      ];
+      setBedrooms(uniqueBedrooms);
+    }
+  }
+
   useEffect(() => {
     performFetch();
+    fetchPropertyTypes();
+    fetchBedroomsOptions();
     if (error) {
       logError("Error fetching amenities:", error);
+    } else if (typesError) {
+      logError("Error fetching property types:", error);
+    } else if (bedroomsError) {
+      logError("Error fetching bedrooms:", error);
     }
   }, []);
 
@@ -87,31 +125,92 @@ const Search = () => {
 
   const style = {
     position: "fixed",
-    top: "60%",
+    top: "45%",
     left: "50%",
     transform: "translate(-50%, -50%)",
   };
 
   return (
     <div className="search-container-main">
-      <div className="search-component-wrapper">
+      <HomeBackground className="search-container-home-bg" direction="column">
         <h1 className="search-title">Find a home that suits your needs</h1>
         <div className="search-container">
-          <div className="criteria">
+          <div className="search-criteria">
             <div className="location-container-search">
               <span>location</span>
+              <div className="search-city-country">
+                <input
+                  type="text"
+                  name="country"
+                  placeholder="Country"
+                  className="search-area"
+                  value={searchParams.country}
+                  onChange={handleInputChange}
+                />
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="City"
+                  className="search-area2"
+                  value={searchParams.city}
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
             <div className="vertical-line"></div>
             <div className="property-container-search">
-              <span className="span-property">property</span>
+              <span className="span-property">property type</span>
+              <select
+                type="text"
+                name="type"
+                className="search-type"
+                value={searchParams.type}
+                onChange={handleInputChange}
+                disabled={isTypesLoading}
+              >
+                <option value="">Type</option>
+                {type.length > 0 &&
+                  type.map((propertyType, index) => (
+                    <option key={index} value={propertyType}>
+                      {propertyType}
+                    </option>
+                  ))}
+              </select>
             </div>
             <div className="vertical-line"></div>
             <div className="bedrooms-container-search">
               <span className="span-bedrooms">bedrooms</span>
+              <select
+                type="number"
+                name="bedrooms"
+                className="search-bedrooms"
+                value={searchParams.bedrooms}
+                onChange={handleInputChange}
+                disabled={isBedroomsLoading}
+              >
+                <option value="">Bedrooms</option>
+                {bedrooms.map((bedroomCount) => (
+                  <option key={bedroomCount} value={bedroomCount}>
+                    {bedroomCount}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="vertical-line"></div>
             <div className="amenities-container-search">
               <span className="span-amenities">amenities</span>
+              <select
+                name="amenities"
+                onChange={handleInputChange}
+                className="search-amenities"
+              >
+                <option value="">Amenity</option>
+                {amenities.map((amenities) => (
+                  <option key={amenities} value={amenities}>
+                    {amenities}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="search-icon-container">
               <CiSearch
@@ -121,57 +220,9 @@ const Search = () => {
                 disabled={isLoading}
               />
             </div>
-            <div className="vertical-line"></div>
           </div>
         </div>
-        <div className="options">
-          <div className="country-city">
-            <input
-              type="text"
-              name="country"
-              placeholder="Enter country..."
-              className="area"
-              value={searchParams.country}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              name="city"
-              placeholder="Enter city..."
-              className="area-2"
-              value={searchParams.city}
-              onChange={handleInputChange}
-            />
-          </div>
-          <input
-            type="text"
-            name="type"
-            placeholder="Enter home type e.g studio ..."
-            className="type"
-            value={searchParams.type}
-            onChange={handleInputChange}
-          />
-          <input
-            type="number"
-            name="bedrooms"
-            placeholder="Enter number of bedrooms..."
-            className="num-of-bedrooms"
-            value={searchParams.bedrooms}
-            onChange={handleInputChange}
-          />
-          <select
-            name="amenities"
-            onChange={handleInputChange}
-            className="amenities"
-          >
-            <option value="">Select Amenity</option>
-            {amenities.map((amenities) => (
-              <option key={amenities} value={amenities}>
-                {amenities}
-              </option>
-            ))}
-          </select>
-        </div>
+
         {errorMessage && (
           <div className="validation-error-search">
             <span>{errorMessage}</span>
@@ -190,9 +241,8 @@ const Search = () => {
             />
           )}
         </div>
-      </div>
+      </HomeBackground>
     </div>
   );
 };
-
 export default Search;
