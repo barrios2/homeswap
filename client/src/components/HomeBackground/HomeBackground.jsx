@@ -15,7 +15,7 @@ const HomeBackground = ({ children, direction = "row", ...props }) => {
         flexDirection: direction,
         alignItems: "center",
         justifyContent: "center",
-        height: "360px",
+        height: "370px",
         padding: 2,
         backgroundColor: backgroundColor,
         borderRadius: "30px",

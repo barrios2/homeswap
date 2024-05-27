@@ -22,7 +22,6 @@ const Search = () => {
   const [loader, setLoader] = useState(false);
   const [amenities, setAmenities] = useState([]);
   const [type, setTypes] = useState([]);
-  const [bedrooms, setBedrooms] = useState([]);
   const { error, performFetch } = useFetch(
     "/property/amenities",
     onDataReceived,
@@ -52,12 +51,6 @@ const Search = () => {
     performFetch: fetchPropertyTypes,
   } = useFetch("/property/get?/type", onTypesDataReceived);
 
-  const {
-    isLoading: isBedroomsLoading,
-    error: bedroomsError,
-    performFetch: fetchBedroomsOptions,
-  } = useFetch("/property/get?/bedrooms", onBedroomsDataReceived);
-
   //Used Set to remove duplicate values from  both type and  number of bedrooms array
   function onTypesDataReceived(data) {
     if (data && data.data) {
@@ -66,25 +59,13 @@ const Search = () => {
     }
   }
 
-  function onBedroomsDataReceived(data) {
-    if (data && data.data) {
-      const uniqueBedrooms = [
-        ...new Set(data.data.map((item) => item.bedrooms)),
-      ];
-      setBedrooms(uniqueBedrooms);
-    }
-  }
-
   useEffect(() => {
     performFetch();
     fetchPropertyTypes();
-    fetchBedroomsOptions();
     if (error) {
       logError("Error fetching amenities:", error);
     } else if (typesError) {
       logError("Error fetching property types:", error);
-    } else if (bedroomsError) {
-      logError("Error fetching bedrooms:", error);
     }
   }, []);
 
@@ -180,21 +161,14 @@ const Search = () => {
             <div className="vertical-line"></div>
             <div className="bedrooms-container-search">
               <span className="span-bedrooms">bedrooms</span>
-              <select
+              <input
                 type="number"
                 name="bedrooms"
                 className="search-bedrooms"
                 value={searchParams.bedrooms}
                 onChange={handleInputChange}
-                disabled={isBedroomsLoading}
-              >
-                <option value="">Bedrooms</option>
-                {bedrooms.map((bedroomCount) => (
-                  <option key={bedroomCount} value={bedroomCount}>
-                    {bedroomCount}
-                  </option>
-                ))}
-              </select>
+                placeholder="Number of Bedrooms..."
+              />
             </div>
             <div className="vertical-line"></div>
             <div className="amenities-container-search">
@@ -204,7 +178,7 @@ const Search = () => {
                 onChange={handleInputChange}
                 className="search-amenities"
               >
-                <option value="">Amenity</option>
+                <option value="">Amenities</option>
                 {amenities.map((amenities) => (
                   <option key={amenities} value={amenities}>
                     {amenities}
