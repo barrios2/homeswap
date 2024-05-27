@@ -167,7 +167,7 @@ const Search = () => {
                 className="search-bedrooms"
                 value={searchParams.bedrooms}
                 onChange={handleInputChange}
-                placeholder="Number of Bedrooms..."
+                placeholder="Bedrooms..."
               />
             </div>
             <div className="vertical-line"></div>
