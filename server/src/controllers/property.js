@@ -2,6 +2,7 @@ import Property from "../models/Property.js";
 import { validatePropertyFields } from "../models/Property.js";
 import validationErrorMessage from "../util/validationErrorMessage.js";
 import { logError } from "../util/logging.js";
+import cloudinary from "../util/cloudinary.js";
 
 export const uploadProperty = async (req, res) => {
   const propertyData = req.body;
@@ -22,8 +23,21 @@ export const uploadProperty = async (req, res) => {
         .json({ success: false, msg: "Unauthorized user!" });
     }
 
+    const uploadedPhotos = await Promise.all(
+      propertyData.photos.map(async (photoData) => {
+        // try {
+        const result = await cloudinary.uploader.upload(photoData);
+        return result.secure_url;
+        // } catch (error) {
+        // console.error("Error uploading photo to Cloudinary:", error);
+        // throw new Error("Failed to upload photo to Cloudinary");
+        // }
+      }),
+    );
+
     const propertyWithUserID = {
       ...propertyData,
+      photos: uploadedPhotos,
       userRef: userId,
     };
 

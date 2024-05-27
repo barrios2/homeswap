@@ -147,13 +147,13 @@ function Form() {
   // };
 
   const handlePhotoUpload = async (event) => {
-    const files = event.target.files;
-    const uploadedPhotos = Array.from(files);
-    const base64Photos = await Promise.all(uploadedPhotos.map(fileToBase64));
+    const files = Array.from(event.target.files);
+    const base64Photos = await Promise.all(files.map(fileToBase64));
     setFormData((prevFormData) => ({
       ...prevFormData,
       photos: [...prevFormData.photos, ...base64Photos],
     }));
+
     setShowPhotoInput(true);
   };
 
