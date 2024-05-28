@@ -12,7 +12,7 @@ const initialFormState = {
 };
 
 function LogIn() {
-  const { setIsLoggedIn, setUserId, setToken } = useLogin();
+  const { setIsLoggedIn, setUserId, setToken, setUsername } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function LogIn() {
     setIsLoggedIn(true);
     setUserId(userData.id);
     setToken(userData.token);
-
+    setUsername(userData.username);
     navigate("/home");
   }
 

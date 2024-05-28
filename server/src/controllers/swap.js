@@ -26,6 +26,23 @@ export const createSwapRequest = async (req, res) => {
       .json({ success: false, msg: "Invalid receiver_propertyId" });
   }
 
+  //the user is not the owner of a property
+  const senderProp = await Property.findById(swapRequestData.sender_propertyId);
+  const receiverProp = await Property.findById(
+    swapRequestData.receiver_propertyId,
+  );
+  if (senderProp.userRef.toString() !== req.userData.id) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "You are not the owner of this property" });
+  }
+  //user cannot apply for their own property
+  if (senderProp.userRef.toString() === receiverProp.userRef.toString()) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "You cannot apply for your own property" });
+  }
+
   // check if the swapped propertiesId exist in Property Collection
   const senderPropertyExists = await Property.exists({
     _id: swapRequestData.sender_propertyId,
@@ -71,39 +88,11 @@ export const createSwapRequest = async (req, res) => {
 };
 
 export const getSwapRequest = async (req, res) => {
-  if (req.params.id !== req.userData.id) {
-    return res.status(401).json({
-      success: false,
-      msg: "You cannot view requests list of other users!",
-    });
-  } else {
-    try {
-      const userProperties = await Property.find({ userRef: req.userData.id });
+  sentReceivedRequests(req, res, "receiver_propertyId");
+};
 
-      const propertyIds = userProperties.map((prop) => prop._id); //extract propertyIds
-
-      const swapRequests = await Swap.find({
-        receiver_propertyId: {
-          $in: propertyIds,
-        },
-      }).populate({
-        path: "sender_propertyId",
-        select: "title type address bedrooms bathrooms photos",
-      });
-
-      if (swapRequests.length === 0) {
-        return res.status(200).json({
-          success: true,
-          msg: "You have no requests",
-        });
-      }
-
-      res.status(200).json({ success: true, data: swapRequests });
-    } catch (error) {
-      logError(error);
-      res.status(500).json({ msg: "Error retrieving swap requests", error });
-    }
-  }
+export const getSentSwapRequest = async (req, res) => {
+  sentReceivedRequests(req, res, "sender_propertyId");
 };
 
 export const confirmSwapRequest = async (req, res) => {
@@ -141,6 +130,7 @@ export const rejectSwapRequest = async (req, res) => {
   }
 };
 
+//FUNCTIONS:
 async function confirmRejectChecks(req, res) {
   try {
     const swapRequest = await Swap.findById(req.params.requestId).populate({
@@ -173,5 +163,43 @@ async function confirmRejectChecks(req, res) {
   } catch (error) {
     logError(error);
     res.status(500).json({ msg: "Error processing swap request", error });
+  }
+}
+
+async function sentReceivedRequests(req, res, propertyField) {
+  if (req.params.id !== req.userData.id) {
+    return res.status(401).json({
+      success: false,
+      msg: "You cannot view requests list of other users!",
+    });
+  }
+
+  try {
+    const userProperties = await Property.find({ userRef: req.userData.id }); //find props of the user
+    const propertyIds = userProperties.map((prop) => prop._id); //extract the ids
+
+    const query = {}; //empty query
+    query[propertyField] = {
+      $in: propertyIds, //get ids sent/received by user
+    };
+
+    const swapRequests = await Swap.find(query).populate({
+      path:
+        propertyField === "sender_propertyId"
+          ? "receiver_propertyId"
+          : "sender_propertyId",
+      select: "title type address bedrooms bathrooms photos",
+    });
+
+    if (swapRequests.length === 0) {
+      return res.status(200).json({
+        success: true,
+        msg: "You have no requests",
+      });
+    }
+    res.status(200).json({ success: true, data: swapRequests });
+  } catch (error) {
+    logError(error);
+    res.status(500).json({ msg: "Error retrieving swap requests", error });
   }
 }
