@@ -44,6 +44,10 @@
   gap: 10px;
 }
 
+.bath-error {
+  color: #ff9090;
+}
+
 .upload-property3-footer {
   display: flex;
   justify-content: flex-end;
@@ -295,7 +299,7 @@
 
   .photo-error {
     position: absolute;
-    top: 500px;
+    top: 515px;
   }
 
   .upload-property3-title {
@@ -305,5 +309,11 @@
     text-align: center;
     margin-bottom: 10px;
     margin-bottom: 10px;
+  }
+
+  .bath-error {
+    color: #ff9090;
+    position: absolute;
+    top: 140px;
   }
 }
