@@ -10,6 +10,7 @@ import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadProperty from "./pages/UploadProperty/UploadProperty";
 import ProfileComponent from "./components/Profile/ProfileComponent";
 import { ToastContainer } from "react-toastify";
+import RequestListPage from "./components/RequestListPage/RequestListPage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/profile" element={<ProfileComponent />} />
           <Route path="/home" element={<Home />} />
         </Route>
+        <Route path="/swap/requests/:id" element={<RequestListPage />} />
       </Routes>
       <ToastContainer
         position="top-right"

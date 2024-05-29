@@ -126,6 +126,28 @@
   line-height: 1.5;
 }
 
+/* Added a small  transition for  the toggle  between the pages.*/
+.card-container.transitioning {
+  transition: all 0.5s ease-in-out;
+  opacity: 0.5;
+}
+
+.content-container {
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+.content-container.fade-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content-container.fade-out {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
 @media (max-width: 1550px) {
   .card-and-list-container {
     display: flex;

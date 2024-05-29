@@ -53,6 +53,7 @@ const LogInProvider = ({ children }) => {
   const params = parameters.toString();
   const [userProperties, setUserProperties] = useState([]);
   const [username, setUsername] = useState(null);
+  const [userRequests, setUserRequests] = useState([]);
 
   return (
     <LogInContext.Provider
@@ -86,6 +87,8 @@ const LogInProvider = ({ children }) => {
         setUserProperties,
         username,
         setUsername,
+        userRequests,
+        setUserRequests,
       }}
     >
       {children}
