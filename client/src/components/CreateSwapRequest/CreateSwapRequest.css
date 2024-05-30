@@ -47,3 +47,23 @@
   margin: 10px 0;
   align-self: center;
 }
+/* sweet alert custom styles added here */
+.custom-confirm-button {
+  background-color: #ae593a;
+  color: white;
+  border: none !important;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.custom-confirm-button:hover {
+  background-color: #ae593a !important;
+  color: white;
+  border: none !important;
+}
