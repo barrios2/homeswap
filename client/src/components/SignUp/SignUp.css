@@ -217,3 +217,82 @@ input {
   color: #ff9090;
   font-size: 14px;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1026px) {
+  .image-grid img {
+    width: 234px;
+    height: 234px;
+  }
+
+  .left {
+    width: 10px;
+  }
+
+  .user-name,
+  .password-input {
+    outline: none;
+    background-color: #fcf7e8;
+    width: 670px;
+    padding: 15px;
+    font-size: 23px;
+    border-radius: 10px;
+  }
+
+  .sign-up-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .sign-up .login-text {
+    position: relative;
+    top: -5px;
+    padding-top: 10px;
+  }
+
+  .login-qustion {
+    color: white;
+    font-size: 30px;
+    position: relative;
+    top: 50px;
+  }
+
+  .sign-up .left .submit {
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px 44px;
+    font-size: 38px;
+    cursor: pointer;
+    position: relative;
+    left: -7px;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .password-toggle {
+    position: relative;
+    top: -35px;
+    left: 660px;
+    font-size: 20px;
+    width: fit-content;
+  }
+}
+
+/* .error {
+  color: #ff9090;
+  font-size: 14px;
+}
+
+input {
+  color: #010625;
+  font-family: "Inter";
+}
+
+::placeholder {
+  font-family: "Inter";
+  color: #010625;
+}
+
+.error-user {
+  color: #ff9090;
+  font-size: 14px;
+} */

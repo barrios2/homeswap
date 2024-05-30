@@ -10,7 +10,7 @@
 
 .amenities-grid-property2 {
   display: grid;
-  grid-template-columns: repeat(3, 137px);
+  grid-template-columns: repeat(3, 120px);
   gap: 80px 70px;
   list-style: none;
 }

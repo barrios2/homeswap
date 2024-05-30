@@ -105,6 +105,7 @@
 
   #navbar-toggle:checked + .navbar-toggle-label + .navbar-menu {
     display: flex;
+    z-index: 11111;
   }
 }
 
