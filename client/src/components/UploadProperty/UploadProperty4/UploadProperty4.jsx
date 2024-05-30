@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { TbWheelchairOff } from "react-icons/tb";
 import { TbSmokingNo } from "react-icons/tb";
@@ -18,9 +19,12 @@ function UploadProperty4({
   setformdata,
   validateForm,
   errors,
+  showPopup,
+  setShowPopup,
 }) {
   const [description, setDescription] = useState(formdata.description || "");
   const [house_rules, setRules] = useState(formdata.house_rules || []);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setformdata((prevFormData) => ({
@@ -168,6 +172,27 @@ function UploadProperty4({
               <span>Submit</span>
             </button>
           </div>
+          {showPopup && (
+            <div className="popup-submition">
+              <div className="popup-content-submition">
+                <span
+                  className="close-submition"
+                  onClick={() => {
+                    setShowPopup(false);
+                    navigate("/profile");
+                  }}
+                >
+                  &times;
+                </span>
+                <span className="content-submition">
+                  <h2>Thank you for your submission!</h2>
+                  <p>
+                    We appreciate you taking the time to share this with us.
+                  </p>
+                </span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -178,6 +203,8 @@ UploadProperty4.propTypes = {
   submitFormData: PropTypes.func.isRequired,
   formdata: PropTypes.object.isRequired,
   setformdata: PropTypes.func.isRequired,
+  showPopup: PropTypes.object.isRequired,
+  setShowPopup: PropTypes.func.isRequired,
   validateForm: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
