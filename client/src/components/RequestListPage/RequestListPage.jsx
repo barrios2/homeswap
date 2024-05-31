@@ -270,6 +270,7 @@ function RequestListPage() {
       (request) => request._id !== requestId,
     );
     setRequests(filteredRequests);
+    setIncomingCount(filteredRequests.length); //to update the count in btns when requests are deleted from ui
   }
 
   if (incomingRequestsError || outgoingRequestsError || fetchError) {

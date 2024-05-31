@@ -24,8 +24,8 @@ const App = () => {
         <Route element={<ProtectedProfile />}>
           <Route path="/profile" element={<ProfileComponent />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/swap/requests/:id" element={<RequestListPage />} />
         </Route>
-        <Route path="/swap/requests/:id" element={<RequestListPage />} />
       </Routes>
       <ToastContainer
         position="top-right"

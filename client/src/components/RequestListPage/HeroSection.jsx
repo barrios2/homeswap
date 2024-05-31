@@ -6,8 +6,11 @@ import PropTypes from "prop-types";
 const HomeBackground = ({ children, direction = "row", ...props }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isHidden = useMediaQuery("(max-width:1500px)");
 
   const backgroundColor = "#B7D9E4";
+
+  if (isHidden) return null;
 
   return (
     <Box
@@ -26,9 +29,6 @@ const HomeBackground = ({ children, direction = "row", ...props }) => {
         margin: "auto",
         position: "relative",
         overflow: "hidden",
-        [theme.breakpoints.down("sm")]: {
-          display: "none",
-        },
       }}
     >
       <Box
