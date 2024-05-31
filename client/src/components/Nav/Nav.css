@@ -1,6 +1,8 @@
 .navbar {
   background-color: #010625;
   padding: 20px 20px;
+  position: relative;
+  z-index: 1111;
 }
 
 .container {
@@ -104,6 +106,7 @@
     left: 94%;
     left: 26px;
     font-size: 20px;
+    z-index: 1111;
   }
 
   #navbar-toggle:checked + .navbar-toggle-label2 + .navbar-menu {
@@ -140,14 +143,21 @@
     font-size: 20px;
     color: #fff;
     font-size: 35px;
+    z-index: 1111;
   }
 
   #navbar-toggle:checked + .navbar-toggle-label2 + .navbar-menu {
     display: flex;
     gap: 10px;
-    margin: auto;
+    z-index: 1111;
     position: relative;
-    left: 26px;
+    left: 27px;
+  }
+
+  .logo {
+    width: 90px;
+    margin-left: 20px;
+    object-fit: cover;
   }
 }
 
