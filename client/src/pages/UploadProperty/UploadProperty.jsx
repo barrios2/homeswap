@@ -129,22 +129,6 @@ function Form() {
     }
   };
 
-  // const handlePhotoUpload = (event) => {
-  //   const files = event.target.files;
-  //   const uploadedPhotos = Array.from(files);
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     photos: [...prevFormData.photos, ...uploadedPhotos],
-  //   }));
-  //   setShowPhotoInput(true);
-  // };
-
-  // const handleDeletePhoto = (index) => {
-  //   const updatedPhotos = [...formData.photos];
-  //   updatedPhotos.splice(index, 1);
-  //   setFormData((prevFormData) => ({ ...prevFormData, photos: updatedPhotos }));
-  // };
-
   const handlePhotoUpload = async (event) => {
     const files = Array.from(event.target.files);
     const base64Photos = await Promise.all(files.map(fileToBase64));
@@ -225,18 +209,6 @@ function Form() {
     }
   };
 
-  // const submitFormData = () => {
-  //   const { isValid, errors } = validateForm();
-  //   if (isValid) {
-  //     performFetch({
-  //       method: "POST",
-  //       body: JSON.stringify(formData),
-  //     });
-  //   } else {
-  //     setErrors(errors);
-  //   }
-  // };
-
   const submitFormData = () => {
     const { isValid, errors } = validateForm();
     if (isValid) {
@@ -253,31 +225,6 @@ function Form() {
       setErrors(errors);
     }
   };
-
-  // const submitFormData = async (event) => {
-  //   event.preventDefault();
-  //   const formData = new FormData();
-
-  //   formData.append("title", formData.title);
-  //   formData.append("description", formData.description);
-  //   formData.append("address", JSON.stringify(formData.address));
-  //   formData.append("type", formData.type);
-  //   formData.append("bedrooms", formData.bedrooms);
-  //   formData.append("bathrooms", formData.bathrooms);
-  //   formData.append("amenities", JSON.stringify(formData.amenities));
-  //   formData.append("house_rules", JSON.stringify(formData.house_rules));
-
-  //   formData.photos.forEach((photo) => {
-  //     formData.append("photos", photo);
-  //   });
-
-  //     performFetch({
-  //           method: "POST",
-  //           body: JSON.stringify(formData),
-  //         })
-  //         console.log(formData)
-  //     }
-  // };
 
   return (
     <div>
@@ -308,7 +255,6 @@ function Form() {
           />
         ))}
       </div>
-
       {PageDisplay()}
     </div>
   );
