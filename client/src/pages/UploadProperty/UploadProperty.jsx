@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import UploadProperty1 from "../../components/UploadProperty/UploadProperty1/UploadProperty1";
 import UploadProperty2 from "../../components/UploadProperty/UploadProperty2/UploadProperty2";
@@ -12,7 +11,7 @@ function Form() {
   const [page, setPage] = useState(1);
   const [showPhotoInput, setShowPhotoInput] = useState(false);
   const { token } = useLogin();
-  const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     bathrooms: 0,
     bedrooms: 0,
@@ -219,10 +218,10 @@ function Form() {
           validateForm={validateForm}
           errors={errors}
           goToPreviousPage={goToPreviousPage}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
         />
       );
-    } else {
-      navigate("/profile");
     }
   };
 
@@ -249,6 +248,7 @@ function Form() {
           Authorization: `Bearer ${token}`,
         },
       });
+      setShowPopup(true);
     } else {
       setErrors(errors);
     }

@@ -10,7 +10,7 @@
 
 .amenities-grid-property2 {
   display: grid;
-  grid-template-columns: repeat(3, 137px);
+  grid-template-columns: repeat(3, 120px);
   gap: 80px 70px;
   list-style: none;
 }
@@ -38,7 +38,7 @@
 input {
   border: none;
   background: none;
-  color: black;
+  /* color: black; */
   width: 15px;
 }
 
@@ -208,5 +208,75 @@ input:focus {
     grid-template-columns: repeat(2, 80px);
     gap: 48px 89px;
     list-style: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .upload-property2-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .amenities-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 23px;
+    height: fit-content;
+    width: 325px;
+  }
+
+  .propety-image-property2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    padding: 0;
+    width: 100%;
+    margin: auto;
+  }
+
+  .propety-pic-property2 {
+    display: none;
+    width: 500px;
+    height: 350px;
+    object-fit: contain;
+    position: relative;
+    left: 0;
+  }
+
+  .error-amenities {
+    text-align: center;
+    position: relative;
+    left: 7px;
+  }
+
+  .amenities-grid-property2 {
+    display: grid;
+    gap: 48px 89px;
+    list-style: none;
+  }
+
+  .Continue-upload-property2 {
+    display: flex;
+    border: 0;
+    padding: 15px 150px;
+    align-items: center;
+    border-radius: 7px;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 10px;
+    color: white;
+    background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
+    transition: 200ms;
+    margin-bottom: 60px;
   }
 }
