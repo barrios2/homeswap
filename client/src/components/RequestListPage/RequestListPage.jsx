@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import useFetch from "../../hooks/useFetch";
-import Swal from "sweetalert";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./RequestListPage.css";
 import { logError } from "../../../../server/src/util/logging";
