@@ -1,13 +1,13 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import PropTypes from "prop-types";
 import "./CreateSwapRequest.css";
+import swal from "sweetalert";
 
-function CreateSwapRequest({ receiver_propertyID }) {
-  const { userId, token } = useLogin();
-  const [senderProperties, setSenderProperties] = useState([]);
+function CreateSwapRequest({ receiver_propertyID, senderProperties }) {
+  const { token } = useLogin();
   const [formData, setFormData] = useState({
     senderPropertyID: "",
     startDate: "",
@@ -17,30 +17,12 @@ function CreateSwapRequest({ receiver_propertyID }) {
 
   const [successMsg, setSuccessMsg] = useState("");
 
-  //fetch sender/userProperties
+  //fetch to create a swap request
   const {
     isLoading,
-    error: userPropertiesError,
-    performFetch: performSenderPropertiesFetch,
-  } = useFetch(`/user/properties/${userId}`, onSenderProperties);
-
-  //fetch to create a swap request
-  const { error, performFetch: performSwapFetch } = useFetch(
-    "/swap/create",
-    onSwapSuccess,
-  );
-
-  useEffect(() => {
-    performSenderPropertiesFetch({
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }, []);
-
-  function onSenderProperties(data) {
-    setSenderProperties(data.data);
-  }
+    error,
+    performFetch: performSwapFetch,
+  } = useFetch("/swap/create", onSwapSuccess);
 
   function onSwapSuccess() {
     setSuccessMsg("The request was sent successfully");
@@ -87,22 +69,74 @@ function CreateSwapRequest({ receiver_propertyID }) {
 
     //Validations:
     if (formData.startDate < today || formData.endDate < today) {
-      alert("Start date cannot be a date in the past");
+      swal({
+        title: "Invalid Date",
+        text: "Start date cannot be a date in the past",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     if (formData.startDate > formData.endDate) {
-      alert("End date must be after start date");
+      swal({
+        title: "Invalid Date",
+        text: "End date must be after start date",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     if (formData.senderPropertyID === receiver_propertyID) {
-      alert("You cannot apply for this property");
+      swal({
+        title: "Sorry",
+        text: "You cannot apply for this property",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     if (formData.startDate === formData.endDate) {
-      alert("Please select different dates");
+      swal({
+        title: "Invalid Dates",
+        text: "Please select different dates",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
@@ -134,8 +168,6 @@ function CreateSwapRequest({ receiver_propertyID }) {
         <p>Loading properties...</p>
       ) : error ? (
         <p>{error}</p>
-      ) : userPropertiesError ? (
-        <p>Error fetching Properties: {userPropertiesError}</p>
       ) : !successMsg ? (
         <form onSubmit={handleSubmit} className="swap-request-form">
           {senderProperties.length > 1 && (
@@ -201,6 +233,7 @@ function CreateSwapRequest({ receiver_propertyID }) {
 
 CreateSwapRequest.propTypes = {
   receiver_propertyID: PropTypes.string.isRequired,
+  senderProperties: PropTypes.array.isRequired,
 };
 
 export default CreateSwapRequest;

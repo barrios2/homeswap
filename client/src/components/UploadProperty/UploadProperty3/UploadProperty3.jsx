@@ -60,12 +60,14 @@ function UploadProperty3({
             <h1 className="upload-property3-title">
               How many bedrooms and bathrooms are in your home?
             </h1>
-            {errors.bedrooms && (
-              <span className="error">{errors.bedrooms}</span>
-            )}
-            {errors.bathrooms && (
-              <span className="error">{errors.bathrooms}</span>
-            )}
+            <div className="bath-error">
+              {errors.bedrooms && (
+                <span className="error-bath">{errors.bedrooms}</span>
+              )}
+              {errors.bathrooms && (
+                <span className="error-bath">{errors.bathrooms}</span>
+              )}
+            </div>
 
             <div className="bathrooms-input">
               <div className="bathrooms-input1-property3">

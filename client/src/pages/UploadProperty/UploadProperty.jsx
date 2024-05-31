@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import UploadProperty1 from "../../components/UploadProperty/UploadProperty1/UploadProperty1";
 import UploadProperty2 from "../../components/UploadProperty/UploadProperty2/UploadProperty2";
@@ -12,7 +11,6 @@ function Form() {
   const [page, setPage] = useState(1);
   const [showPhotoInput, setShowPhotoInput] = useState(false);
   const { token } = useLogin();
-  const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
     bathrooms: 0,
@@ -148,13 +146,13 @@ function Form() {
   // };
 
   const handlePhotoUpload = async (event) => {
-    const files = event.target.files;
-    const uploadedPhotos = Array.from(files);
-    const base64Photos = await Promise.all(uploadedPhotos.map(fileToBase64));
+    const files = Array.from(event.target.files);
+    const base64Photos = await Promise.all(files.map(fileToBase64));
     setFormData((prevFormData) => ({
       ...prevFormData,
       photos: [...prevFormData.photos, ...base64Photos],
     }));
+
     setShowPhotoInput(true);
   };
 
@@ -224,8 +222,6 @@ function Form() {
           setShowPopup={setShowPopup}
         />
       );
-    } else {
-      navigate("/profile");
     }
   };
 
@@ -253,7 +249,6 @@ function Form() {
         },
       });
       setShowPopup(true);
-      // navigate("/profile");
     } else {
       setErrors(errors);
     }

@@ -96,8 +96,9 @@
   .navbar-toggle-label1 {
     position: relative;
     left: 94%;
-    left: 26px;
-    font-size: 20px;
+    top: -33px;
+    color: #fff;
+    font-size: 40px;
   }
 
   #navbar-toggle:checked + .navbar-toggle-label1 + .navbar-menu {

@@ -1,118 +1,168 @@
-`TODO: Add a nice screenshot of the app!`
+# Home Swap App (Cohort 46 Group B Final Project)
 
-# Cohort XX final project
+## Table of Contents
+- [INTRODUCTION](#introduction)
+- [LIVE DEMO](#live-demo)
+- [SCREENSHOTS](#screenshots)
+- [KEY FEATURES AND FUNCTIONALITIES](#key-features-and-functionalities)
+- [TECHNOLOGIES USED](#technologies-used)
+- [USAGE](#usage)
+- [FOLDER STRUCTURE](#folder-structure)
+- [INSTALLATION](#installation)
+- [CONTRIBUTORS](#contributors)
+- [ACKNOWLEDGEMENTS](#acknoledgements)
 
-This is the final project for the HackYourFuture curriculum we did as a cohort using the [MERN stack](https://www.mongodb.com/resources/languages/mern-stack) by following the agile methodology with our team and a group of mentors. A quick guide to what we built:
+## INTRODUCTION
+Home Swap is a  full-stack MERN application built and  designed to facilitate house swaps between users. It allows users to list their properties, explore available swap opportunities, and  arrange  or apply for swaps to enjoy living in different locations temporarily. To participate in a swap, users must first have a property listing uploaded. This requirement ensures that all members of the platform are both potential swappers and hosts, which enables a balanced and reciprocal swapping environment.
 
-> TODO: Add short description of the app
+## LIVE DEMO
+[Click here for Demo Version](https://c46-group-b-4e426f6bf421.herokuapp.com/)
 
-`[Click here for the Demo version](TODO: add link)`
+## SCREENSHOTS
+![](../cohort46-project-group-B/client/src/assets/homeswap-signup.png)
+![](../cohort46-project-group-B/client/src/assets/homeswap-home.png)
 
-## 1. Setup
+## KEY FEATURES AND FUNCTIONALITIES
+ Key features and functionalities of Home Swap include:
 
-First, to setup all the directories run the following in the main directory:
+- **Property Listings:** Users can create detailed listings for their properties, including descriptions, images, and amenities, location, number of bedrooms and available dates. 
+- **Swap Opportunities:** Users can explore a wide range of available properties that match their preferences and criteria, making it easy to find the perfect swap.
+- **Search and View Properties:** Users can  search for and find properties that fit their swap criteria, using the five search criterias provided in the app. Search by City, Country, Property Type, Number of Bedrooms and Amenities.
+- **Swap Requests:** In the app users can initiate swap requests with other property owners. Once a request is sent, users can leave messages, accept or reject swap requests.
+- **User Authentication:** Ensures that all users are verified and authenticated.
+- **Profile Management:** Users can create and manage their profiles, including upolading their properties.
 
-`npm install`
 
-`npm run setup`
 
-The first command will install `cypress` and some small libraries needed for running the rest of the commands. The second will go into the `client` and `server` directories and set those up to be ran.
+## TECHNOLOGIES USED
+- **Frontend:** React, Axios, Material UI, React Toastify, Font Awesome, Sweet Alert.
+- **Backend:** Node.js with Express.js framework, Concurrently, Cors, Cloudinary.
+- **Database:** MongoDB with Mongoose for object modeling.
+- **Authentication:** Secure handling with JWT (JSON Web Tokens), Bcrypt.
+- **Styling:** Styled using CSS and Material UI.
+- **Build Tool:** Bundled with Webpack.
 
-In the `client` and `server` directory there are two `.env.example` files. Create a copy and rename that to `.env`. Then follow the instructions in those files to fill in the right values.
+## USAGE
+Signup and Log In: Securely register or log in to access your account.
+List Your Property: Add your property by filling in necessary details and uploading images.
+Browse Properties: Search through the listings to find potential swaps.
+Initiate Swap Requests: Send a request to swap with other users.
+Confirm Swaps: Once you find what you like, confirm swaps or reject swaps.
 
-To run the app in dev mode you can run the following command in the main directory:
-
-`npm run dev`
-
-## 2. Code structure
-
+## FOLDER STRUCTURE
+Detailed folder structure of the project:
 ```
 client
 ├── public
+│   └── index.html
 └── src
-|   └── __tests__
-|   └── __testUtils__
-|   └── components
-|   └── hooks
-|   └── pages
-|       └── __tests__
-|       └── components
-|   └── util
-|   index.jsx
+    ├── __tests__
+    ├── __testUtils__
+    ├── assets
+    ├── components
+    │   ├── __tests__
+    │   ├── AboutUsContent
+    │   ├── CreateSwapRequest
+    │   ├── Footer
+    │   ├── HomeBackground
+    │   ├── Login
+    │   ├── MyPropertyCard
+    │   ├── Nav
+    │   ├── Profile
+    │   ├── ProfilePropertyList
+     │   ├── RequestList
+    │   ├── PropertyCard
+    │   ├── PropertyList
+    │   ├── ProtectedRoute
+    │   ├── Search
+    │   ├── SignUp
+    │   ├── UploadProperty
+    │   ├── ViewProperty
+    ├── context
+    ├── hooks
+    ├── pages
+    ├── util
+    ├── AppWrapper.jsx
+    ├── index.jsx
+    ├── .babelrc
+    ├── .env
+    ├── .eslintrc.js
+    ├── jest.config.js
+    ├── package-lock.json
+    ├── package.json
+    ├── setupTests.js
+    ├── webpack.config.js
 cypress
-|   └── fixtures
-|   └── integration
-|   └── plugins
-|   └── support
+├── fixtures
+├── plugins
+└── support
 server
 └── src
-    └── __tests__
-    └── __testUtils__
-    └── controllers
-    └── db
-    └── models
-    └── routes
-    └── util
-    index.js
+    ├── __tests__
+    ├── __testUtils__
+    ├── controllers
+    ├── db
+    ├── models
+    ├── routes
+    ├── util
+    ├── app.js
+    ├── index.js
+    ├── testRouter.js
+    ├── .env
+    ├── .eslintrc.cjs
+    ├── babel.config.cjs
+    ├── jest.config.js
+    ├── package-lock.json
+    ├── package.json
+    ├── .gitignore
+    ├── .prettierrc.json 
+    ```
+    
+
+
+```
+## Installation
+To run this project locally:
+
+### 1. Clone the repository:
+```bash
+git clone https://github.com/HackYourFuture/cohort46-project-group-B.git
 ```
 
-### 2.1 Client structure
+### 2. Install client dependencies
+```bash
+cd client
+npm install
+```
+### 3. Install server dependencies
+```bash
+cd ../server
+npm install
+```
 
-- `public` || public facing client code
-- `__tests__` || any `jest` tests for specific components will be in a `__tests__` folder on the same level
-- `__testUtils__` || any code that is only being used in the tests is put in the `__testUtils__` folder to separate that away from the rest of the code
-- `components` || all of our shared components that are used over multiple pages
-- `hooks` || all of our custom hooks
-- `pages` || the page components of our app, any routing will go between these components
-- `pages/components` || components used specifically on those pages
-- `util` || any utility functions that can be used anywhere on the client side
-- `index.jsx` || the start point of the client
+### 4. Set environment variables
+```bash
+PORT=PORT
+MONGODB_URI=mongodb-uri
+JWT_SECRET=jwt-secret
+```
 
-### 2.2 Cypress structure
+### 5. Run the app
+```bash
+# Server
+cd server
+npm run dev
+# Client
+cd ../client
+npm run dev
+```
 
-- `fixtures` || any data/files that `cypress` needs can be placed here
-- `integration` || all of our tests are in here, separated in folders based on the pages in our app
-- `plugins` || any plugins for our `cypress` configuration can be placed here
-- `support` || custom commands and other support files for `cypress` can be placed here
+## CONTRIBUTORS/ AUTHORS
+- [@Fressia](https://github.com/barrios2)
+- [@Mariam](https://github.com/mariamisaeva)
+- [@Ali](https://github.com/AliOthman0934)
+- [@Marley](https://github.com/Marley-Semende)
 
-### 2.3 Server structure
-
-- `__tests__` || any `jest` tests for the api endpoints as that is our testing strategy for the backend
-- `__testUtils__` || any code that is only being used in the tests is put in the `__testUtils__` folder to separate that away from the rest of the code
-- `controllers` || all of our controller functions that interact with the database
-- `db` || all of our configuration for the database
-- `models` || all of our `mongoose` models will be placed here
-- `routes` || code to match up the API with our controllers
-- `util` || any utility functions that can be used anywhere on the server side
-- `index.js` || the start point of the server
-
-## 3. Stack / external libraries
-
-The base stack of the app is a MERN stack (Mongoose, Express, React, Node). Next to that we make use of the following extras:
-
-### 3.1 Configuration libraries
-
-- `dotenv` || To load the .env variables into the process environment. See [docs](https://www.npmjs.com/package/dotenv)
-- `webpack` / `html-webpack-plugin` || To bundle our React app and create a static app to host. See [docs](https://webpack.js.org/)
-- `husky` || To run our tests and linter before committing. See [docs](https://typicode.github.io/husky/#/)
-- `eslint` || To check our code. We have different configurations for frontend and backend. You can check out the configuration in the `.eslintrc.(c)js` files in the respective `client` and `server` folders. See [docs](https://eslint.org/)
-- `prettier` || To automatically format our code. See [docs](https://prettier.io/)
-- `concurrently` || To run commands in parallel. See [docs](https://github.com/open-cli-tools/concurrently#readme)
-
-For more information on how these work together including the automatic deployment to heroku, have a look at our detailed [DEV](./DEV.md) file.
-
-### 3.2 Client-side libraries
-
-- `@testing-library/*` || We use React Testing Library to write all of our tests. See [docs](https://testing-library.com/docs/react-testing-library/intro/)
-- `jest` || To run our tests and coverage. See [docs](https://jestjs.io/)
-- `jest-fetch-mock` || To mock out the backend for our testing purposes. See [docs](https://github.com/jefflau/jest-fetch-mock#readme)
-- `prop-types` || To type-check our components. See [docs](https://github.com/facebook/prop-types)
-
-### 3.3 Server-side libraries
-
-- `nodemon` || To automatically restart the server when in development mode. See [docs](https://nodemon.io/)
-- `jest` || To run our tests and coverage. See [docs](https://jestjs.io/)
-- `supertest` || To more easily test our endpoints. See [docs](https://github.com/visionmedia/supertest#readme)
-- `mongodb-memory-server` || To mock out our database in our backend tests. See [docs](https://github.com/nodkz/mongodb-memory-server)
-- `cors` || To open up our API. See [docs](https://github.com/expressjs/cors#readme)
-- `mongoose` || To add schemas to our database. See [docs](https://mongoosejs.com/)
+## ACKNOWLEDGEMENTS
+We would like to extend our heartfelt gratitude to the Hack Your Future team and mentors for their support, an extensive curriculum, resources and mentorship throughout the program and to Frank and Muhamed who have  been mentoring us  throughout the implementation of the project. 
+Thank you all for your support and contributions. Home Swap would not have been possible without your support 🙌🏾.
