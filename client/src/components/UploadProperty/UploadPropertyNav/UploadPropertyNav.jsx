@@ -30,7 +30,7 @@ const UploadPropertyNav = ({ goToPreviousPage, validateForm }) => {
           <i className="fa-solid fa-arrow-left"></i>
         </button>
         <input type="checkbox" id="navbar-toggle" className="navbar-toggle" />
-        <label htmlFor="navbar-toggle" className="navbar-toggle-label">
+        <label htmlFor="navbar-toggle" className="navbar-toggle-label1">
           &#9776;
         </label>
         <ul className="navbar-menu">

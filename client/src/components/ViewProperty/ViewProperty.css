@@ -36,7 +36,6 @@
   left: 50%;
   transform: translate(-50%, -11%);
   padding: 20px;
-  margin-top: 80px;
 }
 
 h5 {
@@ -251,14 +250,14 @@ article p {
 
 .footer-view-property {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
 .footer-view-property > button {
   display: flex;
   border: 0;
-  padding: 15px 25px;
+  padding: 15px 130px;
   align-items: center;
   border-radius: 7px;
   cursor: pointer;
@@ -396,31 +395,11 @@ article p {
     margin-top: 0;
   }
 
-  .arrow-button1,
-  .arrow-button2 {
-    position: absolute;
-    top: 42%;
-    left: 60%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.5;
-  }
-
   .arrow-button1 {
     left: 118px;
   }
 
-  .propety-pic {
+  .view-propety-pic {
     width: 330px;
     height: 350px;
     object-fit: contain;
@@ -450,6 +429,26 @@ article p {
     gap: 33px;
     background-color: #010625;
     padding: 15px;
+  }
+
+  .view-propety-details {
+    padding: 0px;
+    position: relative;
+    top: 164px;
+    margin-bottom: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .view-propety-pic {
+    width: 333px;
+    height: 600px;
+    object-fit: contain;
+    position: relative;
+    left: 0px;
+    top: 142px;
+    margin: 40px 0;
+    filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
   }
 }
 

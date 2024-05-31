@@ -20,7 +20,7 @@ const Nav = () => {
           <img src={logo} alt="homeswap-logo" className="logo" />
         </Link>
         <input type="checkbox" id="navbar-toggle" className="navbar-toggle" />
-        <label htmlFor="navbar-toggle" className="navbar-toggle-label">
+        <label htmlFor="navbar-toggle" className="navbar-toggle-label2">
           &#9776;
         </label>
         <ul className="navbar-menu">
