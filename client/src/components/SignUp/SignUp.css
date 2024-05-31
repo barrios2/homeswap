@@ -276,23 +276,3 @@ input {
     width: fit-content;
   }
 }
-
-/* .error {
-  color: #ff9090;
-  font-size: 14px;
-}
-
-input {
-  color: #010625;
-  font-family: "Inter";
-}
-
-::placeholder {
-  font-family: "Inter";
-  color: #010625;
-}
-
-.error-user {
-  color: #ff9090;
-  font-size: 14px;
-} */
