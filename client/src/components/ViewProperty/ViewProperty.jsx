@@ -6,6 +6,7 @@ import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 import "./ViewProperty.css";
 import Nav from "../Nav/Nav";
+import swal from "sweetalert";
 
 const initialObject = {
   address: {
@@ -76,13 +77,39 @@ function ViewProperty() {
 
   const handleApplyClick = () => {
     if (senderProperties.length === 0) {
-      alert("Please add a property first");
+      swal({
+        title: "No Properties Found",
+        text: "Please add a property first",
+        icon: "warning",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     //if viewed property belongs to the sender
     if (senderProperties.some((p) => p._id === viewPropertyDetails._id)) {
-      alert("You cannot apply for your own property!");
+      swal({
+        title: "Invalid Action",
+        text: "You cannot apply for your own property!",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 

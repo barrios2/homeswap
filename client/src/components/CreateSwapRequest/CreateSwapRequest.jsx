@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import PropTypes from "prop-types";
 import "./CreateSwapRequest.css";
+import swal from "sweetalert";
 
 function CreateSwapRequest({ receiver_propertyID, senderProperties }) {
   const { token } = useLogin();
@@ -68,22 +69,74 @@ function CreateSwapRequest({ receiver_propertyID, senderProperties }) {
 
     //Validations:
     if (formData.startDate < today || formData.endDate < today) {
-      alert("Start date cannot be a date in the past");
+      swal({
+        title: "Invalid Date",
+        text: "Start date cannot be a date in the past",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     if (formData.startDate > formData.endDate) {
-      alert("End date must be after start date");
+      swal({
+        title: "Invalid Date",
+        text: "End date must be after start date",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     if (formData.senderPropertyID === receiver_propertyID) {
-      alert("You cannot apply for this property");
+      swal({
+        title: "Sorry",
+        text: "You cannot apply for this property",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
     if (formData.startDate === formData.endDate) {
-      alert("Please select different dates");
+      swal({
+        title: "Invalid Dates",
+        text: "Please select different dates",
+        icon: "error",
+        buttons: {
+          confirm: {
+            text: "OK",
+            value: true,
+            visible: true,
+            className: "custom-confirm-button",
+            closeModal: true,
+          },
+        },
+      });
       return;
     }
 
