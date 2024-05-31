@@ -11,7 +11,6 @@ import { GiSonicShoes } from "react-icons/gi";
 import { MdOutlinePets } from "react-icons/md";
 import { MdOutlineCleaningServices } from "react-icons/md";
 import "./UploadProperty4.css";
-// import { text } from "@fortawesome/fontawesome-svg-core";
 
 function UploadProperty4({
   submitFormData,
@@ -101,10 +100,10 @@ function UploadProperty4({
 
   return (
     <>
-      <div className="upload-property4-container">
-        <div className="upload-propety4-details">
+      <div className="upload-property-container">
+        <div>
           <div className="header-property4">
-            <h1 className="upload-title">
+            <h1 className="upload-property-title">
               Describe your home, what makes it special?
             </h1>
             <div className="rules-error-deccription">
@@ -112,7 +111,6 @@ function UploadProperty4({
                 <span className="error">{errors.description}</span>
               )}
             </div>
-
             <div className="textarae-input">
               <div className="text-input">
                 <textarea
@@ -139,61 +137,60 @@ function UploadProperty4({
               {errors.rules && <span className="error">{errors.rules}</span>}
             </div>
             <div className="rules-input">
-              <div className="amenities-input1">
-                <div className="upload-card2-container">
-                  <ul className="amenities-grid">
-                    {uploadAmenitiesData.map((amenity, index) => (
-                      <li
-                        key={index}
-                        className={`amenity-item ${
-                          house_rules.includes(amenity.text) ? "selected" : ""
-                        }`}
-                        onClick={() => handleRuleToggle(amenity.text)}
-                      >
-                        <div className="amenity-icon">{amenity.icon}</div>
-                        <span className="amenity-text">{amenity.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="upload-card2-container">
+                <ul className="amenities-grid-4">
+                  {uploadAmenitiesData.map((amenity, index) => (
+                    <li
+                      key={index}
+                      className={`amenity-item ${
+                        house_rules.includes(amenity.text) ? "selected" : ""
+                      }`}
+                      onClick={() => handleRuleToggle(amenity.text)}
+                    >
+                      <div className="amenity-icon">{amenity.icon}</div>
+                      <span className="amenity-text">{amenity.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="propety-image-property4">
+        <div className="property-image-property">
           <img
-            src="https://img.freepik.com/vrije-vector/ontspannen-freelancer-man-zittend-op-bed-met-laptop-vooraanzicht-platte-vectorillustratie_1150-40336.jpg?size=626&ext=jpg&ga=GA1.2.1450317072.1715328804&semt=ais"
+            src="https://cdni.iconscout.com/illustration/premium/thumb/bedroom-3318351-2766923.png"
             alt=""
-            className="propety-pic-property4"
+            className="property-pic-property"
           />
-          <div className="upload-footer">
-            <button type="submit" onClick={handleSubmitButtonClick}>
-              <span>Submit</span>
+          <div className="submit-btn-container">
+            <button
+              type="button"
+              className="input-submit"
+              onClick={handleSubmitButtonClick}
+            >
+              Submit
             </button>
           </div>
-          {showPopup && (
-            <div className="popup-submition">
-              <div className="popup-content-submition">
-                <span
-                  className="close-submition"
-                  onClick={() => {
-                    setShowPopup(false);
-                    navigate("/profile");
-                  }}
-                >
-                  &times;
-                </span>
-                <span className="content-submition">
-                  <h2>Thank you for your submission!</h2>
-                  <p>
-                    We appreciate you taking the time to share this with us.
-                  </p>
-                </span>
-              </div>
-            </div>
-          )}
         </div>
+        {showPopup && (
+          <div className="popup-submition">
+            <div className="popup-content-submition">
+              <span
+                className="close-submition"
+                onClick={() => {
+                  setShowPopup(false);
+                  navigate("/profile");
+                }}
+              >
+                &times;
+              </span>
+              <span className="content-submition">
+                <h2>Thank you for your submission!</h2>
+                <p>We appreciate you taking the time to share this with us.</p>
+              </span>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
@@ -210,161 +207,3 @@ UploadProperty4.propTypes = {
 };
 
 export default UploadProperty4;
-
-// import React, { useState, useEffect, useCallback } from "react";
-// import PropTypes from "prop-types";
-// import useFetch from "../../../hooks/useFetch"; // Adjust the path as needed
-// import {
-//   TbWheelchairOff,
-//   TbSmokingNo,
-// } from "react-icons/tb";
-// import {
-//   MdDoNotDisturbOnTotalSilence,
-//   MdOutlinePets,
-//   MdOutlineCleaningServices,
-// } from "react-icons/md";
-// import { CiMoneyBill } from "react-icons/ci";
-// import { FaToggleOff } from "react-icons/fa";
-// import { GiBrokenPottery, GiSonicShoes } from "react-icons/gi";
-
-// import "./UploadProperty4.css";
-
-// const iconSize = 30;
-
-// // Amenity icon mapping
-// const amenityIcons = {
-//   "No smoking": <TbSmokingNo color="#ae593a" size={iconSize} />,
-//   "No shoes allowed inside the property": <GiSonicShoes color="#ae593a" size={iconSize} />,
-//   "No noise after 22:00": <MdDoNotDisturbOnTotalSilence color="#ae593a" size={iconSize} />,
-//   "No kids": <MdDoNotDisturbOnTotalSilence color="#ae593a" size={iconSize} />,
-//   "Penalty applied for any damage": <GiBrokenPottery color="#ae593a" size={iconSize} />,
-//   "No pets": <MdOutlinePets color="#ae593a" size={iconSize} />,
-//   "Turn off lights and AC after use": <FaToggleOff color="#ae593a" size={iconSize} />,
-//   "Cleaning fee": <CiMoneyBill color="#ae593a" size={iconSize} />,
-//   "Clean before leaving": <MdOutlineCleaningServices color="#ae593a" size={iconSize} />,
-//   "Wheelchair not accessible": <TbWheelchairOff color="#ae593a" size={iconSize} />,
-// };
-
-// function UploadProperty4({
-//   submitFormData,
-//   formdata,
-//   setformdata,
-//   validateForm,
-//   errors,
-// }) {
-//   const [description, setDescription] = useState(formdata.description || "");
-//   const [selectedRules, setSelectedRules] = useState([]);
-
-//   const onReceived = useCallback((data) => {
-//     const { amenities } = data;
-//     setAvailableAmenities(amenities);
-//   }, []);
-
-//   const { isLoading, error, performFetch, cancelFetch } = useFetch("/property/amenities", onReceived);
-
-//   useEffect(() => {
-//     performFetch();
-//     return () => {
-//       cancelFetch();
-//     };
-//   }, [performFetch, cancelFetch]);
-
-//   const [availableAmenities, setAvailableAmenities] = useState([]);
-
-//   useEffect(() => {
-//     if (availableAmenities.length > 0) {
-//       setSelectedRules(
-//         formdata.house_rules.map((rule) => {
-//           return availableAmenities.findIndex((data) => data === rule);
-//         })
-//       );
-//     }
-//   }, [formdata.house_rules, availableAmenities]);
-
-//   useEffect(() => {
-//     setformdata((prevData) => ({
-//       ...prevData,
-//       description,
-//       house_rules: selectedRules.map((index) => availableAmenities[index]),
-//     }));
-//   }, [description, selectedRules, setformdata, availableAmenities]);
-
-//   const toggleRule = (index) => {
-//     const updatedRules = selectedRules.includes(index)
-//       ? selectedRules.filter((i) => i !== index)
-//       : [...selectedRules, index];
-//     setSelectedRules(updatedRules);
-//   };
-
-//   const handleSubmitButtonClick = () => {
-//     if (validateForm()) {
-//       submitFormData();
-//     }
-//   };
-
-//   if (isLoading) {
-//     return <div>Loading amenities...</div>;
-//   }
-
-//   if (error) {
-//     return <div>Error loading amenities: {error}</div>;
-//   }
-
-//   return (
-//     <div className="upload-property4-container">
-//       <div className="upload-property4-details">
-//         <header>
-//           <h1 className="upload-title">Describe your home, what makes it special?</h1>
-//           {errors.description && <span className="error">{errors.description}</span>}
-//           <textarea
-//             className="textarea-property4"
-//             value={description}
-//             onChange={(e) => setDescription(e.target.value)}
-//             placeholder="Add home description..."
-//             rows="10"
-//           />
-//         </header>
-//         <h1 className="upload-title">Please specify some rules for your home</h1>
-//         {errors.rules && <span className="error">{errors.rules}</span>}
-//         <div className="upload-card2-container">
-//           <ul className="amenities-grid">
-//             {availableAmenities.map((amenity, index) => (
-//               <li
-//                 key={index}
-//                 className={`amenity-item ${selectedRules.includes(index) ? "selected" : ""}`}
-//                 onClick={() => toggleRule(index)}
-//               >
-//                 <div className="amenity-icon">
-//                   {amenityIcons[amenity] || <span>{index + 1}</span>}
-//                 </div>
-//                 <span className="amenity-text">{amenity}</span>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       </div>
-//       <div className="property-image-property4">
-//         <img
-//           src="https://img.freepik.com/vrije-vector/ontspannen-freelancer-man-zittend-op-bed-met-laptop-vooraanzicht-platte-vectorillustratie_1150-40336.jpg?size=626&ext=jpg&ga=GA1.2.1450317072.1715328804&semt=ais"
-//           alt="Property"
-//           className="property-pic-property4"
-//         />
-//         <div className="upload-footer">
-//           <button type="submit" onClick={handleSubmitButtonClick}>
-//             <span>Submit</span>
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// UploadProperty4.propTypes = {
-//   submitFormData: PropTypes.func.isRequired,
-//   formdata: PropTypes.object.isRequired,
-//   setformdata: PropTypes.func.isRequired,
-//   validateForm: PropTypes.func.isRequired,
-//   errors: PropTypes.object.isRequired,
-// };
-
-// export default UploadProperty4;

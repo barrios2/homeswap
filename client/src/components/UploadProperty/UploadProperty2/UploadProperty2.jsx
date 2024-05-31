@@ -154,10 +154,10 @@ function UploadProperty2({
 
   return (
     <>
-      <div className="upload-property2-container">
-        <div className="upload-property2-details">
+      <div className="upload-property-container">
+        <div>
           <header>
-            <h1 className="upload-property2-title">
+            <h1 className="upload-property-title">
               Please choose your home amenities
             </h1>
             <div className="error-amenities">
@@ -165,11 +165,10 @@ function UploadProperty2({
                 <span className="error">{errors.amenities}</span>
               )}
             </div>
-
             <div className="amenities-input">
-              <div className="amenities-input1">
+              <div>
                 <div className="upload-card2-container">
-                  <ul className="amenities-grid-property2">
+                  <ul className="amenities-grid">
                     {uploadAmenitiesData.map((amenity, index) => (
                       <li
                         key={index}
@@ -182,7 +181,7 @@ function UploadProperty2({
                           onChange={() => toggleAmenity(index)}
                           value={formdata.amenities}
                         />
-                        <div className="amenity-icon">{amenity.icon}</div>
+                        <div>{amenity.icon}</div>
                         <span className="amenity-text">{amenity.text}</span>
                       </li>
                     ))}
@@ -192,16 +191,19 @@ function UploadProperty2({
             </div>
           </header>
         </div>
-
-        <div className="propety-image-property2">
+        <div className="property-image-property">
           <img
-            src="https://cdn.dribbble.com/users/2110955/screenshots/4948218/media/f8832cd2e44e56f9b6d260286fa61e8a.png?resize=800x600&vertical=center"
+            src="https://cdni.iconscout.com/illustration/premium/thumb/bedroom-3318351-2766923.png"
             alt=""
-            className="propety-pic-property2"
+            className="property-pic-property"
           />
-          <div className="upload-property3-footer">
-            <button type="button" onClick={handleNextButtonClick}>
-              <span>Continue</span>
+          <div className="submit-btn-container">
+            <button
+              type="button"
+              className="input-submit"
+              onClick={handleNextButtonClick}
+            >
+              Continue
             </button>
           </div>
         </div>

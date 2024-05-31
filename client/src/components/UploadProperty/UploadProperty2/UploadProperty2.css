@@ -4,14 +4,14 @@
   align-items: center;
   border: 1px solid var(--light-gray);
   color: var(--light-gray);
-  padding: 50px 30px;
+  padding: 60px 30px;
   border-radius: 20px;
 }
 
-.amenities-grid-property2 {
+.amenities-grid {
   display: grid;
   grid-template-columns: repeat(3, 137px);
-  gap: 80px 70px;
+  gap: 40px 50px;
   list-style: none;
 }
 
@@ -38,7 +38,6 @@
 input {
   border: none;
   background: none;
-  /* color: black; */
   width: 15px;
 }
 
@@ -46,39 +45,31 @@ input:focus {
   outline: none;
 }
 
-.arrow-down2 {
-  margin-top: 50px;
-}
-
-.upload-property2-container {
+.upload-property-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
   padding: 20px;
+  color: #fff;
 }
 
-.propety-image-property2 {
+.property-image-property {
   display: flex;
   flex-direction: column;
   align-items: center;
   background: linear-gradient(to bottom, #020024 0%, #002244 35%, #020024 100%);
-  padding: 55px 0;
+  padding: 20px;
   width: 100%;
-  margin: auto;
+  height: 100vh;
 }
 
-.propety-pic-property2 {
+.property-pic-property {
   width: 500px;
-  height: 350px;
-  object-fit: contain;
-  position: relative;
-  left: 0;
-  top: -270px;
   margin: 40px 0;
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
 }
 
-.upload-property2-title {
+.upload-property-title {
   color: #fff;
   margin: 0;
   font-size: 20px;
@@ -89,26 +80,6 @@ input:focus {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.Continue-upload-property2 {
-  display: flex;
-  border: 0;
-  padding: 15px 25px;
-  align-items: center;
-  border-radius: 7px;
-  cursor: pointer;
-  position: relative;
-  top: 86px;
-  left: 189px;
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-left: 10px;
-  color: white;
-  background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
-  transition: 200ms;
-  margin-bottom: 60px;
 }
 
 .amenities-input {
@@ -158,8 +129,8 @@ input:focus {
   background-color: #fcf7e8;
 }
 
-@media (max-width: 400px) {
-  .upload-property2-container {
+@media (max-width: 768px) {
+  .upload-property-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,7 +149,7 @@ input:focus {
     width: 325px;
   }
 
-  .propety-image-property2 {
+  .property-image-property {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,13 +159,8 @@ input:focus {
     margin: auto;
   }
 
-  .propety-pic-property2 {
+  .property-pic-property {
     display: none;
-    width: 500px;
-    height: 350px;
-    object-fit: contain;
-    position: relative;
-    left: 0;
   }
 
   .error-amenities {
@@ -203,16 +169,16 @@ input:focus {
     left: 7px;
   }
 
-  .amenities-grid-property2 {
+  .amenities-grid {
     display: grid;
     grid-template-columns: repeat(2, 80px);
-    gap: 48px 89px;
+    gap: 48px 100px;
     list-style: none;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .upload-property2-container {
+@media (min-width: 769px) and (max-width: 1024px) {
+  .upload-property-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,7 +197,7 @@ input:focus {
     width: 325px;
   }
 
-  .propety-image-property2 {
+  .property-image-property {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -241,13 +207,8 @@ input:focus {
     margin: auto;
   }
 
-  .propety-pic-property2 {
+  .property-pic-property {
     display: none;
-    width: 500px;
-    height: 350px;
-    object-fit: contain;
-    position: relative;
-    left: 0;
   }
 
   .error-amenities {
@@ -256,27 +217,9 @@ input:focus {
     left: 7px;
   }
 
-  .amenities-grid-property2 {
+  .amenities-grid {
     display: grid;
     gap: 48px 89px;
     list-style: none;
-  }
-
-  .Continue-upload-property2 {
-    display: flex;
-    border: 0;
-    padding: 15px 150px;
-    align-items: center;
-    border-radius: 7px;
-    cursor: pointer;
-    position: relative;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-left: 10px;
-    color: white;
-    background: linear-gradient(to bottom, #ae593a 0%, #ae593a 100%);
-    transition: 200ms;
-    margin-bottom: 60px;
   }
 }

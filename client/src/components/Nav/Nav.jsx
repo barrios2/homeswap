@@ -7,10 +7,6 @@ import { useLogin } from "../../context/LogInProvider/LogInProvider";
 const Nav = () => {
   const { isLoggedIn, setIsLoggedIn, setUserId, setToken } = useLogin();
 
-  const handleLogIn = () => {
-    setIsLoggedIn(true);
-  };
-
   const handleLogOut = () => {
     setIsLoggedIn(false);
     setUserId(null);
@@ -31,11 +27,7 @@ const Nav = () => {
           {!isLoggedIn ? (
             <>
               <li className="navbar-item">
-                <Link
-                  to="/user/login"
-                  className="navbar-link log-in-btn "
-                  onClick={handleLogIn}
-                >
+                <Link to="/user/login" className="navbar-link log-in-btn">
                   Log in
                 </Link>
               </li>
