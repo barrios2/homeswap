@@ -32,8 +32,15 @@
 }
 
 .belief-header {
-  font-size: 44px;
+  font-size: 70px;
   margin-bottom: 24px;
+  font-family: "Sedan", serif;
+  font-style: italic;
+}
+
+.belief-text {
+  padding: 26px;
+  font-size: 20px;
 }
 
 .culture-block {
@@ -42,7 +49,9 @@
 }
 
 .culture-text-wrapper {
-  font-size: 24px;
+  font-family: "Sedan", serif;
+  font-style: italic;
+  font-size: 32px;
   width: 60vw;
   margin: 0 auto;
   color: #fff;
@@ -71,7 +80,7 @@
   }
 
   .culture-text-wrapper {
-    font-size: 16px;
+    font-size: 22px;
   }
 
   .vision-block {
@@ -106,5 +115,4 @@ hr {
   width: 80%;
   margin: auto;
   margin-top: 80px;
-  color: #1366ba;
 }

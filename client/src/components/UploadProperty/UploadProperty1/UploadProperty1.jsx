@@ -29,10 +29,12 @@ const UploadProperty1 = ({
   };
 
   return (
-    <div className="first-screen-container">
+    <div className="upload-property-container">
       <div className="form-left-container">
         <div className="margin-bottom">
-          <h3 className="title-header">Please provide a title for your home</h3>
+          <h3 className="upload-property-title">
+            Please provide a title for your home
+          </h3>
           {errors.title && (
             <span className="error-property1">{errors.title}</span>
           )}
@@ -213,22 +215,21 @@ const UploadProperty1 = ({
           </form>
         </div>
       </div>
-      <div className="right-screen-container">
-        <div className="img-container">
-          <img
-            src="https://img.freepik.com/vrije-vector/ontspannen-freelancer-man-zittend-op-bed-met-laptop-vooraanzicht-platte-vectorillustratie_1150-40336.jpg?size=626&ext=jpg&ga=GA1.2.1450317072.1715328804&semt=ais"
-            alt=""
-            className="right-screen-img"
-          />
+      <div className="property-image-property">
+        <img
+          src="https://cdni.iconscout.com/illustration/premium/thumb/bedroom-3318351-2766923.png"
+          alt=""
+          className="property-pic-property"
+        />
+        <div className="submit-btn-container">
+          <button
+            type="button"
+            className="input-submit"
+            onClick={handleNextButtonClick}
+          >
+            Continue
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="input-submit"
-          onClick={handleNextButtonClick}
-        >
-          Continue
-        </button>
       </div>
     </div>
   );

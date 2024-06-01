@@ -15,17 +15,7 @@
   gap: 40px;
 }
 
-.upload-card2-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid var(--light-gray);
-  color: var(--light-gray);
-  padding: 50px 30px;
-  border-radius: 20px;
-}
-
-.amenities-grid {
+.amenities-grid-4 {
   display: grid;
   grid-template-columns: repeat(2, 80px);
   gap: 80px 185px;
@@ -60,32 +50,18 @@
 
 .upload-propety4-details {
   position: relative;
-  top: 35px;
-}
-
-.propety-image-property4 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(to bottom, #020024 0%, #002244 35%, #020024 100%);
-  padding: 55px 0;
-  width: 100%;
-  margin: auto;
 }
 
 .propety-pic-property4 {
-  width: 500px;
-  height: 350px;
+  width: 550px;
+  height: 550px;
   top: -231px;
-  object-fit: contain;
-  position: relative;
   left: 0;
   margin: 40px 0;
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
 }
 
 .upload-title {
-  text-transform: uppercase;
   color: #fff;
   margin: 0;
   font-size: 20px;
@@ -127,7 +103,6 @@
 
 .upload-footer > button > span {
   font-size: 18px;
-  text-transform: uppercase;
   font-weight: 700;
   margin-left: 10px;
   color: white;
@@ -177,10 +152,11 @@
 }
 
 .textarea-property4 {
-  width: 460px;
+  width: 500px;
   height: 160px;
   background: none;
   border: none;
+  outline: none;
   color: #fff;
 }
 
@@ -193,7 +169,6 @@
   height: fit-content;
   border: 1px #fff solid;
   border-radius: 23px;
-  margin-top: 30px;
 }
 
 .amenity-item input[type="checkbox"] {
@@ -254,7 +229,7 @@
     color: #fff;
   }
 
-  .amenities-grid {
+  .amenities-grid-4 {
     display: grid;
     grid-template-columns: repeat(2, 80px);
     gap: 80px 75px;
@@ -289,14 +264,6 @@
     border-radius: 23px;
     margin-top: 30px;
     margin-bottom: 10px;
-  }
-
-  .upload-title {
-    text-transform: uppercase;
-    color: #fff;
-    margin: 0;
-    font-size: 16px;
-    text-align: center;
   }
 
   .upload-footer > button {
@@ -387,7 +354,7 @@
     color: #fff;
   }
 
-  .amenities-grid {
+  .amenities-grid-4 {
     display: grid;
     grid-template-columns: repeat(3, 80px);
     gap: 80px 75px;
@@ -395,7 +362,7 @@
   }
 
   .textarea-property4 {
-    width: 280px;
+    width: 450px;
     height: 160px;
     background: none;
     border: none;
@@ -422,14 +389,6 @@
     border-radius: 23px;
     margin-top: 30px;
     margin-bottom: 10px;
-  }
-
-  .upload-title {
-    text-transform: uppercase;
-    color: #fff;
-    margin: 0;
-    font-size: 16px;
-    text-align: center;
   }
 
   .upload-footer > button {
