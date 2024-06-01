@@ -54,10 +54,10 @@ function UploadProperty3({
 
   return (
     <>
-      <div className="upload-property3-container">
-        <div className="upload-property3-details">
+      <div className="upload-property-container">
+        <div>
           <header className="upload-property3-header">
-            <h1 className="upload-property3-title">
+            <h1 className="upload-property-title">
               How many bedrooms and bathrooms are in your home?
             </h1>
             <div className="bath-error">
@@ -68,7 +68,6 @@ function UploadProperty3({
                 <span className="error-bath">{errors.bathrooms}</span>
               )}
             </div>
-
             <div className="bathrooms-input">
               <div className="bathrooms-input1-property3">
                 <div className="input-h2">
@@ -131,7 +130,7 @@ function UploadProperty3({
             </div>
             <br />
             <div>
-              <h1 className="upload-property3-title">
+              <h1 className="upload-property-title">
                 Please add some photos of your home
               </h1>
             </div>
@@ -163,7 +162,6 @@ function UploadProperty3({
                   {formdata.photos.map((photo, index) => (
                     <div key={index} className="uploaded-photo-property3">
                       <img
-                        /*src={URL.createObjectURL(photo)}*/
                         src={photo}
                         alt={`Uploaded ${index}`}
                         style={{ width: 100, height: 100, borderRadius: 23 }}
@@ -183,16 +181,19 @@ function UploadProperty3({
             )}
           </header>
         </div>
-
-        <div className="propety-image-property3">
+        <div className="property-image-property">
           <img
-            src="https://img.freepik.com/vrije-vector/ontspannen-freelancer-man-zittend-op-bed-met-laptop-vooraanzicht-platte-vectorillustratie_1150-40336.jpg?size=626&ext=jpg&ga=GA1.2.1450317072.1715328804&semt=ais"
+            src="https://cdn-icons-png.flaticon.com/512/2642/2642358.png"
             alt=""
-            className="propety-pic-property3"
+            className="property-pic-property"
           />
-          <div className="upload-property3-footer">
-            <button type="button" onClick={handleNextButtonClick}>
-              <span>Continue</span>
+          <div className="submit-btn-container">
+            <button
+              type="button"
+              className="input-submit"
+              onClick={handleNextButtonClick}
+            >
+              Continue
             </button>
           </div>
         </div>

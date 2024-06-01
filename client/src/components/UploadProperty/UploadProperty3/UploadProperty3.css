@@ -11,27 +11,18 @@
   background: linear-gradient(to bottom, #020024 0%, #002244 35%, #020024 100%);
   padding: 55px 0;
   width: 100%;
+  height: 100%;
   margin: auto;
 }
 
 .propety-pic-property3 {
-  width: 500px;
-  height: 350px;
+  width: 450px;
+  height: 450px;
   top: -22px;
-  object-fit: contain;
   position: relative;
   left: 0;
   margin: 40px 0;
   filter: drop-shadow(-6px 40px 23px rgba(0, 0, 0, 0.5));
-}
-
-.upload-property3-title {
-  color: #fff;
-  margin: 0;
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 10px;
-  margin-bottom: 10px;
 }
 
 .upload-property3-header {
@@ -222,15 +213,6 @@
     position: absolute;
     top: 500px;
   }
-
-  .upload-property3-title {
-    color: #fff;
-    margin: 0;
-    font-size: 17px;
-    text-align: center;
-    margin-bottom: 10px;
-    margin-bottom: 10px;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -300,15 +282,6 @@
   .photo-error {
     position: absolute;
     top: 515px;
-  }
-
-  .upload-property3-title {
-    color: #fff;
-    margin: 0;
-    font-size: 17px;
-    text-align: center;
-    margin-bottom: 10px;
-    margin-bottom: 10px;
   }
 
   .bath-error {
