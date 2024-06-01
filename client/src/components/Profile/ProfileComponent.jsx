@@ -10,7 +10,7 @@ import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import useFetch from "../../hooks/useFetch";
 
 function ProfileComponent() {
-  const { userId, token, setUserProperties, username } = useLogin();
+  const { user, userId, token, setUserProperties, username } = useLogin();
 
   const onReceived = (data) => {
     setUserProperties(data.data);
@@ -29,7 +29,7 @@ function ProfileComponent() {
       // including bearer token from session bc otherwise there will be an unauthorized response from the endpoint
       performFetch({ headers: { Authorization: `Bearer ${token}` } });
     }
-  }, [activeTab]);
+  }, [activeTab, user]);
 
   // change activeTab state to the text content of button clicked so that active className can be applied (default is "My properties')
   const handleClick = (e) => {

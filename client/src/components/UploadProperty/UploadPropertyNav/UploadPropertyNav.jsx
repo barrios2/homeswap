@@ -5,14 +5,13 @@ import "./UploadPropertyNav.css";
 import { useLogin } from "../../../context/LogInProvider/LogInProvider";
 
 const UploadPropertyNav = ({ goToPreviousPage, validateForm }) => {
-  const { isLoggedIn, setIsLoggedIn } = useLogin();
-
-  const handleLogIn = () => {
-    setIsLoggedIn(true);
-  };
+  const { user, setIsLoggedIn, setUserId, setToken } = useLogin();
 
   const handleLogOut = () => {
     setIsLoggedIn(false);
+    setUserId(null);
+    setToken(null);
+    localStorage.clear();
   };
 
   const handlePreviousButtonClick = () => {
@@ -36,14 +35,10 @@ const UploadPropertyNav = ({ goToPreviousPage, validateForm }) => {
           &#9776;
         </label>
         <ul className="navbar-menu">
-          {!isLoggedIn ? (
+          {!user ? (
             <>
               <li className="navbar-item">
-                <Link
-                  to="/user/login"
-                  className="navbar-link log-in-btn "
-                  onClick={handleLogIn}
-                >
+                <Link to="/user/login" className="navbar-link log-in-btn">
                   Log in
                 </Link>
               </li>

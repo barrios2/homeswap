@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
 
 const LogInContext = createContext({
   isLoggedIn: false,
@@ -53,10 +54,15 @@ const LogInProvider = ({ children }) => {
   const params = parameters.toString();
   const [userProperties, setUserProperties] = useState([]);
   const [username, setUsername] = useState(null);
+  const prevLocation = useLocation();
+  const user = JSON.parse(localStorage.getItem("user")); // parse user from stringified object into regular object
+
+  useEffect(() => {}, [user]);
 
   return (
     <LogInContext.Provider
       value={{
+        user,
         isLoggedIn,
         setIsLoggedIn,
         userId,
@@ -86,6 +92,7 @@ const LogInProvider = ({ children }) => {
         setUserProperties,
         username,
         setUsername,
+        prevLocation,
       }}
     >
       {children}

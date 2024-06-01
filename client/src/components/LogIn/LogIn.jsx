@@ -12,18 +12,26 @@ const initialFormState = {
 };
 
 function LogIn() {
-  const { setIsLoggedIn, setUserId, setToken, setUsername } = useLogin();
+  const {
+    user,
+    setIsLoggedIn,
+    setUserId,
+    setToken,
+    setUsername,
+    prevLocation,
+  } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
   const navigate = useNavigate();
-  const { isLoading, error, performFetch, cancelFetch } = useFetch(
-    "/user/login",
-    onSuccess,
-  );
+  const { isLoading, error, performFetch } = useFetch("/user/login", onSuccess);
 
   useEffect(() => {
-    return () => cancelFetch;
-  }, []);
+    if (user) {
+      prevLocation.pathname === "/user/login"
+        ? navigate("/home")
+        : history.back();
+    }
+  }, [user, prevLocation.pathname]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -37,12 +45,12 @@ function LogIn() {
   };
 
   function onSuccess(userData) {
-    setFormData(initialFormState);
+    localStorage.setItem("user", JSON.stringify(userData));
     setIsLoggedIn(true);
     setUserId(userData.id);
     setToken(userData.token);
     setUsername(userData.username);
-    navigate("/home");
+    history.back();
   }
 
   const handleSubmit = async (e) => {

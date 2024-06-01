@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useLogin } from "../../context/LogInProvider/LogInProvider";
 
 const initialFormState = {
   username: "",
@@ -21,10 +22,16 @@ function SignUp() {
     "/user/create",
     onSuccess,
   );
+  const { user, prevLocation } = useLogin();
 
   useEffect(() => {
+    if (user) {
+      prevLocation.pathname === "/user/signup"
+        ? navigate("/home")
+        : history.back();
+    }
     return () => cancelFetch;
-  }, []);
+  }, [user]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
