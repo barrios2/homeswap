@@ -97,6 +97,7 @@ function LogIn() {
                   id="password"
                   value={formData.password}
                   onChange={handleChange}
+                  autoComplete="off"
                 />
                 <FontAwesomeIcon
                   icon={showPassword ? faEyeSlash : faEye}
