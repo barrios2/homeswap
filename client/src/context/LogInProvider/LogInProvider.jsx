@@ -54,6 +54,7 @@ const LogInProvider = ({ children }) => {
   const params = parameters.toString();
   const [userProperties, setUserProperties] = useState([]);
   const [username, setUsername] = useState(null);
+  const [userRequests, setUserRequests] = useState([]);
   const prevLocation = useLocation();
   const user = JSON.parse(localStorage.getItem("user")); // parse user from stringified object into regular object
 
@@ -92,6 +93,8 @@ const LogInProvider = ({ children }) => {
         setUserProperties,
         username,
         setUsername,
+        userRequests,
+        setUserRequests,
         prevLocation,
       }}
     >

@@ -8,46 +8,74 @@ import { Link } from "react-router-dom";
 import ProfilePropertyList from "../ProfilePropertyList/ProfilePropertyList";
 import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import useFetch from "../../hooks/useFetch";
+import RequestListPage from "../RequestListPage/RequestListPage";
+import "../RequestListPage/RequestListPage.css";
 
 function ProfileComponent() {
-  const { user, userId, token, setUserProperties, username } = useLogin();
+  const { user, userId, token, setUserProperties, setUserRequests, username } =
+    useLogin();
 
   const onReceived = (data) => {
     setUserProperties(data.data);
   };
+  const onRequestsReceived = (data) => {
+    setUserRequests(data.data);
+  };
+  const { performFetch: fetchProperties } = useFetch(
+    `/user/properties/${userId}`,
+    onReceived,
+  );
+  const { performFetch: fetchRequests } = useFetch(
+    `/swap/requests/${userId}`,
+    onRequestsReceived,
+  );
 
-  const { performFetch } = useFetch(`/user/properties/${userId}`, onReceived);
   const [activeTab, setActiveTab] = useState("My properties");
   const myProperties = activeTab === "My properties";
   const myRequests = activeTab === "My requests";
+  const [transition, setTransition] = useState(false); //added transition for a smooth transition between tabs
 
   useEffect(() => {
-    // hardcoded because for now we don't have that data available
-    if (activeTab === "My requests") {
-      setUserProperties([]);
-    } else {
-      // including bearer token from session bc otherwise there will be an unauthorized response from the endpoint
-      performFetch({ headers: { Authorization: `Bearer ${token}` } });
+    if (activeTab === "My properties") {
+      fetchProperties({
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } else if (activeTab === "My requests") {
+      fetchRequests({
+        headers: { Authorization: `Bearer ${token}` },
+      });
     }
   }, [activeTab, user]);
 
   // change activeTab state to the text content of button clicked so that active className can be applied (default is "My properties')
   const handleClick = (e) => {
-    setActiveTab(e.target.textContent);
+    setTransition(true);
+    setTimeout(() => {
+      setActiveTab(e.target.textContent);
+      setTransition(false);
+    }, 500);
   };
 
   return (
     <>
       <Nav />
       <div className="add-profile-page">
-        <button className="add-to-profile">
-          <Link to={"/property/upload"}>
-            <img src={addIcon} alt="add button" />
-          </Link>
-        </button>
+        {/* conditionally rendering add to profile button in my properties tab */}
+        {myProperties && (
+          <button className="add-to-profile">
+            <Link to={"/property/upload"}>
+              <img src={addIcon} alt="add button" />
+            </Link>
+          </button>
+        )}
         <div className="card-and-list-container">
-          <div className="card-container">
-            <div className="upper-container">
+          {/* conditionally applied classes for adjustments in my component */}
+          <div
+            className={`card-container ${myRequests ? "requests-active" : ""} ${transition ? "transitioning" : ""}`}
+          >
+            <div
+              className={`upper-container ${myRequests ? "requests-active" : ""}`}
+            >
               <div className="image-container">
                 <FontAwesomeIcon icon={faUser} className="user-pic-icon" />
               </div>
@@ -72,7 +100,10 @@ function ProfileComponent() {
               </div>
             </div>
           </div>
-          <ProfilePropertyList />
+          <div
+            className={`content-container ${transition ? "fade-out" : "fade-in"}`}
+          ></div>
+          {myProperties ? <ProfilePropertyList /> : <RequestListPage />}
         </div>
       </div>
     </>

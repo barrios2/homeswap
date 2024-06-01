@@ -10,6 +10,7 @@ import ViewProperty from "./components/ViewProperty/ViewProperty";
 import UploadProperty from "./pages/UploadProperty/UploadProperty";
 import ProfileComponent from "./components/Profile/ProfileComponent";
 import { ToastContainer } from "react-toastify";
+import RequestListPage from "./components/RequestListPage/RequestListPage";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route element={<ProtectedProfile />}>
           <Route path="/profile" element={<ProfileComponent />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/swap/requests/:id" element={<RequestListPage />} />
           <Route path="/property/view/:id" element={<ViewProperty />} />
           <Route path="/property/upload" element={<UploadProperty />} />
         </Route>
