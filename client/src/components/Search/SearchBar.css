@@ -122,7 +122,8 @@ location-container-search,
 .search-area,
 .search-area2 {
   max-width: 200px;
-  margin-right: 10px;
+
+  margin-left: 45px;
   display: inline-block;
 }
 
@@ -131,9 +132,13 @@ location-container-search,
   width: 100px;
 }
 
+.search-type {
+  margin-left: -70px;
+}
+
 .search-area::placeholder,
 .search-area2::placeholder {
-  font-size: 14px;
+  font-size: 13px;
   margin-left: 40px;
 }
 
@@ -146,6 +151,9 @@ location-container-search,
   text-align: center;
   background-color: var(--input-bg);
   padding: 4px;
+  appearance: none;
+  background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-width="2" d="M6 9l6 6 6-6"/></svg>')
+    no-repeat right 5px center;
 }
 .search-type ::placeholder,
 .search-bedrooms ::placeholder,
@@ -154,7 +162,11 @@ location-container-search,
 }
 
 .search-bedrooms {
-  margin-left: 18px;
+  margin-left: 8px;
+}
+
+.search-amenities {
+  margin-left: -10px;
 }
 .vertical-line {
   background-color: var(--light-gray);
@@ -188,37 +200,59 @@ location-container-search,
 
 @media (max-width: 768px) {
   .search-container {
+    flex-direction: column;
+    align-items: center;
     padding: 15px;
     max-width: 90%;
-    margin: 0;
+    height: auto;
+    margin: 0 auto;
     box-shadow: none;
+  }
+
+  .search-title {
+    font-size: 24px;
+    margin: 20px 0;
   }
 
   .search-criteria {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
-  .search-area,
+  .search-city-country,
+  .search-type,
+  .search-bedrooms,
+  .search-amenities {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .location-container-search,
+  .property-container-search,
+  .bedrooms-container-search,
+  .amenities-container-search {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-area {
+    margin-left: 145px;
+  }
+  .search-area2 {
+    margin-left: -20px !important;
+  }
+
   .search-area2,
   .search-type,
   .search-bedrooms,
   .search-amenities {
-    width: 100%;
-    max-width: 100%;
-    margin: 5px 0;
+    width: calc(50% - 10px);
+    margin: 5px;
   }
 
   .vertical-line {
     display: none;
-  }
-
-  .options {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-icon-container {
-    margin-top: 10px;
   }
 }

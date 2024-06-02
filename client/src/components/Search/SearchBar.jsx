@@ -69,8 +69,23 @@ const Search = () => {
     }
   }, []);
 
+  //fixed the issue with negatives in the bedroom bedrooms dropdown
   const handleInputChange = (e) => {
-    setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Check if the input is for 'bedrooms' and prevent it from going below 0
+    if (name === "bedrooms") {
+      const sanitizedValue = Math.max(0, parseInt(value, 10));
+      setSearchParams((prevParams) => ({
+        ...prevParams,
+        [name]: sanitizedValue || "", // Used sanitizedValue here or revert to empty string if NaN
+      }));
+    } else {
+      setSearchParams((prevParams) => ({
+        ...prevParams,
+        [name]: value,
+      }));
+    }
   };
 
   //search form fields validation
@@ -167,7 +182,7 @@ const Search = () => {
                 className="search-bedrooms"
                 value={searchParams.bedrooms}
                 onChange={handleInputChange}
-                placeholder="Bedrooms..."
+                placeholder="Bedrooms"
               />
             </div>
             <div className="vertical-line"></div>
