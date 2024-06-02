@@ -36,16 +36,18 @@ function ProfileComponent() {
   const [transition, setTransition] = useState(false); //added transition for a smooth transition between tabs
 
   useEffect(() => {
-    if (activeTab === "My properties") {
-      fetchProperties({
-        headers: { Authorization: `Bearer ${token}` },
-      });
-    } else if (activeTab === "My requests") {
-      fetchRequests({
-        headers: { Authorization: `Bearer ${token}` },
-      });
+    if (token) {
+      if (activeTab === "My properties") {
+        fetchProperties({
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else if (activeTab === "My requests") {
+        fetchRequests({
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
     }
-  }, [activeTab]);
+  }, [activeTab, token]);
 
   // change activeTab state to the text content of button clicked so that active className can be applied (default is "My properties')
   const handleClick = (e) => {

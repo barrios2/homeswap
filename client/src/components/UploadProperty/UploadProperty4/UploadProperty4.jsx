@@ -200,7 +200,7 @@ UploadProperty4.propTypes = {
   submitFormData: PropTypes.func.isRequired,
   formdata: PropTypes.object.isRequired,
   setformdata: PropTypes.func.isRequired,
-  showPopup: PropTypes.object.isRequired,
+  showPopup: PropTypes.bool.isRequired,
   setShowPopup: PropTypes.func.isRequired,
   validateForm: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
