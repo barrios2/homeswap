@@ -10,6 +10,7 @@ import { useLogin } from "../../context/LogInProvider/LogInProvider";
 import useFetch from "../../hooks/useFetch";
 import RequestListPage from "../RequestListPage/RequestListPage";
 import "../RequestListPage/RequestListPage.css";
+import HomeBackground from "../RequestListPage/HeroSection";
 
 function ProfileComponent() {
   const { userId, token, setUserProperties, setUserRequests, username } =
@@ -61,6 +62,15 @@ function ProfileComponent() {
   return (
     <>
       <Nav />
+      <HomeBackground
+        className="swap-hero-container"
+        style={{
+          marginTop: "-30px",
+          marginBottom: "30px",
+        }}
+      >
+        <h1 className="swap-hero-title">Find a home that suits your needs</h1>
+      </HomeBackground>
       <div className="add-profile-page">
         {/* conditionally rendering add to profile button in my properties tab */}
         {myProperties && (
@@ -72,9 +82,7 @@ function ProfileComponent() {
         )}
         <div className="card-and-list-container">
           {/* conditionally applied classes for adjustments in my component */}
-          <div
-            className={`card-container ${myRequests ? "requests-active" : ""} ${transition ? "transitioning" : ""}`}
-          >
+          <div className="card-container">
             <div
               className={`upper-container ${myRequests ? "requests-active" : ""}`}
             >

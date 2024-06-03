@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./RequestListPage.css";
 import { logError } from "../../../../server/src/util/logging";
-import HomeBackground from "./HeroSection";
 import nextSlider from "../../assets/icon-next-slider.svg";
 import prevSlider from "../../assets/icon-prev-slider.svg";
 
@@ -294,15 +293,6 @@ function RequestListPage() {
 
   return (
     <div className="swap-container">
-      <HomeBackground
-        className="swap-hero-container"
-        style={{
-          marginTop: "-30px",
-          marginBottom: "30px",
-        }}
-      >
-        <h1 className="swap-hero-title">Find a home that suits your needs</h1>
-      </HomeBackground>
       <div className="swap-incoming-outgoing-buttons">
         <button
           className={`swap-incoming-btn ${showIncoming ? "active" : ""}`}
