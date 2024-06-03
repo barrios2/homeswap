@@ -15,7 +15,7 @@ const HomeBackground = ({ children, direction = "row", ...props }) => {
         flexDirection: direction,
         alignItems: "center",
         justifyContent: "center",
-        height: "390px",
+        height: { xs: "450px", md: "390px" },
         padding: 2,
         backgroundColor: backgroundColor,
         borderRadius: "30px",
@@ -33,7 +33,7 @@ const HomeBackground = ({ children, direction = "row", ...props }) => {
           height: 300,
           borderRadius: 10,
           backgroundColor: backgroundColor,
-          backgroundImage: `url(${bgImg})`,
+          backgroundImage: { xs: "none", md: `url(${bgImg})` }, // Hide background on mobile
           backgroundSize: "contain",
           backgroundPosition: "left -10px top 100px",
           backgroundRepeat: "no-repeat",
